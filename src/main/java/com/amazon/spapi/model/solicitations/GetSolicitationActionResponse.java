@@ -14,16 +14,12 @@
 package com.amazon.spapi.model.solicitations;
 
 import java.util.Objects;
-import java.util.Arrays;
+
 import com.amazon.spapi.model.ErrorList;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * Describes a solicitation action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
@@ -31,135 +27,135 @@ import java.io.IOException;
 @ApiModel(description = "Describes a solicitation action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T21:00:32.319+08:00")
 public class GetSolicitationActionResponse {
-  @SerializedName("_links")
-  private GetSolicitationActionResponseLinks links = null;
+    @SerializedName("_links")
+    private GetSolicitationActionResponseLinks links = null;
 
-  @SerializedName("_embedded")
-  private GetSolicitationActionResponseEmbedded embedded = null;
+    @SerializedName("_embedded")
+    private GetSolicitationActionResponseEmbedded embedded = null;
 
-  @SerializedName("payload")
-  private SolicitationsAction payload = null;
+    @SerializedName("payload")
+    private SolicitationsAction payload = null;
 
-  @SerializedName("errors")
-  private ErrorList errors = null;
+    @SerializedName("errors")
+    private ErrorList errors = null;
 
-  public GetSolicitationActionResponse links(GetSolicitationActionResponseLinks links) {
-    this.links = links;
-    return this;
-  }
-
-   /**
-   * Get links
-   * @return links
-  **/
-  @ApiModelProperty(value = "")
-  public GetSolicitationActionResponseLinks getLinks() {
-    return links;
-  }
-
-  public void setLinks(GetSolicitationActionResponseLinks links) {
-    this.links = links;
-  }
-
-  public GetSolicitationActionResponse embedded(GetSolicitationActionResponseEmbedded embedded) {
-    this.embedded = embedded;
-    return this;
-  }
-
-   /**
-   * Get embedded
-   * @return embedded
-  **/
-  @ApiModelProperty(value = "")
-  public GetSolicitationActionResponseEmbedded getEmbedded() {
-    return embedded;
-  }
-
-  public void setEmbedded(GetSolicitationActionResponseEmbedded embedded) {
-    this.embedded = embedded;
-  }
-
-  public GetSolicitationActionResponse payload(SolicitationsAction payload) {
-    this.payload = payload;
-    return this;
-  }
-
-   /**
-   * Get payload
-   * @return payload
-  **/
-  @ApiModelProperty(value = "")
-  public SolicitationsAction getPayload() {
-    return payload;
-  }
-
-  public void setPayload(SolicitationsAction payload) {
-    this.payload = payload;
-  }
-
-  public GetSolicitationActionResponse errors(ErrorList errors) {
-    this.errors = errors;
-    return this;
-  }
-
-   /**
-   * Get errors
-   * @return errors
-  **/
-  @ApiModelProperty(value = "")
-  public ErrorList getErrors() {
-    return errors;
-  }
-
-  public void setErrors(ErrorList errors) {
-    this.errors = errors;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public GetSolicitationActionResponse links(GetSolicitationActionResponseLinks links) {
+        this.links = links;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get links
+     * @return links
+     **/
+    @ApiModelProperty(value = "")
+    public GetSolicitationActionResponseLinks getLinks() {
+        return links;
     }
-    GetSolicitationActionResponse getSolicitationActionResponse = (GetSolicitationActionResponse) o;
-    return Objects.equals(this.links, getSolicitationActionResponse.links) &&
-        Objects.equals(this.embedded, getSolicitationActionResponse.embedded) &&
-        Objects.equals(this.payload, getSolicitationActionResponse.payload) &&
-        Objects.equals(this.errors, getSolicitationActionResponse.errors);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(links, embedded, payload, errors);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GetSolicitationActionResponse {\n");
-    
-    sb.append("    links: ").append(toIndentedString(links)).append("\n");
-    sb.append("    embedded: ").append(toIndentedString(embedded)).append("\n");
-    sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setLinks(GetSolicitationActionResponseLinks links) {
+        this.links = links;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public GetSolicitationActionResponse embedded(GetSolicitationActionResponseEmbedded embedded) {
+        this.embedded = embedded;
+        return this;
+    }
+
+    /**
+     * Get embedded
+     * @return embedded
+     **/
+    @ApiModelProperty(value = "")
+    public GetSolicitationActionResponseEmbedded getEmbedded() {
+        return embedded;
+    }
+
+    public void setEmbedded(GetSolicitationActionResponseEmbedded embedded) {
+        this.embedded = embedded;
+    }
+
+    public GetSolicitationActionResponse payload(SolicitationsAction payload) {
+        this.payload = payload;
+        return this;
+    }
+
+    /**
+     * Get payload
+     * @return payload
+     **/
+    @ApiModelProperty(value = "")
+    public SolicitationsAction getPayload() {
+        return payload;
+    }
+
+    public void setPayload(SolicitationsAction payload) {
+        this.payload = payload;
+    }
+
+    public GetSolicitationActionResponse errors(ErrorList errors) {
+        this.errors = errors;
+        return this;
+    }
+
+    /**
+     * Get errors
+     * @return errors
+     **/
+    @ApiModelProperty(value = "")
+    public ErrorList getErrors() {
+        return errors;
+    }
+
+    public void setErrors(ErrorList errors) {
+        this.errors = errors;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetSolicitationActionResponse getSolicitationActionResponse = (GetSolicitationActionResponse) o;
+        return Objects.equals(this.links, getSolicitationActionResponse.links) &&
+                Objects.equals(this.embedded, getSolicitationActionResponse.embedded) &&
+                Objects.equals(this.payload, getSolicitationActionResponse.payload) &&
+                Objects.equals(this.errors, getSolicitationActionResponse.errors);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(links, embedded, payload, errors);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class GetSolicitationActionResponse {\n");
+
+        sb.append("    links: ").append(toIndentedString(links)).append("\n");
+        sb.append("    embedded: ").append(toIndentedString(embedded)).append("\n");
+        sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
+        sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

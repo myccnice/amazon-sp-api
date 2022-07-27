@@ -14,17 +14,11 @@
 package com.amazon.spapi.model.productpricing;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.productpricing.ASINIdentifier;
-import com.amazon.spapi.model.productpricing.SellerSKUIdentifier;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * Specifies the identifiers used to uniquely identify an item.
@@ -32,89 +26,89 @@ import java.io.IOException;
 @ApiModel(description = "Specifies the identifiers used to uniquely identify an item.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:54:01.888+08:00")
 public class IdentifierType {
-  @SerializedName("MarketplaceASIN")
-  private ASINIdentifier marketplaceASIN = null;
+    @SerializedName("MarketplaceASIN")
+    private ASINIdentifier marketplaceASIN = null;
 
-  @SerializedName("SKUIdentifier")
-  private SellerSKUIdentifier skUIdentifier = null;
+    @SerializedName("SKUIdentifier")
+    private SellerSKUIdentifier skUIdentifier = null;
 
-  public IdentifierType marketplaceASIN(ASINIdentifier marketplaceASIN) {
-    this.marketplaceASIN = marketplaceASIN;
-    return this;
-  }
-
-   /**
-   * Indicates the item is identified by MarketPlaceId and ASIN.
-   * @return marketplaceASIN
-  **/
-  @ApiModelProperty(required = true, value = "Indicates the item is identified by MarketPlaceId and ASIN.")
-  public ASINIdentifier getMarketplaceASIN() {
-    return marketplaceASIN;
-  }
-
-  public void setMarketplaceASIN(ASINIdentifier marketplaceASIN) {
-    this.marketplaceASIN = marketplaceASIN;
-  }
-
-  public IdentifierType skUIdentifier(SellerSKUIdentifier skUIdentifier) {
-    this.skUIdentifier = skUIdentifier;
-    return this;
-  }
-
-   /**
-   * Indicates the item is identified by MarketPlaceId, SellerId, and SellerSKU.
-   * @return skUIdentifier
-  **/
-  @ApiModelProperty(value = "Indicates the item is identified by MarketPlaceId, SellerId, and SellerSKU.")
-  public SellerSKUIdentifier getSkUIdentifier() {
-    return skUIdentifier;
-  }
-
-  public void setSkUIdentifier(SellerSKUIdentifier skUIdentifier) {
-    this.skUIdentifier = skUIdentifier;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public IdentifierType marketplaceASIN(ASINIdentifier marketplaceASIN) {
+        this.marketplaceASIN = marketplaceASIN;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Indicates the item is identified by MarketPlaceId and ASIN.
+     * @return marketplaceASIN
+     **/
+    @ApiModelProperty(required = true, value = "Indicates the item is identified by MarketPlaceId and ASIN.")
+    public ASINIdentifier getMarketplaceASIN() {
+        return marketplaceASIN;
     }
-    IdentifierType identifierType = (IdentifierType) o;
-    return Objects.equals(this.marketplaceASIN, identifierType.marketplaceASIN) &&
-        Objects.equals(this.skUIdentifier, identifierType.skUIdentifier);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(marketplaceASIN, skUIdentifier);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class IdentifierType {\n");
-    
-    sb.append("    marketplaceASIN: ").append(toIndentedString(marketplaceASIN)).append("\n");
-    sb.append("    skUIdentifier: ").append(toIndentedString(skUIdentifier)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setMarketplaceASIN(ASINIdentifier marketplaceASIN) {
+        this.marketplaceASIN = marketplaceASIN;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public IdentifierType skUIdentifier(SellerSKUIdentifier skUIdentifier) {
+        this.skUIdentifier = skUIdentifier;
+        return this;
+    }
+
+    /**
+     * Indicates the item is identified by MarketPlaceId, SellerId, and SellerSKU.
+     * @return skUIdentifier
+     **/
+    @ApiModelProperty(value = "Indicates the item is identified by MarketPlaceId, SellerId, and SellerSKU.")
+    public SellerSKUIdentifier getSkUIdentifier() {
+        return skUIdentifier;
+    }
+
+    public void setSkUIdentifier(SellerSKUIdentifier skUIdentifier) {
+        this.skUIdentifier = skUIdentifier;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        IdentifierType identifierType = (IdentifierType) o;
+        return Objects.equals(this.marketplaceASIN, identifierType.marketplaceASIN) &&
+                Objects.equals(this.skUIdentifier, identifierType.skUIdentifier);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(marketplaceASIN, skUIdentifier);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class IdentifierType {\n");
+
+        sb.append("    marketplaceASIN: ").append(toIndentedString(marketplaceASIN)).append("\n");
+        sb.append("    skUIdentifier: ").append(toIndentedString(skUIdentifier)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

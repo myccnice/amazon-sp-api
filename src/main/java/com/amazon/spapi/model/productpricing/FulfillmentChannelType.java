@@ -13,12 +13,8 @@
 
 package com.amazon.spapi.model.productpricing;
 
-import java.util.Objects;
-import java.util.Arrays;
-import io.swagger.annotations.ApiModel;
-import com.google.gson.annotations.SerializedName;
-
 import java.io.IOException;
+
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
@@ -29,46 +25,46 @@ import com.google.gson.stream.JsonWriter;
  */
 @JsonAdapter(FulfillmentChannelType.Adapter.class)
 public enum FulfillmentChannelType {
-  
-  AMAZON("Amazon"),
-  
-  MERCHANT("Merchant");
 
-  private String value;
+    AMAZON("Amazon"),
 
-  FulfillmentChannelType(String value) {
-    this.value = value;
-  }
+    MERCHANT("Merchant");
 
-  public String getValue() {
-    return value;
-  }
+    private String value;
 
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
-
-  public static FulfillmentChannelType fromValue(String text) {
-    for (FulfillmentChannelType b : FulfillmentChannelType.values()) {
-      if (String.valueOf(b.value).equals(text)) {
-        return b;
-      }
+    FulfillmentChannelType(String value) {
+        this.value = value;
     }
-    return null;
-  }
 
-  public static class Adapter extends TypeAdapter<FulfillmentChannelType> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final FulfillmentChannelType enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
+    public String getValue() {
+        return value;
     }
 
     @Override
-    public FulfillmentChannelType read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return FulfillmentChannelType.fromValue(String.valueOf(value));
+    public String toString() {
+        return String.valueOf(value);
     }
-  }
+
+    public static FulfillmentChannelType fromValue(String text) {
+        for (FulfillmentChannelType b : FulfillmentChannelType.values()) {
+            if (String.valueOf(b.value).equals(text)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public static class Adapter extends TypeAdapter<FulfillmentChannelType> {
+        @Override
+        public void write(final JsonWriter jsonWriter, final FulfillmentChannelType enumeration) throws IOException {
+            jsonWriter.value(enumeration.getValue());
+        }
+
+        @Override
+        public FulfillmentChannelType read(final JsonReader jsonReader) throws IOException {
+            String value = jsonReader.nextString();
+            return FulfillmentChannelType.fromValue(String.valueOf(value));
+        }
+    }
 }
 

@@ -14,81 +14,76 @@
 package com.amazon.spapi.model.solicitations;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * GetSolicitationActionResponseEmbedded
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T21:00:32.319+08:00")
 public class GetSolicitationActionResponseEmbedded {
-  @SerializedName("schema")
-  private GetSchemaResponse schema = null;
+    @SerializedName("schema")
+    private GetSchemaResponse schema = null;
 
-  public GetSolicitationActionResponseEmbedded schema(GetSchemaResponse schema) {
-    this.schema = schema;
-    return this;
-  }
-
-   /**
-   * Get schema
-   * @return schema
-  **/
-  @ApiModelProperty(value = "")
-  public GetSchemaResponse getSchema() {
-    return schema;
-  }
-
-  public void setSchema(GetSchemaResponse schema) {
-    this.schema = schema;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public GetSolicitationActionResponseEmbedded schema(GetSchemaResponse schema) {
+        this.schema = schema;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get schema
+     * @return schema
+     **/
+    @ApiModelProperty(value = "")
+    public GetSchemaResponse getSchema() {
+        return schema;
     }
-    GetSolicitationActionResponseEmbedded getSolicitationActionResponseEmbedded = (GetSolicitationActionResponseEmbedded) o;
-    return Objects.equals(this.schema, getSolicitationActionResponseEmbedded.schema);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(schema);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GetSolicitationActionResponseEmbedded {\n");
-    
-    sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setSchema(GetSchemaResponse schema) {
+        this.schema = schema;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetSolicitationActionResponseEmbedded getSolicitationActionResponseEmbedded = (GetSolicitationActionResponseEmbedded) o;
+        return Objects.equals(this.schema, getSolicitationActionResponseEmbedded.schema);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(schema);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class GetSolicitationActionResponseEmbedded {\n");
+
+        sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

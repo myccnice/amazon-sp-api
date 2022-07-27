@@ -14,106 +14,99 @@
 package com.amazon.spapi.model.sellers;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.sellers.Marketplace;
-import com.amazon.spapi.model.sellers.Participation;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * MarketplaceParticipation
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T19:59:39.171+08:00")
 public class MarketplaceParticipation {
-  @SerializedName("marketplace")
-  private Marketplace marketplace = null;
+    @SerializedName("marketplace")
+    private Marketplace marketplace = null;
 
-  @SerializedName("participation")
-  private Participation participation = null;
+    @SerializedName("participation")
+    private Participation participation = null;
 
-  public MarketplaceParticipation marketplace(Marketplace marketplace) {
-    this.marketplace = marketplace;
-    return this;
-  }
-
-   /**
-   * Get marketplace
-   * @return marketplace
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public Marketplace getMarketplace() {
-    return marketplace;
-  }
-
-  public void setMarketplace(Marketplace marketplace) {
-    this.marketplace = marketplace;
-  }
-
-  public MarketplaceParticipation participation(Participation participation) {
-    this.participation = participation;
-    return this;
-  }
-
-   /**
-   * Get participation
-   * @return participation
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public Participation getParticipation() {
-    return participation;
-  }
-
-  public void setParticipation(Participation participation) {
-    this.participation = participation;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public MarketplaceParticipation marketplace(Marketplace marketplace) {
+        this.marketplace = marketplace;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get marketplace
+     * @return marketplace
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public Marketplace getMarketplace() {
+        return marketplace;
     }
-    MarketplaceParticipation marketplaceParticipation = (MarketplaceParticipation) o;
-    return Objects.equals(this.marketplace, marketplaceParticipation.marketplace) &&
-        Objects.equals(this.participation, marketplaceParticipation.participation);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(marketplace, participation);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class MarketplaceParticipation {\n");
-    
-    sb.append("    marketplace: ").append(toIndentedString(marketplace)).append("\n");
-    sb.append("    participation: ").append(toIndentedString(participation)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setMarketplace(Marketplace marketplace) {
+        this.marketplace = marketplace;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public MarketplaceParticipation participation(Participation participation) {
+        this.participation = participation;
+        return this;
+    }
+
+    /**
+     * Get participation
+     * @return participation
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public Participation getParticipation() {
+        return participation;
+    }
+
+    public void setParticipation(Participation participation) {
+        this.participation = participation;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        MarketplaceParticipation marketplaceParticipation = (MarketplaceParticipation) o;
+        return Objects.equals(this.marketplace, marketplaceParticipation.marketplace) &&
+                Objects.equals(this.participation, marketplaceParticipation.participation);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(marketplace, participation);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class MarketplaceParticipation {\n");
+
+        sb.append("    marketplace: ").append(toIndentedString(marketplace)).append("\n");
+        sb.append("    participation: ").append(toIndentedString(participation)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

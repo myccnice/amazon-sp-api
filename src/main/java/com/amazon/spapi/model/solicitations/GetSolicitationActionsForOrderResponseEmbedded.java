@@ -13,89 +13,84 @@
 
 package com.amazon.spapi.model.solicitations;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import com.google.gson.annotations.SerializedName;
+
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * GetSolicitationActionsForOrderResponseEmbedded
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T21:00:32.319+08:00")
 public class GetSolicitationActionsForOrderResponseEmbedded {
-  @SerializedName("actions")
-  private List<GetSolicitationActionResponse> actions = new ArrayList<GetSolicitationActionResponse>();
+    @SerializedName("actions")
+    private List<GetSolicitationActionResponse> actions = new ArrayList<GetSolicitationActionResponse>();
 
-  public GetSolicitationActionsForOrderResponseEmbedded actions(List<GetSolicitationActionResponse> actions) {
-    this.actions = actions;
-    return this;
-  }
-
-  public GetSolicitationActionsForOrderResponseEmbedded addActionsItem(GetSolicitationActionResponse actionsItem) {
-    this.actions.add(actionsItem);
-    return this;
-  }
-
-   /**
-   * Get actions
-   * @return actions
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public List<GetSolicitationActionResponse> getActions() {
-    return actions;
-  }
-
-  public void setActions(List<GetSolicitationActionResponse> actions) {
-    this.actions = actions;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public GetSolicitationActionsForOrderResponseEmbedded actions(List<GetSolicitationActionResponse> actions) {
+        this.actions = actions;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public GetSolicitationActionsForOrderResponseEmbedded addActionsItem(GetSolicitationActionResponse actionsItem) {
+        this.actions.add(actionsItem);
+        return this;
     }
-    GetSolicitationActionsForOrderResponseEmbedded getSolicitationActionsForOrderResponseEmbedded = (GetSolicitationActionsForOrderResponseEmbedded) o;
-    return Objects.equals(this.actions, getSolicitationActionsForOrderResponseEmbedded.actions);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(actions);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GetSolicitationActionsForOrderResponseEmbedded {\n");
-    
-    sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    /**
+     * Get actions
+     * @return actions
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public List<GetSolicitationActionResponse> getActions() {
+        return actions;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public void setActions(List<GetSolicitationActionResponse> actions) {
+        this.actions = actions;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetSolicitationActionsForOrderResponseEmbedded getSolicitationActionsForOrderResponseEmbedded = (GetSolicitationActionsForOrderResponseEmbedded) o;
+        return Objects.equals(this.actions, getSolicitationActionsForOrderResponseEmbedded.actions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(actions);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class GetSolicitationActionsForOrderResponseEmbedded {\n");
+
+        sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

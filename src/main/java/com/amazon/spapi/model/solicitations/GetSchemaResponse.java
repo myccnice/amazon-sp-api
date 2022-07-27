@@ -14,128 +14,123 @@
 package com.amazon.spapi.model.solicitations;
 
 import java.util.Objects;
-import java.util.Arrays;
+
 import com.amazon.spapi.model.ErrorList;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * GetSchemaResponse
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T21:00:32.319+08:00")
 public class GetSchemaResponse {
-  @SerializedName("_links")
-  private GetSchemaResponseLinks links = null;
+    @SerializedName("_links")
+    private GetSchemaResponseLinks links = null;
 
-  @SerializedName("payload")
-  private Schema payload = null;
+    @SerializedName("payload")
+    private Schema payload = null;
 
-  @SerializedName("errors")
-  private ErrorList errors = null;
+    @SerializedName("errors")
+    private ErrorList errors = null;
 
-  public GetSchemaResponse links(GetSchemaResponseLinks links) {
-    this.links = links;
-    return this;
-  }
-
-   /**
-   * Get links
-   * @return links
-  **/
-  @ApiModelProperty(value = "")
-  public GetSchemaResponseLinks getLinks() {
-    return links;
-  }
-
-  public void setLinks(GetSchemaResponseLinks links) {
-    this.links = links;
-  }
-
-  public GetSchemaResponse payload(Schema payload) {
-    this.payload = payload;
-    return this;
-  }
-
-   /**
-   * Get payload
-   * @return payload
-  **/
-  @ApiModelProperty(value = "")
-  public Schema getPayload() {
-    return payload;
-  }
-
-  public void setPayload(Schema payload) {
-    this.payload = payload;
-  }
-
-  public GetSchemaResponse errors(ErrorList errors) {
-    this.errors = errors;
-    return this;
-  }
-
-   /**
-   * Get errors
-   * @return errors
-  **/
-  @ApiModelProperty(value = "")
-  public ErrorList getErrors() {
-    return errors;
-  }
-
-  public void setErrors(ErrorList errors) {
-    this.errors = errors;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public GetSchemaResponse links(GetSchemaResponseLinks links) {
+        this.links = links;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get links
+     * @return links
+     **/
+    @ApiModelProperty(value = "")
+    public GetSchemaResponseLinks getLinks() {
+        return links;
     }
-    GetSchemaResponse getSchemaResponse = (GetSchemaResponse) o;
-    return Objects.equals(this.links, getSchemaResponse.links) &&
-        Objects.equals(this.payload, getSchemaResponse.payload) &&
-        Objects.equals(this.errors, getSchemaResponse.errors);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(links, payload, errors);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GetSchemaResponse {\n");
-    
-    sb.append("    links: ").append(toIndentedString(links)).append("\n");
-    sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setLinks(GetSchemaResponseLinks links) {
+        this.links = links;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public GetSchemaResponse payload(Schema payload) {
+        this.payload = payload;
+        return this;
+    }
+
+    /**
+     * Get payload
+     * @return payload
+     **/
+    @ApiModelProperty(value = "")
+    public Schema getPayload() {
+        return payload;
+    }
+
+    public void setPayload(Schema payload) {
+        this.payload = payload;
+    }
+
+    public GetSchemaResponse errors(ErrorList errors) {
+        this.errors = errors;
+        return this;
+    }
+
+    /**
+     * Get errors
+     * @return errors
+     **/
+    @ApiModelProperty(value = "")
+    public ErrorList getErrors() {
+        return errors;
+    }
+
+    public void setErrors(ErrorList errors) {
+        this.errors = errors;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetSchemaResponse getSchemaResponse = (GetSchemaResponse) o;
+        return Objects.equals(this.links, getSchemaResponse.links) &&
+                Objects.equals(this.payload, getSchemaResponse.payload) &&
+                Objects.equals(this.errors, getSchemaResponse.errors);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(links, payload, errors);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class GetSchemaResponse {\n");
+
+        sb.append("    links: ").append(toIndentedString(links)).append("\n");
+        sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
+        sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

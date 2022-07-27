@@ -14,16 +14,12 @@
 package com.amazon.spapi.model.solicitations;
 
 import java.util.Objects;
-import java.util.Arrays;
+
 import com.amazon.spapi.model.ErrorList;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * The response schema for the createProductReviewAndSellerFeedbackSolicitation operation.
@@ -31,66 +27,66 @@ import java.io.IOException;
 @ApiModel(description = "The response schema for the createProductReviewAndSellerFeedbackSolicitation operation.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T21:00:32.319+08:00")
 public class CreateProductReviewAndSellerFeedbackSolicitationResponse {
-  @SerializedName("errors")
-  private ErrorList errors = null;
+    @SerializedName("errors")
+    private ErrorList errors = null;
 
-  public CreateProductReviewAndSellerFeedbackSolicitationResponse errors(ErrorList errors) {
-    this.errors = errors;
-    return this;
-  }
-
-   /**
-   * Get errors
-   * @return errors
-  **/
-  @ApiModelProperty(value = "")
-  public ErrorList getErrors() {
-    return errors;
-  }
-
-  public void setErrors(ErrorList errors) {
-    this.errors = errors;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public CreateProductReviewAndSellerFeedbackSolicitationResponse errors(ErrorList errors) {
+        this.errors = errors;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get errors
+     * @return errors
+     **/
+    @ApiModelProperty(value = "")
+    public ErrorList getErrors() {
+        return errors;
     }
-    CreateProductReviewAndSellerFeedbackSolicitationResponse createProductReviewAndSellerFeedbackSolicitationResponse = (CreateProductReviewAndSellerFeedbackSolicitationResponse) o;
-    return Objects.equals(this.errors, createProductReviewAndSellerFeedbackSolicitationResponse.errors);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(errors);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class CreateProductReviewAndSellerFeedbackSolicitationResponse {\n");
-    
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setErrors(ErrorList errors) {
+        this.errors = errors;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CreateProductReviewAndSellerFeedbackSolicitationResponse createProductReviewAndSellerFeedbackSolicitationResponse = (CreateProductReviewAndSellerFeedbackSolicitationResponse) o;
+        return Objects.equals(this.errors, createProductReviewAndSellerFeedbackSolicitationResponse.errors);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(errors);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class CreateProductReviewAndSellerFeedbackSolicitationResponse {\n");
+
+        sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

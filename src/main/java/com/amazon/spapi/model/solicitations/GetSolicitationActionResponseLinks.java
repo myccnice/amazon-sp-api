@@ -14,104 +14,99 @@
 package com.amazon.spapi.model.solicitations;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * GetSolicitationActionResponseLinks
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T21:00:32.319+08:00")
 public class GetSolicitationActionResponseLinks {
-  @SerializedName("self")
-  private LinkObject self = null;
+    @SerializedName("self")
+    private LinkObject self = null;
 
-  @SerializedName("schema")
-  private LinkObject schema = null;
+    @SerializedName("schema")
+    private LinkObject schema = null;
 
-  public GetSolicitationActionResponseLinks self(LinkObject self) {
-    this.self = self;
-    return this;
-  }
-
-   /**
-   * Get self
-   * @return self
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public LinkObject getSelf() {
-    return self;
-  }
-
-  public void setSelf(LinkObject self) {
-    this.self = self;
-  }
-
-  public GetSolicitationActionResponseLinks schema(LinkObject schema) {
-    this.schema = schema;
-    return this;
-  }
-
-   /**
-   * Get schema
-   * @return schema
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public LinkObject getSchema() {
-    return schema;
-  }
-
-  public void setSchema(LinkObject schema) {
-    this.schema = schema;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public GetSolicitationActionResponseLinks self(LinkObject self) {
+        this.self = self;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get self
+     * @return self
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public LinkObject getSelf() {
+        return self;
     }
-    GetSolicitationActionResponseLinks getSolicitationActionResponseLinks = (GetSolicitationActionResponseLinks) o;
-    return Objects.equals(this.self, getSolicitationActionResponseLinks.self) &&
-        Objects.equals(this.schema, getSolicitationActionResponseLinks.schema);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(self, schema);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GetSolicitationActionResponseLinks {\n");
-    
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setSelf(LinkObject self) {
+        this.self = self;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public GetSolicitationActionResponseLinks schema(LinkObject schema) {
+        this.schema = schema;
+        return this;
+    }
+
+    /**
+     * Get schema
+     * @return schema
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public LinkObject getSchema() {
+        return schema;
+    }
+
+    public void setSchema(LinkObject schema) {
+        this.schema = schema;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetSolicitationActionResponseLinks getSolicitationActionResponseLinks = (GetSolicitationActionResponseLinks) o;
+        return Objects.equals(this.self, getSolicitationActionResponseLinks.self) &&
+                Objects.equals(this.schema, getSolicitationActionResponseLinks.schema);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(self, schema);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class GetSolicitationActionResponseLinks {\n");
+
+        sb.append("    self: ").append(toIndentedString(self)).append("\n");
+        sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

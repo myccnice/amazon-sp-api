@@ -14,17 +14,12 @@
 package com.amazon.spapi.model.productpricing;
 
 import java.util.Objects;
-import java.util.Arrays;
+
 import com.amazon.spapi.model.ErrorList;
-import com.amazon.spapi.model.productpricing.PriceList;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * The response schema for the getPricing and getCompetitivePricing operations.
@@ -32,89 +27,89 @@ import java.io.IOException;
 @ApiModel(description = "The response schema for the getPricing and getCompetitivePricing operations.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:54:01.888+08:00")
 public class GetPricingResponse {
-  @SerializedName("payload")
-  private PriceList payload = null;
+    @SerializedName("payload")
+    private PriceList payload = null;
 
-  @SerializedName("errors")
-  private ErrorList errors = null;
+    @SerializedName("errors")
+    private ErrorList errors = null;
 
-  public GetPricingResponse payload(PriceList payload) {
-    this.payload = payload;
-    return this;
-  }
-
-   /**
-   * The payload for the getPricing and getCompetitivePricing operations.
-   * @return payload
-  **/
-  @ApiModelProperty(value = "The payload for the getPricing and getCompetitivePricing operations.")
-  public PriceList getPayload() {
-    return payload;
-  }
-
-  public void setPayload(PriceList payload) {
-    this.payload = payload;
-  }
-
-  public GetPricingResponse errors(ErrorList errors) {
-    this.errors = errors;
-    return this;
-  }
-
-   /**
-   * One or more unexpected errors occurred during the operation.
-   * @return errors
-  **/
-  @ApiModelProperty(value = "One or more unexpected errors occurred during the operation.")
-  public ErrorList getErrors() {
-    return errors;
-  }
-
-  public void setErrors(ErrorList errors) {
-    this.errors = errors;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public GetPricingResponse payload(PriceList payload) {
+        this.payload = payload;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The payload for the getPricing and getCompetitivePricing operations.
+     * @return payload
+     **/
+    @ApiModelProperty(value = "The payload for the getPricing and getCompetitivePricing operations.")
+    public PriceList getPayload() {
+        return payload;
     }
-    GetPricingResponse getPricingResponse = (GetPricingResponse) o;
-    return Objects.equals(this.payload, getPricingResponse.payload) &&
-        Objects.equals(this.errors, getPricingResponse.errors);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(payload, errors);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GetPricingResponse {\n");
-    
-    sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setPayload(PriceList payload) {
+        this.payload = payload;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public GetPricingResponse errors(ErrorList errors) {
+        this.errors = errors;
+        return this;
+    }
+
+    /**
+     * One or more unexpected errors occurred during the operation.
+     * @return errors
+     **/
+    @ApiModelProperty(value = "One or more unexpected errors occurred during the operation.")
+    public ErrorList getErrors() {
+        return errors;
+    }
+
+    public void setErrors(ErrorList errors) {
+        this.errors = errors;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetPricingResponse getPricingResponse = (GetPricingResponse) o;
+        return Objects.equals(this.payload, getPricingResponse.payload) &&
+                Objects.equals(this.errors, getPricingResponse.errors);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(payload, errors);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class GetPricingResponse {\n");
+
+        sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
+        sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

@@ -14,81 +14,76 @@
 package com.amazon.spapi.model.solicitations;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * GetSchemaResponseLinks
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T21:00:32.319+08:00")
 public class GetSchemaResponseLinks {
-  @SerializedName("self")
-  private LinkObject self = null;
+    @SerializedName("self")
+    private LinkObject self = null;
 
-  public GetSchemaResponseLinks self(LinkObject self) {
-    this.self = self;
-    return this;
-  }
-
-   /**
-   * Get self
-   * @return self
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public LinkObject getSelf() {
-    return self;
-  }
-
-  public void setSelf(LinkObject self) {
-    this.self = self;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public GetSchemaResponseLinks self(LinkObject self) {
+        this.self = self;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get self
+     * @return self
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public LinkObject getSelf() {
+        return self;
     }
-    GetSchemaResponseLinks getSchemaResponseLinks = (GetSchemaResponseLinks) o;
-    return Objects.equals(this.self, getSchemaResponseLinks.self);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(self);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GetSchemaResponseLinks {\n");
-    
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setSelf(LinkObject self) {
+        this.self = self;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetSchemaResponseLinks getSchemaResponseLinks = (GetSchemaResponseLinks) o;
+        return Objects.equals(this.self, getSchemaResponseLinks.self);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(self);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class GetSchemaResponseLinks {\n");
+
+        sb.append("    self: ").append(toIndentedString(self)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

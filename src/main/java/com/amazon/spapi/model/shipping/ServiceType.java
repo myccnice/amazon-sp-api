@@ -13,12 +13,8 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import io.swagger.annotations.ApiModel;
-import com.google.gson.annotations.SerializedName;
-
 import java.io.IOException;
+
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
@@ -29,48 +25,48 @@ import com.google.gson.stream.JsonWriter;
  */
 @JsonAdapter(ServiceType.Adapter.class)
 public enum ServiceType {
-  
-  GROUND("Amazon Shipping Ground"),
-  
-  STANDARD("Amazon Shipping Standard"),
-  
-  PREMIUM("Amazon Shipping Premium");
 
-  private String value;
+    GROUND("Amazon Shipping Ground"),
 
-  ServiceType(String value) {
-    this.value = value;
-  }
+    STANDARD("Amazon Shipping Standard"),
 
-  public String getValue() {
-    return value;
-  }
+    PREMIUM("Amazon Shipping Premium");
 
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
+    private String value;
 
-  public static ServiceType fromValue(String text) {
-    for (ServiceType b : ServiceType.values()) {
-      if (String.valueOf(b.value).equals(text)) {
-        return b;
-      }
+    ServiceType(String value) {
+        this.value = value;
     }
-    return null;
-  }
 
-  public static class Adapter extends TypeAdapter<ServiceType> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final ServiceType enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
+    public String getValue() {
+        return value;
     }
 
     @Override
-    public ServiceType read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return ServiceType.fromValue(String.valueOf(value));
+    public String toString() {
+        return String.valueOf(value);
     }
-  }
+
+    public static ServiceType fromValue(String text) {
+        for (ServiceType b : ServiceType.values()) {
+            if (String.valueOf(b.value).equals(text)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ServiceType> {
+        @Override
+        public void write(final JsonWriter jsonWriter, final ServiceType enumeration) throws IOException {
+            jsonWriter.value(enumeration.getValue());
+        }
+
+        @Override
+        public ServiceType read(final JsonReader jsonReader) throws IOException {
+            String value = jsonReader.nextString();
+            return ServiceType.fromValue(String.valueOf(value));
+        }
+    }
 }
 

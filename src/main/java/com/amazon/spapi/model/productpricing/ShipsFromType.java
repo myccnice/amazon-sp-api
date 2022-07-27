@@ -14,15 +14,11 @@
 package com.amazon.spapi.model.productpricing;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * The state and country from where the item is shipped.
@@ -30,89 +26,89 @@ import java.io.IOException;
 @ApiModel(description = "The state and country from where the item is shipped.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:54:01.888+08:00")
 public class ShipsFromType {
-  @SerializedName("State")
-  private String state = null;
+    @SerializedName("State")
+    private String state = null;
 
-  @SerializedName("Country")
-  private String country = null;
+    @SerializedName("Country")
+    private String country = null;
 
-  public ShipsFromType state(String state) {
-    this.state = state;
-    return this;
-  }
-
-   /**
-   * The state from where the item is shipped.
-   * @return state
-  **/
-  @ApiModelProperty(value = "The state from where the item is shipped.")
-  public String getState() {
-    return state;
-  }
-
-  public void setState(String state) {
-    this.state = state;
-  }
-
-  public ShipsFromType country(String country) {
-    this.country = country;
-    return this;
-  }
-
-   /**
-   * The country from where the item is shipped.
-   * @return country
-  **/
-  @ApiModelProperty(value = "The country from where the item is shipped.")
-  public String getCountry() {
-    return country;
-  }
-
-  public void setCountry(String country) {
-    this.country = country;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public ShipsFromType state(String state) {
+        this.state = state;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The state from where the item is shipped.
+     * @return state
+     **/
+    @ApiModelProperty(value = "The state from where the item is shipped.")
+    public String getState() {
+        return state;
     }
-    ShipsFromType shipsFromType = (ShipsFromType) o;
-    return Objects.equals(this.state, shipsFromType.state) &&
-        Objects.equals(this.country, shipsFromType.country);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(state, country);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ShipsFromType {\n");
-    
-    sb.append("    state: ").append(toIndentedString(state)).append("\n");
-    sb.append("    country: ").append(toIndentedString(country)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setState(String state) {
+        this.state = state;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public ShipsFromType country(String country) {
+        this.country = country;
+        return this;
+    }
+
+    /**
+     * The country from where the item is shipped.
+     * @return country
+     **/
+    @ApiModelProperty(value = "The country from where the item is shipped.")
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ShipsFromType shipsFromType = (ShipsFromType) o;
+        return Objects.equals(this.state, shipsFromType.state) &&
+                Objects.equals(this.country, shipsFromType.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(state, country);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ShipsFromType {\n");
+
+        sb.append("    state: ").append(toIndentedString(state)).append("\n");
+        sb.append("    country: ").append(toIndentedString(country)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 
