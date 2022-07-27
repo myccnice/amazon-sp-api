@@ -13,20 +13,14 @@
 
 package com.amazon.spapi.model.apluscontent;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.PlainTextItem;
-import com.amazon.spapi.model.apluscontent.StandardComparisonProductBlock;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import com.google.gson.annotations.SerializedName;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * The standard product comparison table.
@@ -34,105 +28,105 @@ import java.util.List;
 @ApiModel(description = "The standard product comparison table.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class StandardComparisonTableModule {
-  @SerializedName("productColumns")
-  private List<StandardComparisonProductBlock> productColumns = null;
+    @SerializedName("productColumns")
+    private List<StandardComparisonProductBlock> productColumns = null;
 
-  @SerializedName("metricRowLabels")
-  private List<PlainTextItem> metricRowLabels = null;
+    @SerializedName("metricRowLabels")
+    private List<PlainTextItem> metricRowLabels = null;
 
-  public StandardComparisonTableModule productColumns(List<StandardComparisonProductBlock> productColumns) {
-    this.productColumns = productColumns;
-    return this;
-  }
-
-  public StandardComparisonTableModule addProductColumnsItem(StandardComparisonProductBlock productColumnsItem) {
-    if (this.productColumns == null) {
-      this.productColumns = new ArrayList<StandardComparisonProductBlock>();
+    public StandardComparisonTableModule productColumns(List<StandardComparisonProductBlock> productColumns) {
+        this.productColumns = productColumns;
+        return this;
     }
-    this.productColumns.add(productColumnsItem);
-    return this;
-  }
 
-   /**
-   * Get productColumns
-   * @return productColumns
-  **/
-  @ApiModelProperty(value = "")
-  public List<StandardComparisonProductBlock> getProductColumns() {
-    return productColumns;
-  }
-
-  public void setProductColumns(List<StandardComparisonProductBlock> productColumns) {
-    this.productColumns = productColumns;
-  }
-
-  public StandardComparisonTableModule metricRowLabels(List<PlainTextItem> metricRowLabels) {
-    this.metricRowLabels = metricRowLabels;
-    return this;
-  }
-
-  public StandardComparisonTableModule addMetricRowLabelsItem(PlainTextItem metricRowLabelsItem) {
-    if (this.metricRowLabels == null) {
-      this.metricRowLabels = new ArrayList<PlainTextItem>();
+    public StandardComparisonTableModule addProductColumnsItem(StandardComparisonProductBlock productColumnsItem) {
+        if (this.productColumns == null) {
+            this.productColumns = new ArrayList<StandardComparisonProductBlock>();
+        }
+        this.productColumns.add(productColumnsItem);
+        return this;
     }
-    this.metricRowLabels.add(metricRowLabelsItem);
-    return this;
-  }
 
-   /**
-   * Get metricRowLabels
-   * @return metricRowLabels
-  **/
-  @ApiModelProperty(value = "")
-  public List<PlainTextItem> getMetricRowLabels() {
-    return metricRowLabels;
-  }
-
-  public void setMetricRowLabels(List<PlainTextItem> metricRowLabels) {
-    this.metricRowLabels = metricRowLabels;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    /**
+     * Get productColumns
+     * @return productColumns
+     **/
+    @ApiModelProperty(value = "")
+    public List<StandardComparisonProductBlock> getProductColumns() {
+        return productColumns;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public void setProductColumns(List<StandardComparisonProductBlock> productColumns) {
+        this.productColumns = productColumns;
     }
-    StandardComparisonTableModule standardComparisonTableModule = (StandardComparisonTableModule) o;
-    return Objects.equals(this.productColumns, standardComparisonTableModule.productColumns) &&
-        Objects.equals(this.metricRowLabels, standardComparisonTableModule.metricRowLabels);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(productColumns, metricRowLabels);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class StandardComparisonTableModule {\n");
-    
-    sb.append("    productColumns: ").append(toIndentedString(productColumns)).append("\n");
-    sb.append("    metricRowLabels: ").append(toIndentedString(metricRowLabels)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public StandardComparisonTableModule metricRowLabels(List<PlainTextItem> metricRowLabels) {
+        this.metricRowLabels = metricRowLabels;
+        return this;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public StandardComparisonTableModule addMetricRowLabelsItem(PlainTextItem metricRowLabelsItem) {
+        if (this.metricRowLabels == null) {
+            this.metricRowLabels = new ArrayList<PlainTextItem>();
+        }
+        this.metricRowLabels.add(metricRowLabelsItem);
+        return this;
+    }
+
+    /**
+     * Get metricRowLabels
+     * @return metricRowLabels
+     **/
+    @ApiModelProperty(value = "")
+    public List<PlainTextItem> getMetricRowLabels() {
+        return metricRowLabels;
+    }
+
+    public void setMetricRowLabels(List<PlainTextItem> metricRowLabels) {
+        this.metricRowLabels = metricRowLabels;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        StandardComparisonTableModule standardComparisonTableModule = (StandardComparisonTableModule) o;
+        return Objects.equals(this.productColumns, standardComparisonTableModule.productColumns) &&
+                Objects.equals(this.metricRowLabels, standardComparisonTableModule.metricRowLabels);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productColumns, metricRowLabels);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class StandardComparisonTableModule {\n");
+
+        sb.append("    productColumns: ").append(toIndentedString(productColumns)).append("\n");
+        sb.append("    metricRowLabels: ").append(toIndentedString(metricRowLabels)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

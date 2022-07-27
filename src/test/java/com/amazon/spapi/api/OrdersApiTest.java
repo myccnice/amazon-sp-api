@@ -1,6 +1,6 @@
 package com.amazon.spapi.api;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.amazon.spapi.client.ApiException;
 import com.amazon.spapi.custom.model.CredentialInfoDTO;
@@ -26,12 +26,16 @@ public class OrdersApiTest extends BaseTest {
     }
 
     @Test
-    public void getOrder() throws ApiException {
+    public void getOrder() {
         OrdersV0Api api = getApi();
-        GetOrderResponse order = api.getOrder("1233");
-        Order payload = order.getPayload();
-        if (payload == null) {
-            System.out.println("dddd");
+        try {
+            GetOrderResponse order = api.getOrder("1233");
+            Order payload = order.getPayload();
+            if (payload == null) {
+                System.out.println("dddd");
+            }
+        } catch (ApiException e) {
+            System.out.println(e.getResponseBody());
         }
     }
 }

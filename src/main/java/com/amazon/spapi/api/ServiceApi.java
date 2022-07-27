@@ -9,18 +9,31 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
-
 package com.amazon.spapi.api;
 
-import com.amazon.spapi.client.*;
-import com.amazon.spapi.SellingPartnerAPIAA.*;
-
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSSigV4Signer;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCache;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationSigner;
+import com.amazon.spapi.client.ApiCallback;
+import com.amazon.spapi.client.ApiClient;
+import com.amazon.spapi.client.ApiException;
+import com.amazon.spapi.client.ApiResponse;
+import com.amazon.spapi.client.Configuration;
+import com.amazon.spapi.client.Pair;
+import com.amazon.spapi.client.ProgressRequestBody;
+import com.amazon.spapi.client.ProgressResponseBody;
+import com.amazon.spapi.client.StringUtil;
 import com.amazon.spapi.model.services.AddAppointmentRequest;
 import com.amazon.spapi.model.services.CancelServiceJobByServiceJobIdResponse;
 import com.amazon.spapi.model.services.CompleteServiceJobByServiceJobIdResponse;
@@ -28,19 +41,15 @@ import com.amazon.spapi.model.services.GetServiceJobByServiceJobIdResponse;
 import com.amazon.spapi.model.services.GetServiceJobsResponse;
 import com.amazon.spapi.model.services.RescheduleAppointmentRequest;
 import com.amazon.spapi.model.services.SetAppointmentResponse;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-
+import com.google.gson.reflect.TypeToken;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.Response;
 
 public class ServiceApi {
     private ApiClient apiClient;
 
-    ServiceApi() {
+    public ServiceApi() {
         this(Configuration.getDefaultApiClient());
     }
 
@@ -65,7 +74,7 @@ public class ServiceApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call addAppointmentForServiceJobByServiceJobIdCall(String serviceJobId, AddAppointmentRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call addAppointmentForServiceJobByServiceJobIdCall(String serviceJobId, AddAppointmentRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -92,10 +101,10 @@ public class ServiceApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -107,8 +116,7 @@ public class ServiceApi {
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call addAppointmentForServiceJobByServiceJobIdValidateBeforeCall(String serviceJobId, AddAppointmentRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call addAppointmentForServiceJobByServiceJobIdValidateBeforeCall(String serviceJobId, AddAppointmentRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'serviceJobId' is set
         if (serviceJobId == null) {
@@ -121,7 +129,7 @@ public class ServiceApi {
         }
         
 
-        com.squareup.okhttp.Call call = addAppointmentForServiceJobByServiceJobIdCall(serviceJobId, body, progressListener, progressRequestListener);
+        Call call = addAppointmentForServiceJobByServiceJobIdCall(serviceJobId, body, progressListener, progressRequestListener);
         return call;
 
     }
@@ -148,7 +156,7 @@ public class ServiceApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<SetAppointmentResponse> addAppointmentForServiceJobByServiceJobIdWithHttpInfo(String serviceJobId, AddAppointmentRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = addAppointmentForServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, body, null, null);
+        Call call = addAppointmentForServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, body, null, null);
         Type localVarReturnType = new TypeToken<SetAppointmentResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -162,7 +170,7 @@ public class ServiceApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call addAppointmentForServiceJobByServiceJobIdAsync(String serviceJobId, AddAppointmentRequest body, final ApiCallback<SetAppointmentResponse> callback) throws ApiException {
+    public Call addAppointmentForServiceJobByServiceJobIdAsync(String serviceJobId, AddAppointmentRequest body, final ApiCallback<SetAppointmentResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -183,7 +191,7 @@ public class ServiceApi {
             };
         }
 
-        com.squareup.okhttp.Call call = addAppointmentForServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, body, progressListener, progressRequestListener);
+        Call call = addAppointmentForServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, body, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<SetAppointmentResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -197,7 +205,7 @@ public class ServiceApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call cancelServiceJobByServiceJobIdCall(String serviceJobId, String cancellationReasonCode, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call cancelServiceJobByServiceJobIdCall(String serviceJobId, String cancellationReasonCode, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -226,10 +234,10 @@ public class ServiceApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -241,8 +249,7 @@ public class ServiceApi {
         return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call cancelServiceJobByServiceJobIdValidateBeforeCall(String serviceJobId, String cancellationReasonCode, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call cancelServiceJobByServiceJobIdValidateBeforeCall(String serviceJobId, String cancellationReasonCode, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'serviceJobId' is set
         if (serviceJobId == null) {
@@ -255,7 +262,7 @@ public class ServiceApi {
         }
         
 
-        com.squareup.okhttp.Call call = cancelServiceJobByServiceJobIdCall(serviceJobId, cancellationReasonCode, progressListener, progressRequestListener);
+        Call call = cancelServiceJobByServiceJobIdCall(serviceJobId, cancellationReasonCode, progressListener, progressRequestListener);
         return call;
 
     }
@@ -282,7 +289,7 @@ public class ServiceApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<CancelServiceJobByServiceJobIdResponse> cancelServiceJobByServiceJobIdWithHttpInfo(String serviceJobId, String cancellationReasonCode) throws ApiException {
-        com.squareup.okhttp.Call call = cancelServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, cancellationReasonCode, null, null);
+        Call call = cancelServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, cancellationReasonCode, null, null);
         Type localVarReturnType = new TypeToken<CancelServiceJobByServiceJobIdResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -296,7 +303,7 @@ public class ServiceApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call cancelServiceJobByServiceJobIdAsync(String serviceJobId, String cancellationReasonCode, final ApiCallback<CancelServiceJobByServiceJobIdResponse> callback) throws ApiException {
+    public Call cancelServiceJobByServiceJobIdAsync(String serviceJobId, String cancellationReasonCode, final ApiCallback<CancelServiceJobByServiceJobIdResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -317,7 +324,7 @@ public class ServiceApi {
             };
         }
 
-        com.squareup.okhttp.Call call = cancelServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, cancellationReasonCode, progressListener, progressRequestListener);
+        Call call = cancelServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, cancellationReasonCode, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<CancelServiceJobByServiceJobIdResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -330,7 +337,7 @@ public class ServiceApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call completeServiceJobByServiceJobIdCall(String serviceJobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call completeServiceJobByServiceJobIdCall(String serviceJobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -357,10 +364,10 @@ public class ServiceApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -372,8 +379,7 @@ public class ServiceApi {
         return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call completeServiceJobByServiceJobIdValidateBeforeCall(String serviceJobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call completeServiceJobByServiceJobIdValidateBeforeCall(String serviceJobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'serviceJobId' is set
         if (serviceJobId == null) {
@@ -381,7 +387,7 @@ public class ServiceApi {
         }
         
 
-        com.squareup.okhttp.Call call = completeServiceJobByServiceJobIdCall(serviceJobId, progressListener, progressRequestListener);
+        Call call = completeServiceJobByServiceJobIdCall(serviceJobId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -406,7 +412,7 @@ public class ServiceApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<CompleteServiceJobByServiceJobIdResponse> completeServiceJobByServiceJobIdWithHttpInfo(String serviceJobId) throws ApiException {
-        com.squareup.okhttp.Call call = completeServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, null, null);
+        Call call = completeServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, null, null);
         Type localVarReturnType = new TypeToken<CompleteServiceJobByServiceJobIdResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -419,7 +425,7 @@ public class ServiceApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call completeServiceJobByServiceJobIdAsync(String serviceJobId, final ApiCallback<CompleteServiceJobByServiceJobIdResponse> callback) throws ApiException {
+    public Call completeServiceJobByServiceJobIdAsync(String serviceJobId, final ApiCallback<CompleteServiceJobByServiceJobIdResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -440,7 +446,7 @@ public class ServiceApi {
             };
         }
 
-        com.squareup.okhttp.Call call = completeServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, progressListener, progressRequestListener);
+        Call call = completeServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<CompleteServiceJobByServiceJobIdResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -453,7 +459,7 @@ public class ServiceApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getServiceJobByServiceJobIdCall(String serviceJobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getServiceJobByServiceJobIdCall(String serviceJobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -480,10 +486,10 @@ public class ServiceApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -495,8 +501,7 @@ public class ServiceApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getServiceJobByServiceJobIdValidateBeforeCall(String serviceJobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call getServiceJobByServiceJobIdValidateBeforeCall(String serviceJobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'serviceJobId' is set
         if (serviceJobId == null) {
@@ -504,7 +509,7 @@ public class ServiceApi {
         }
         
 
-        com.squareup.okhttp.Call call = getServiceJobByServiceJobIdCall(serviceJobId, progressListener, progressRequestListener);
+        Call call = getServiceJobByServiceJobIdCall(serviceJobId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -529,7 +534,7 @@ public class ServiceApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetServiceJobByServiceJobIdResponse> getServiceJobByServiceJobIdWithHttpInfo(String serviceJobId) throws ApiException {
-        com.squareup.okhttp.Call call = getServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, null, null);
+        Call call = getServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, null, null);
         Type localVarReturnType = new TypeToken<GetServiceJobByServiceJobIdResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -542,7 +547,7 @@ public class ServiceApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getServiceJobByServiceJobIdAsync(String serviceJobId, final ApiCallback<GetServiceJobByServiceJobIdResponse> callback) throws ApiException {
+    public Call getServiceJobByServiceJobIdAsync(String serviceJobId, final ApiCallback<GetServiceJobByServiceJobIdResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -563,7 +568,7 @@ public class ServiceApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, progressListener, progressRequestListener);
+        Call call = getServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetServiceJobByServiceJobIdResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -588,7 +593,7 @@ public class ServiceApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getServiceJobsCall(List<String> marketplaceIds, List<String> serviceOrderIds, List<String> serviceJobStatus, String pageToken, Integer pageSize, String sortField, String sortOrder, String createdAfter, String createdBefore, String lastUpdatedAfter, String lastUpdatedBefore, String scheduleStartDate, String scheduleEndDate, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getServiceJobsCall(List<String> marketplaceIds, List<String> serviceOrderIds, List<String> serviceJobStatus, String pageToken, Integer pageSize, String sortField, String sortOrder, String createdAfter, String createdBefore, String lastUpdatedAfter, String lastUpdatedBefore, String scheduleStartDate, String scheduleEndDate, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -640,10 +645,10 @@ public class ServiceApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -655,8 +660,7 @@ public class ServiceApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getServiceJobsValidateBeforeCall(List<String> marketplaceIds, List<String> serviceOrderIds, List<String> serviceJobStatus, String pageToken, Integer pageSize, String sortField, String sortOrder, String createdAfter, String createdBefore, String lastUpdatedAfter, String lastUpdatedBefore, String scheduleStartDate, String scheduleEndDate, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call getServiceJobsValidateBeforeCall(List<String> marketplaceIds, List<String> serviceOrderIds, List<String> serviceJobStatus, String pageToken, Integer pageSize, String sortField, String sortOrder, String createdAfter, String createdBefore, String lastUpdatedAfter, String lastUpdatedBefore, String scheduleStartDate, String scheduleEndDate, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'marketplaceIds' is set
         if (marketplaceIds == null) {
@@ -664,7 +668,7 @@ public class ServiceApi {
         }
         
 
-        com.squareup.okhttp.Call call = getServiceJobsCall(marketplaceIds, serviceOrderIds, serviceJobStatus, pageToken, pageSize, sortField, sortOrder, createdAfter, createdBefore, lastUpdatedAfter, lastUpdatedBefore, scheduleStartDate, scheduleEndDate, progressListener, progressRequestListener);
+        Call call = getServiceJobsCall(marketplaceIds, serviceOrderIds, serviceJobStatus, pageToken, pageSize, sortField, sortOrder, createdAfter, createdBefore, lastUpdatedAfter, lastUpdatedBefore, scheduleStartDate, scheduleEndDate, progressListener, progressRequestListener);
         return call;
 
     }
@@ -713,7 +717,7 @@ public class ServiceApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetServiceJobsResponse> getServiceJobsWithHttpInfo(List<String> marketplaceIds, List<String> serviceOrderIds, List<String> serviceJobStatus, String pageToken, Integer pageSize, String sortField, String sortOrder, String createdAfter, String createdBefore, String lastUpdatedAfter, String lastUpdatedBefore, String scheduleStartDate, String scheduleEndDate) throws ApiException {
-        com.squareup.okhttp.Call call = getServiceJobsValidateBeforeCall(marketplaceIds, serviceOrderIds, serviceJobStatus, pageToken, pageSize, sortField, sortOrder, createdAfter, createdBefore, lastUpdatedAfter, lastUpdatedBefore, scheduleStartDate, scheduleEndDate, null, null);
+        Call call = getServiceJobsValidateBeforeCall(marketplaceIds, serviceOrderIds, serviceJobStatus, pageToken, pageSize, sortField, sortOrder, createdAfter, createdBefore, lastUpdatedAfter, lastUpdatedBefore, scheduleStartDate, scheduleEndDate, null, null);
         Type localVarReturnType = new TypeToken<GetServiceJobsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -738,7 +742,7 @@ public class ServiceApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getServiceJobsAsync(List<String> marketplaceIds, List<String> serviceOrderIds, List<String> serviceJobStatus, String pageToken, Integer pageSize, String sortField, String sortOrder, String createdAfter, String createdBefore, String lastUpdatedAfter, String lastUpdatedBefore, String scheduleStartDate, String scheduleEndDate, final ApiCallback<GetServiceJobsResponse> callback) throws ApiException {
+    public Call getServiceJobsAsync(List<String> marketplaceIds, List<String> serviceOrderIds, List<String> serviceJobStatus, String pageToken, Integer pageSize, String sortField, String sortOrder, String createdAfter, String createdBefore, String lastUpdatedAfter, String lastUpdatedBefore, String scheduleStartDate, String scheduleEndDate, final ApiCallback<GetServiceJobsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -759,7 +763,7 @@ public class ServiceApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getServiceJobsValidateBeforeCall(marketplaceIds, serviceOrderIds, serviceJobStatus, pageToken, pageSize, sortField, sortOrder, createdAfter, createdBefore, lastUpdatedAfter, lastUpdatedBefore, scheduleStartDate, scheduleEndDate, progressListener, progressRequestListener);
+        Call call = getServiceJobsValidateBeforeCall(marketplaceIds, serviceOrderIds, serviceJobStatus, pageToken, pageSize, sortField, sortOrder, createdAfter, createdBefore, lastUpdatedAfter, lastUpdatedBefore, scheduleStartDate, scheduleEndDate, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetServiceJobsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -774,7 +778,7 @@ public class ServiceApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call rescheduleAppointmentForServiceJobByServiceJobIdCall(String serviceJobId, String appointmentId, RescheduleAppointmentRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call rescheduleAppointmentForServiceJobByServiceJobIdCall(String serviceJobId, String appointmentId, RescheduleAppointmentRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -802,10 +806,10 @@ public class ServiceApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -817,8 +821,7 @@ public class ServiceApi {
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call rescheduleAppointmentForServiceJobByServiceJobIdValidateBeforeCall(String serviceJobId, String appointmentId, RescheduleAppointmentRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call rescheduleAppointmentForServiceJobByServiceJobIdValidateBeforeCall(String serviceJobId, String appointmentId, RescheduleAppointmentRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'serviceJobId' is set
         if (serviceJobId == null) {
@@ -836,7 +839,7 @@ public class ServiceApi {
         }
         
 
-        com.squareup.okhttp.Call call = rescheduleAppointmentForServiceJobByServiceJobIdCall(serviceJobId, appointmentId, body, progressListener, progressRequestListener);
+        Call call = rescheduleAppointmentForServiceJobByServiceJobIdCall(serviceJobId, appointmentId, body, progressListener, progressRequestListener);
         return call;
 
     }
@@ -865,7 +868,7 @@ public class ServiceApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<SetAppointmentResponse> rescheduleAppointmentForServiceJobByServiceJobIdWithHttpInfo(String serviceJobId, String appointmentId, RescheduleAppointmentRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = rescheduleAppointmentForServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, appointmentId, body, null, null);
+        Call call = rescheduleAppointmentForServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, appointmentId, body, null, null);
         Type localVarReturnType = new TypeToken<SetAppointmentResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -880,7 +883,7 @@ public class ServiceApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call rescheduleAppointmentForServiceJobByServiceJobIdAsync(String serviceJobId, String appointmentId, RescheduleAppointmentRequest body, final ApiCallback<SetAppointmentResponse> callback) throws ApiException {
+    public Call rescheduleAppointmentForServiceJobByServiceJobIdAsync(String serviceJobId, String appointmentId, RescheduleAppointmentRequest body, final ApiCallback<SetAppointmentResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -901,7 +904,7 @@ public class ServiceApi {
             };
         }
 
-        com.squareup.okhttp.Call call = rescheduleAppointmentForServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, appointmentId, body, progressListener, progressRequestListener);
+        Call call = rescheduleAppointmentForServiceJobByServiceJobIdValidateBeforeCall(serviceJobId, appointmentId, body, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<SetAppointmentResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

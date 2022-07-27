@@ -14,83 +14,76 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.AplusResponse;
-import com.amazon.spapi.model.apluscontent.MessageSet;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * PostContentDocumentApprovalSubmissionResponse
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class PostContentDocumentApprovalSubmissionResponse {
-  @SerializedName("warnings")
-  private MessageSet warnings = null;
+    @SerializedName("warnings")
+    private MessageSet warnings = null;
 
-  public PostContentDocumentApprovalSubmissionResponse warnings(MessageSet warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @ApiModelProperty(value = "")
-  public MessageSet getWarnings() {
-    return warnings;
-  }
-
-  public void setWarnings(MessageSet warnings) {
-    this.warnings = warnings;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public PostContentDocumentApprovalSubmissionResponse warnings(MessageSet warnings) {
+        this.warnings = warnings;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get warnings
+     * @return warnings
+     **/
+    @ApiModelProperty(value = "")
+    public MessageSet getWarnings() {
+        return warnings;
     }
-    PostContentDocumentApprovalSubmissionResponse postContentDocumentApprovalSubmissionResponse = (PostContentDocumentApprovalSubmissionResponse) o;
-    return Objects.equals(this.warnings, postContentDocumentApprovalSubmissionResponse.warnings);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(warnings);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PostContentDocumentApprovalSubmissionResponse {\n");
-    
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setWarnings(MessageSet warnings) {
+        this.warnings = warnings;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PostContentDocumentApprovalSubmissionResponse postContentDocumentApprovalSubmissionResponse = (PostContentDocumentApprovalSubmissionResponse) o;
+        return Objects.equals(this.warnings, postContentDocumentApprovalSubmissionResponse.warnings);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(warnings);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class PostContentDocumentApprovalSubmissionResponse {\n");
+
+        sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

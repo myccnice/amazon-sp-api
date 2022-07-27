@@ -14,17 +14,11 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.ParagraphComponent;
-import com.amazon.spapi.model.apluscontent.TextComponent;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * A standard headline and body text.
@@ -32,89 +26,89 @@ import java.io.IOException;
 @ApiModel(description = "A standard headline and body text.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class StandardTextModule {
-  @SerializedName("headline")
-  private TextComponent headline = null;
+    @SerializedName("headline")
+    private TextComponent headline = null;
 
-  @SerializedName("body")
-  private ParagraphComponent body = null;
+    @SerializedName("body")
+    private ParagraphComponent body = null;
 
-  public StandardTextModule headline(TextComponent headline) {
-    this.headline = headline;
-    return this;
-  }
-
-   /**
-   * Get headline
-   * @return headline
-  **/
-  @ApiModelProperty(value = "")
-  public TextComponent getHeadline() {
-    return headline;
-  }
-
-  public void setHeadline(TextComponent headline) {
-    this.headline = headline;
-  }
-
-  public StandardTextModule body(ParagraphComponent body) {
-    this.body = body;
-    return this;
-  }
-
-   /**
-   * Get body
-   * @return body
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public ParagraphComponent getBody() {
-    return body;
-  }
-
-  public void setBody(ParagraphComponent body) {
-    this.body = body;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public StandardTextModule headline(TextComponent headline) {
+        this.headline = headline;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get headline
+     * @return headline
+     **/
+    @ApiModelProperty(value = "")
+    public TextComponent getHeadline() {
+        return headline;
     }
-    StandardTextModule standardTextModule = (StandardTextModule) o;
-    return Objects.equals(this.headline, standardTextModule.headline) &&
-        Objects.equals(this.body, standardTextModule.body);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(headline, body);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class StandardTextModule {\n");
-    
-    sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
-    sb.append("    body: ").append(toIndentedString(body)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setHeadline(TextComponent headline) {
+        this.headline = headline;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public StandardTextModule body(ParagraphComponent body) {
+        this.body = body;
+        return this;
+    }
+
+    /**
+     * Get body
+     * @return body
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public ParagraphComponent getBody() {
+        return body;
+    }
+
+    public void setBody(ParagraphComponent body) {
+        this.body = body;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        StandardTextModule standardTextModule = (StandardTextModule) o;
+        return Objects.equals(this.headline, standardTextModule.headline) &&
+                Objects.equals(this.body, standardTextModule.body);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(headline, body);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class StandardTextModule {\n");
+
+        sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
+        sb.append("    body: ").append(toIndentedString(body)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

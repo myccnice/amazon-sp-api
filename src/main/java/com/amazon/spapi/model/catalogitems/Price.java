@@ -13,17 +13,13 @@
 
 package com.amazon.spapi.model.catalogitems;
 
+import java.math.BigDecimal;
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
  * The price attribute of the item.
@@ -31,89 +27,89 @@ import java.math.BigDecimal;
 @ApiModel(description = "The price attribute of the item.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:17:36.166+08:00")
 public class Price {
-  @SerializedName("Amount")
-  private BigDecimal amount = null;
+    @SerializedName("Amount")
+    private BigDecimal amount = null;
 
-  @SerializedName("CurrencyCode")
-  private String currencyCode = null;
+    @SerializedName("CurrencyCode")
+    private String currencyCode = null;
 
-  public Price amount(BigDecimal amount) {
-    this.amount = amount;
-    return this;
-  }
-
-   /**
-   * The amount.
-   * @return amount
-  **/
-  @ApiModelProperty(value = "The amount.")
-  public BigDecimal getAmount() {
-    return amount;
-  }
-
-  public void setAmount(BigDecimal amount) {
-    this.amount = amount;
-  }
-
-  public Price currencyCode(String currencyCode) {
-    this.currencyCode = currencyCode;
-    return this;
-  }
-
-   /**
-   * The currency code of the amount.
-   * @return currencyCode
-  **/
-  @ApiModelProperty(value = "The currency code of the amount.")
-  public String getCurrencyCode() {
-    return currencyCode;
-  }
-
-  public void setCurrencyCode(String currencyCode) {
-    this.currencyCode = currencyCode;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public Price amount(BigDecimal amount) {
+        this.amount = amount;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The amount.
+     * @return amount
+     **/
+    @ApiModelProperty(value = "The amount.")
+    public BigDecimal getAmount() {
+        return amount;
     }
-    Price price = (Price) o;
-    return Objects.equals(this.amount, price.amount) &&
-        Objects.equals(this.currencyCode, price.currencyCode);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(amount, currencyCode);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Price {\n");
-    
-    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    sb.append("    currencyCode: ").append(toIndentedString(currencyCode)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public Price currencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+        return this;
+    }
+
+    /**
+     * The currency code of the amount.
+     * @return currencyCode
+     **/
+    @ApiModelProperty(value = "The currency code of the amount.")
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Price price = (Price) o;
+        return Objects.equals(this.amount, price.amount) &&
+                Objects.equals(this.currencyCode, price.currencyCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(amount, currencyCode);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class Price {\n");
+
+        sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+        sb.append("    currencyCode: ").append(toIndentedString(currencyCode)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

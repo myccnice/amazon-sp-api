@@ -14,16 +14,11 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.ImageComponent;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * The standard company logo image.
@@ -31,66 +26,66 @@ import java.io.IOException;
 @ApiModel(description = "The standard company logo image.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class StandardCompanyLogoModule {
-  @SerializedName("companyLogo")
-  private ImageComponent companyLogo = null;
+    @SerializedName("companyLogo")
+    private ImageComponent companyLogo = null;
 
-  public StandardCompanyLogoModule companyLogo(ImageComponent companyLogo) {
-    this.companyLogo = companyLogo;
-    return this;
-  }
-
-   /**
-   * Get companyLogo
-   * @return companyLogo
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public ImageComponent getCompanyLogo() {
-    return companyLogo;
-  }
-
-  public void setCompanyLogo(ImageComponent companyLogo) {
-    this.companyLogo = companyLogo;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public StandardCompanyLogoModule companyLogo(ImageComponent companyLogo) {
+        this.companyLogo = companyLogo;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get companyLogo
+     * @return companyLogo
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public ImageComponent getCompanyLogo() {
+        return companyLogo;
     }
-    StandardCompanyLogoModule standardCompanyLogoModule = (StandardCompanyLogoModule) o;
-    return Objects.equals(this.companyLogo, standardCompanyLogoModule.companyLogo);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(companyLogo);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class StandardCompanyLogoModule {\n");
-    
-    sb.append("    companyLogo: ").append(toIndentedString(companyLogo)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setCompanyLogo(ImageComponent companyLogo) {
+        this.companyLogo = companyLogo;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        StandardCompanyLogoModule standardCompanyLogoModule = (StandardCompanyLogoModule) o;
+        return Objects.equals(this.companyLogo, standardCompanyLogoModule.companyLogo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(companyLogo);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class StandardCompanyLogoModule {\n");
+
+        sb.append("    companyLogo: ").append(toIndentedString(companyLogo)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

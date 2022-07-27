@@ -13,26 +13,39 @@
 
 package com.amazon.spapi.api;
 
-import com.amazon.spapi.client.*;
-import com.amazon.spapi.SellingPartnerAPIAA.*;
-
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
-
-
-import com.amazon.spapi.model.uploads.CreateUploadDestinationResponse;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSSigV4Signer;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCache;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationSigner;
+import com.amazon.spapi.client.ApiCallback;
+import com.amazon.spapi.client.ApiClient;
+import com.amazon.spapi.client.ApiException;
+import com.amazon.spapi.client.ApiResponse;
+import com.amazon.spapi.client.Configuration;
+import com.amazon.spapi.client.Pair;
+import com.amazon.spapi.client.ProgressRequestBody;
+import com.amazon.spapi.client.ProgressResponseBody;
+import com.amazon.spapi.client.StringUtil;
+import com.amazon.spapi.model.uploads.CreateUploadDestinationResponse;
+import com.google.gson.reflect.TypeToken;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.Response;
+
 public class UploadsApi {
     private ApiClient apiClient;
 
-    UploadsApi() {
+    public UploadsApi() {
         this(Configuration.getDefaultApiClient());
     }
 
@@ -59,7 +72,7 @@ public class UploadsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createUploadDestinationForResourceCall(List<String> marketplaceIds, String contentMD5, String resource, String contentType, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call createUploadDestinationForResourceCall(List<String> marketplaceIds, String contentMD5, String resource, String contentType, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -92,10 +105,10 @@ public class UploadsApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -107,8 +120,7 @@ public class UploadsApi {
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createUploadDestinationForResourceValidateBeforeCall(List<String> marketplaceIds, String contentMD5, String resource, String contentType, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call createUploadDestinationForResourceValidateBeforeCall(List<String> marketplaceIds, String contentMD5, String resource, String contentType, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'marketplaceIds' is set
         if (marketplaceIds == null) {
@@ -126,7 +138,7 @@ public class UploadsApi {
         }
         
 
-        com.squareup.okhttp.Call call = createUploadDestinationForResourceCall(marketplaceIds, contentMD5, resource, contentType, progressListener, progressRequestListener);
+        Call call = createUploadDestinationForResourceCall(marketplaceIds, contentMD5, resource, contentType, progressListener, progressRequestListener);
         return call;
 
     }
@@ -157,7 +169,7 @@ public class UploadsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<CreateUploadDestinationResponse> createUploadDestinationForResourceWithHttpInfo(List<String> marketplaceIds, String contentMD5, String resource, String contentType) throws ApiException {
-        com.squareup.okhttp.Call call = createUploadDestinationForResourceValidateBeforeCall(marketplaceIds, contentMD5, resource, contentType, null, null);
+        Call call = createUploadDestinationForResourceValidateBeforeCall(marketplaceIds, contentMD5, resource, contentType, null, null);
         Type localVarReturnType = new TypeToken<CreateUploadDestinationResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -173,7 +185,7 @@ public class UploadsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createUploadDestinationForResourceAsync(List<String> marketplaceIds, String contentMD5, String resource, String contentType, final ApiCallback<CreateUploadDestinationResponse> callback) throws ApiException {
+    public Call createUploadDestinationForResourceAsync(List<String> marketplaceIds, String contentMD5, String resource, String contentType, final ApiCallback<CreateUploadDestinationResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -194,7 +206,7 @@ public class UploadsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createUploadDestinationForResourceValidateBeforeCall(marketplaceIds, contentMD5, resource, contentType, progressListener, progressRequestListener);
+        Call call = createUploadDestinationForResourceValidateBeforeCall(marketplaceIds, contentMD5, resource, contentType, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<CreateUploadDestinationResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

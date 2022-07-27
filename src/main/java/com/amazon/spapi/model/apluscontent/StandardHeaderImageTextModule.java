@@ -14,17 +14,11 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.StandardImageTextBlock;
-import com.amazon.spapi.model.apluscontent.TextComponent;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * Standard headline text, an image, and body text.
@@ -32,89 +26,89 @@ import java.io.IOException;
 @ApiModel(description = "Standard headline text, an image, and body text.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class StandardHeaderImageTextModule {
-  @SerializedName("headline")
-  private TextComponent headline = null;
+    @SerializedName("headline")
+    private TextComponent headline = null;
 
-  @SerializedName("block")
-  private StandardImageTextBlock block = null;
+    @SerializedName("block")
+    private StandardImageTextBlock block = null;
 
-  public StandardHeaderImageTextModule headline(TextComponent headline) {
-    this.headline = headline;
-    return this;
-  }
-
-   /**
-   * Get headline
-   * @return headline
-  **/
-  @ApiModelProperty(value = "")
-  public TextComponent getHeadline() {
-    return headline;
-  }
-
-  public void setHeadline(TextComponent headline) {
-    this.headline = headline;
-  }
-
-  public StandardHeaderImageTextModule block(StandardImageTextBlock block) {
-    this.block = block;
-    return this;
-  }
-
-   /**
-   * Get block
-   * @return block
-  **/
-  @ApiModelProperty(value = "")
-  public StandardImageTextBlock getBlock() {
-    return block;
-  }
-
-  public void setBlock(StandardImageTextBlock block) {
-    this.block = block;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public StandardHeaderImageTextModule headline(TextComponent headline) {
+        this.headline = headline;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get headline
+     * @return headline
+     **/
+    @ApiModelProperty(value = "")
+    public TextComponent getHeadline() {
+        return headline;
     }
-    StandardHeaderImageTextModule standardHeaderImageTextModule = (StandardHeaderImageTextModule) o;
-    return Objects.equals(this.headline, standardHeaderImageTextModule.headline) &&
-        Objects.equals(this.block, standardHeaderImageTextModule.block);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(headline, block);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class StandardHeaderImageTextModule {\n");
-    
-    sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
-    sb.append("    block: ").append(toIndentedString(block)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setHeadline(TextComponent headline) {
+        this.headline = headline;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public StandardHeaderImageTextModule block(StandardImageTextBlock block) {
+        this.block = block;
+        return this;
+    }
+
+    /**
+     * Get block
+     * @return block
+     **/
+    @ApiModelProperty(value = "")
+    public StandardImageTextBlock getBlock() {
+        return block;
+    }
+
+    public void setBlock(StandardImageTextBlock block) {
+        this.block = block;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        StandardHeaderImageTextModule standardHeaderImageTextModule = (StandardHeaderImageTextModule) o;
+        return Objects.equals(this.headline, standardHeaderImageTextModule.headline) &&
+                Objects.equals(this.block, standardHeaderImageTextModule.block);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(headline, block);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class StandardHeaderImageTextModule {\n");
+
+        sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
+        sb.append("    block: ").append(toIndentedString(block)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

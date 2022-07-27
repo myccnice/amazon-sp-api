@@ -9,28 +9,39 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
-
 package com.amazon.spapi.api;
 
-import com.amazon.spapi.client.*;
-import com.amazon.spapi.SellingPartnerAPIAA.*;
-
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
-
-
-import com.amazon.spapi.model.fbasmallandlight.SmallAndLightEligibility;
-import com.amazon.spapi.model.fbasmallandlight.SmallAndLightEnrollment;
-import com.amazon.spapi.model.fbasmallandlight.SmallAndLightFeePreviewRequest;
-import com.amazon.spapi.model.fbasmallandlight.SmallAndLightFeePreviews;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSSigV4Signer;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCache;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationSigner;
+import com.amazon.spapi.client.ApiCallback;
+import com.amazon.spapi.client.ApiClient;
+import com.amazon.spapi.client.ApiException;
+import com.amazon.spapi.client.ApiResponse;
+import com.amazon.spapi.client.Configuration;
+import com.amazon.spapi.client.Pair;
+import com.amazon.spapi.client.ProgressRequestBody;
+import com.amazon.spapi.client.ProgressResponseBody;
+import com.amazon.spapi.client.StringUtil;
+import com.amazon.spapi.model.fbasmallandlight.SmallAndLightEligibility;
+import com.amazon.spapi.model.fbasmallandlight.SmallAndLightEnrollment;
+import com.amazon.spapi.model.fbasmallandlight.SmallAndLightFeePreviewRequest;
+import com.amazon.spapi.model.fbasmallandlight.SmallAndLightFeePreviews;
+import com.google.gson.reflect.TypeToken;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.Response;
 
 
 public class SmallAndLightApi {
@@ -61,42 +72,42 @@ public class SmallAndLightApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deleteSmallAndLightEnrollmentBySellerSKUCall(String sellerSKU, List<String> marketplaceIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call deleteSmallAndLightEnrollmentBySellerSKUCall(String sellerSKU, List<String> marketplaceIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/fba/smallAndLight/v1/enrollments/{sellerSKU}"
-            .replaceAll("\\{" + "sellerSKU" + "\\}", apiClient.escapeString(sellerSKU.toString()));
+                .replaceAll("\\{" + "sellerSKU" + "\\}", apiClient.escapeString(sellerSKU.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (marketplaceIds != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "marketplaceIds", marketplaceIds));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "marketplaceIds", marketplaceIds));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -105,21 +116,20 @@ public class SmallAndLightApi {
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(String sellerSKU, List<String> marketplaceIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+    private Call deleteSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(String sellerSKU, List<String> marketplaceIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'sellerSKU' is set
         if (sellerSKU == null) {
             throw new ApiException("Missing the required parameter 'sellerSKU' when calling deleteSmallAndLightEnrollmentBySellerSKU(Async)");
         }
-        
+
         // verify the required parameter 'marketplaceIds' is set
         if (marketplaceIds == null) {
             throw new ApiException("Missing the required parameter 'marketplaceIds' when calling deleteSmallAndLightEnrollmentBySellerSKU(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = deleteSmallAndLightEnrollmentBySellerSKUCall(sellerSKU, marketplaceIds, progressListener, progressRequestListener);
+
+        Call call = deleteSmallAndLightEnrollmentBySellerSKUCall(sellerSKU, marketplaceIds, progressListener, progressRequestListener);
         return call;
 
     }
@@ -144,7 +154,7 @@ public class SmallAndLightApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Void> deleteSmallAndLightEnrollmentBySellerSKUWithHttpInfo(String sellerSKU, List<String> marketplaceIds) throws ApiException {
-        com.squareup.okhttp.Call call = deleteSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(sellerSKU, marketplaceIds, null, null);
+        Call call = deleteSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(sellerSKU, marketplaceIds, null, null);
         return apiClient.execute(call);
     }
 
@@ -157,7 +167,7 @@ public class SmallAndLightApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteSmallAndLightEnrollmentBySellerSKUAsync(String sellerSKU, List<String> marketplaceIds, final ApiCallback<Void> callback) throws ApiException {
+    public Call deleteSmallAndLightEnrollmentBySellerSKUAsync(String sellerSKU, List<String> marketplaceIds, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -178,7 +188,7 @@ public class SmallAndLightApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(sellerSKU, marketplaceIds, progressListener, progressRequestListener);
+        Call call = deleteSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(sellerSKU, marketplaceIds, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
@@ -191,42 +201,42 @@ public class SmallAndLightApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getSmallAndLightEligibilityBySellerSKUCall(String sellerSKU, List<String> marketplaceIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getSmallAndLightEligibilityBySellerSKUCall(String sellerSKU, List<String> marketplaceIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/fba/smallAndLight/v1/eligibilities/{sellerSKU}"
-            .replaceAll("\\{" + "sellerSKU" + "\\}", apiClient.escapeString(sellerSKU.toString()));
+                .replaceAll("\\{" + "sellerSKU" + "\\}", apiClient.escapeString(sellerSKU.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (marketplaceIds != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "marketplaceIds", marketplaceIds));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "marketplaceIds", marketplaceIds));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -235,21 +245,20 @@ public class SmallAndLightApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getSmallAndLightEligibilityBySellerSKUValidateBeforeCall(String sellerSKU, List<String> marketplaceIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+    private Call getSmallAndLightEligibilityBySellerSKUValidateBeforeCall(String sellerSKU, List<String> marketplaceIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'sellerSKU' is set
         if (sellerSKU == null) {
             throw new ApiException("Missing the required parameter 'sellerSKU' when calling getSmallAndLightEligibilityBySellerSKU(Async)");
         }
-        
+
         // verify the required parameter 'marketplaceIds' is set
         if (marketplaceIds == null) {
             throw new ApiException("Missing the required parameter 'marketplaceIds' when calling getSmallAndLightEligibilityBySellerSKU(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getSmallAndLightEligibilityBySellerSKUCall(sellerSKU, marketplaceIds, progressListener, progressRequestListener);
+
+        Call call = getSmallAndLightEligibilityBySellerSKUCall(sellerSKU, marketplaceIds, progressListener, progressRequestListener);
         return call;
 
     }
@@ -276,7 +285,7 @@ public class SmallAndLightApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<SmallAndLightEligibility> getSmallAndLightEligibilityBySellerSKUWithHttpInfo(String sellerSKU, List<String> marketplaceIds) throws ApiException {
-        com.squareup.okhttp.Call call = getSmallAndLightEligibilityBySellerSKUValidateBeforeCall(sellerSKU, marketplaceIds, null, null);
+        Call call = getSmallAndLightEligibilityBySellerSKUValidateBeforeCall(sellerSKU, marketplaceIds, null, null);
         Type localVarReturnType = new TypeToken<SmallAndLightEligibility>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -290,7 +299,7 @@ public class SmallAndLightApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getSmallAndLightEligibilityBySellerSKUAsync(String sellerSKU, List<String> marketplaceIds, final ApiCallback<SmallAndLightEligibility> callback) throws ApiException {
+    public Call getSmallAndLightEligibilityBySellerSKUAsync(String sellerSKU, List<String> marketplaceIds, final ApiCallback<SmallAndLightEligibility> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -311,7 +320,7 @@ public class SmallAndLightApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getSmallAndLightEligibilityBySellerSKUValidateBeforeCall(sellerSKU, marketplaceIds, progressListener, progressRequestListener);
+        Call call = getSmallAndLightEligibilityBySellerSKUValidateBeforeCall(sellerSKU, marketplaceIds, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<SmallAndLightEligibility>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -325,42 +334,42 @@ public class SmallAndLightApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getSmallAndLightEnrollmentBySellerSKUCall(String sellerSKU, List<String> marketplaceIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getSmallAndLightEnrollmentBySellerSKUCall(String sellerSKU, List<String> marketplaceIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/fba/smallAndLight/v1/enrollments/{sellerSKU}"
-            .replaceAll("\\{" + "sellerSKU" + "\\}", apiClient.escapeString(sellerSKU.toString()));
+                .replaceAll("\\{" + "sellerSKU" + "\\}", apiClient.escapeString(sellerSKU.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (marketplaceIds != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "marketplaceIds", marketplaceIds));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "marketplaceIds", marketplaceIds));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -369,21 +378,20 @@ public class SmallAndLightApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(String sellerSKU, List<String> marketplaceIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+    private Call getSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(String sellerSKU, List<String> marketplaceIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'sellerSKU' is set
         if (sellerSKU == null) {
             throw new ApiException("Missing the required parameter 'sellerSKU' when calling getSmallAndLightEnrollmentBySellerSKU(Async)");
         }
-        
+
         // verify the required parameter 'marketplaceIds' is set
         if (marketplaceIds == null) {
             throw new ApiException("Missing the required parameter 'marketplaceIds' when calling getSmallAndLightEnrollmentBySellerSKU(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getSmallAndLightEnrollmentBySellerSKUCall(sellerSKU, marketplaceIds, progressListener, progressRequestListener);
+
+        Call call = getSmallAndLightEnrollmentBySellerSKUCall(sellerSKU, marketplaceIds, progressListener, progressRequestListener);
         return call;
 
     }
@@ -410,7 +418,7 @@ public class SmallAndLightApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<SmallAndLightEnrollment> getSmallAndLightEnrollmentBySellerSKUWithHttpInfo(String sellerSKU, List<String> marketplaceIds) throws ApiException {
-        com.squareup.okhttp.Call call = getSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(sellerSKU, marketplaceIds, null, null);
+        Call call = getSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(sellerSKU, marketplaceIds, null, null);
         Type localVarReturnType = new TypeToken<SmallAndLightEnrollment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -424,7 +432,7 @@ public class SmallAndLightApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getSmallAndLightEnrollmentBySellerSKUAsync(String sellerSKU, List<String> marketplaceIds, final ApiCallback<SmallAndLightEnrollment> callback) throws ApiException {
+    public Call getSmallAndLightEnrollmentBySellerSKUAsync(String sellerSKU, List<String> marketplaceIds, final ApiCallback<SmallAndLightEnrollment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -445,7 +453,7 @@ public class SmallAndLightApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(sellerSKU, marketplaceIds, progressListener, progressRequestListener);
+        Call call = getSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(sellerSKU, marketplaceIds, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<SmallAndLightEnrollment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -458,7 +466,7 @@ public class SmallAndLightApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getSmallAndLightFeePreviewCall(SmallAndLightFeePreviewRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getSmallAndLightFeePreviewCall(SmallAndLightFeePreviewRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -472,25 +480,25 @@ public class SmallAndLightApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -499,16 +507,15 @@ public class SmallAndLightApi {
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getSmallAndLightFeePreviewValidateBeforeCall(SmallAndLightFeePreviewRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+    private Call getSmallAndLightFeePreviewValidateBeforeCall(SmallAndLightFeePreviewRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling getSmallAndLightFeePreview(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getSmallAndLightFeePreviewCall(body, progressListener, progressRequestListener);
+
+        Call call = getSmallAndLightFeePreviewCall(body, progressListener, progressRequestListener);
         return call;
 
     }
@@ -533,7 +540,7 @@ public class SmallAndLightApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<SmallAndLightFeePreviews> getSmallAndLightFeePreviewWithHttpInfo(SmallAndLightFeePreviewRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = getSmallAndLightFeePreviewValidateBeforeCall(body, null, null);
+        Call call = getSmallAndLightFeePreviewValidateBeforeCall(body, null, null);
         Type localVarReturnType = new TypeToken<SmallAndLightFeePreviews>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -546,7 +553,7 @@ public class SmallAndLightApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getSmallAndLightFeePreviewAsync(SmallAndLightFeePreviewRequest body, final ApiCallback<SmallAndLightFeePreviews> callback) throws ApiException {
+    public Call getSmallAndLightFeePreviewAsync(SmallAndLightFeePreviewRequest body, final ApiCallback<SmallAndLightFeePreviews> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -567,7 +574,7 @@ public class SmallAndLightApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getSmallAndLightFeePreviewValidateBeforeCall(body, progressListener, progressRequestListener);
+        Call call = getSmallAndLightFeePreviewValidateBeforeCall(body, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<SmallAndLightFeePreviews>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -581,42 +588,42 @@ public class SmallAndLightApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call putSmallAndLightEnrollmentBySellerSKUCall(String sellerSKU, List<String> marketplaceIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call putSmallAndLightEnrollmentBySellerSKUCall(String sellerSKU, List<String> marketplaceIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/fba/smallAndLight/v1/enrollments/{sellerSKU}"
-            .replaceAll("\\{" + "sellerSKU" + "\\}", apiClient.escapeString(sellerSKU.toString()));
+                .replaceAll("\\{" + "sellerSKU" + "\\}", apiClient.escapeString(sellerSKU.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (marketplaceIds != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "marketplaceIds", marketplaceIds));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "marketplaceIds", marketplaceIds));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -625,21 +632,20 @@ public class SmallAndLightApi {
         return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call putSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(String sellerSKU, List<String> marketplaceIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+    private Call putSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(String sellerSKU, List<String> marketplaceIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'sellerSKU' is set
         if (sellerSKU == null) {
             throw new ApiException("Missing the required parameter 'sellerSKU' when calling putSmallAndLightEnrollmentBySellerSKU(Async)");
         }
-        
+
         // verify the required parameter 'marketplaceIds' is set
         if (marketplaceIds == null) {
             throw new ApiException("Missing the required parameter 'marketplaceIds' when calling putSmallAndLightEnrollmentBySellerSKU(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = putSmallAndLightEnrollmentBySellerSKUCall(sellerSKU, marketplaceIds, progressListener, progressRequestListener);
+
+        Call call = putSmallAndLightEnrollmentBySellerSKUCall(sellerSKU, marketplaceIds, progressListener, progressRequestListener);
         return call;
 
     }
@@ -666,7 +672,7 @@ public class SmallAndLightApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<SmallAndLightEnrollment> putSmallAndLightEnrollmentBySellerSKUWithHttpInfo(String sellerSKU, List<String> marketplaceIds) throws ApiException {
-        com.squareup.okhttp.Call call = putSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(sellerSKU, marketplaceIds, null, null);
+        Call call = putSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(sellerSKU, marketplaceIds, null, null);
         Type localVarReturnType = new TypeToken<SmallAndLightEnrollment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -680,7 +686,7 @@ public class SmallAndLightApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call putSmallAndLightEnrollmentBySellerSKUAsync(String sellerSKU, List<String> marketplaceIds, final ApiCallback<SmallAndLightEnrollment> callback) throws ApiException {
+    public Call putSmallAndLightEnrollmentBySellerSKUAsync(String sellerSKU, List<String> marketplaceIds, final ApiCallback<SmallAndLightEnrollment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -701,7 +707,7 @@ public class SmallAndLightApi {
             };
         }
 
-        com.squareup.okhttp.Call call = putSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(sellerSKU, marketplaceIds, progressListener, progressRequestListener);
+        Call call = putSmallAndLightEnrollmentBySellerSKUValidateBeforeCall(sellerSKU, marketplaceIds, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<SmallAndLightEnrollment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -729,22 +735,22 @@ public class SmallAndLightApi {
             this.endpoint = endpoint;
             return this;
         }
-        
+
         public Builder lwaAccessTokenCache(LWAAccessTokenCache lwaAccessTokenCache) {
             this.lwaAccessTokenCache = lwaAccessTokenCache;
             return this;
         }
-		
-	   public Builder disableAccessTokenCache() {
+
+        public Builder disableAccessTokenCache() {
             this.disableAccessTokenCache = true;
             return this;
         }
-        
+
         public Builder awsAuthenticationCredentialsProvider(AWSAuthenticationCredentialsProvider awsAuthenticationCredentialsProvider) {
             this.awsAuthenticationCredentialsProvider = awsAuthenticationCredentialsProvider;
             return this;
         }
-        
+
 
         public SmallAndLightApi build() {
             if (awsAuthenticationCredentials == null) {
@@ -766,7 +772,7 @@ public class SmallAndLightApi {
             else {
                 awsSigV4Signer = new AWSSigV4Signer(awsAuthenticationCredentials,awsAuthenticationCredentialsProvider);
             }
-            
+
             LWAAuthorizationSigner lwaAuthorizationSigner = null;            
             if (disableAccessTokenCache) {
                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials);
@@ -774,14 +780,14 @@ public class SmallAndLightApi {
             else {
                 if (lwaAccessTokenCache == null) {
                     lwaAccessTokenCache = new LWAAccessTokenCacheImpl();                  
-                 }
-                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
+                }
+                lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
             }
 
             return new SmallAndLightApi(new ApiClient()
-                .setAWSSigV4Signer(awsSigV4Signer)
-                .setLWAAuthorizationSigner(lwaAuthorizationSigner)
-                .setBasePath(endpoint));
+                    .setAWSSigV4Signer(awsSigV4Signer)
+                    .setLWAAuthorizationSigner(lwaAuthorizationSigner)
+                    .setBasePath(endpoint));
         }
     }
 }

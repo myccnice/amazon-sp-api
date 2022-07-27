@@ -13,14 +13,11 @@
 
 package com.amazon.spapi.auth;
 
-import com.amazon.spapi.client.Pair;
-
-import com.squareup.okhttp.Credentials;
-
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
-import java.io.UnsupportedEncodingException;
+import com.amazon.spapi.client.Pair;
+import com.squareup.okhttp.Credentials;
 
 public class HttpBasicAuth implements Authentication {
     private String username;
@@ -48,7 +45,7 @@ public class HttpBasicAuth implements Authentication {
             return;
         }
         headerParams.put("Authorization", Credentials.basic(
-            username == null ? "" : username,
-            password == null ? "" : password));
+                username == null ? "" : username,
+                        password == null ? "" : password));
     }
 }

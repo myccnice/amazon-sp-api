@@ -9,26 +9,37 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
-
 package com.amazon.spapi.api;
 
-import com.amazon.spapi.client.*;
-import com.amazon.spapi.SellingPartnerAPIAA.*;
-
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
-
-
-import com.amazon.spapi.model.productpricing.GetOffersResponse;
-import com.amazon.spapi.model.productpricing.GetPricingResponse;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSSigV4Signer;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCache;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationSigner;
+import com.amazon.spapi.client.ApiCallback;
+import com.amazon.spapi.client.ApiClient;
+import com.amazon.spapi.client.ApiException;
+import com.amazon.spapi.client.ApiResponse;
+import com.amazon.spapi.client.Configuration;
+import com.amazon.spapi.client.Pair;
+import com.amazon.spapi.client.ProgressRequestBody;
+import com.amazon.spapi.client.ProgressResponseBody;
+import com.amazon.spapi.client.StringUtil;
+import com.amazon.spapi.model.productpricing.GetOffersResponse;
+import com.amazon.spapi.model.productpricing.GetPricingResponse;
+import com.google.gson.reflect.TypeToken;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.Response;
 
 public class ProductPricingApi {
     private ApiClient apiClient;
@@ -60,7 +71,7 @@ public class ProductPricingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getCompetitivePricingCall(String marketplaceId, String itemType, List<String> asins, List<String> skus, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getCompetitivePricingCall(String marketplaceId, String itemType, List<String> asins, List<String> skus, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -69,38 +80,38 @@ public class ProductPricingApi {
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (marketplaceId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("MarketplaceId", marketplaceId));
+            localVarQueryParams.addAll(apiClient.parameterToPair("MarketplaceId", marketplaceId));
         if (asins != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "Asins", asins));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "Asins", asins));
         if (skus != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "Skus", skus));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "Skus", skus));
         if (itemType != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("ItemType", itemType));
+            localVarQueryParams.addAll(apiClient.parameterToPair("ItemType", itemType));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -109,21 +120,20 @@ public class ProductPricingApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getCompetitivePricingValidateBeforeCall(String marketplaceId, String itemType, List<String> asins, List<String> skus, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+    private Call getCompetitivePricingValidateBeforeCall(String marketplaceId, String itemType, List<String> asins, List<String> skus, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'marketplaceId' is set
         if (marketplaceId == null) {
             throw new ApiException("Missing the required parameter 'marketplaceId' when calling getCompetitivePricing(Async)");
         }
-        
+
         // verify the required parameter 'itemType' is set
         if (itemType == null) {
             throw new ApiException("Missing the required parameter 'itemType' when calling getCompetitivePricing(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getCompetitivePricingCall(marketplaceId, itemType, asins, skus, progressListener, progressRequestListener);
+
+        Call call = getCompetitivePricingCall(marketplaceId, itemType, asins, skus, progressListener, progressRequestListener);
         return call;
 
     }
@@ -154,7 +164,7 @@ public class ProductPricingApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetPricingResponse> getCompetitivePricingWithHttpInfo(String marketplaceId, String itemType, List<String> asins, List<String> skus) throws ApiException {
-        com.squareup.okhttp.Call call = getCompetitivePricingValidateBeforeCall(marketplaceId, itemType, asins, skus, null, null);
+        Call call = getCompetitivePricingValidateBeforeCall(marketplaceId, itemType, asins, skus, null, null);
         Type localVarReturnType = new TypeToken<GetPricingResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -170,7 +180,7 @@ public class ProductPricingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getCompetitivePricingAsync(String marketplaceId, String itemType, List<String> asins, List<String> skus, final ApiCallback<GetPricingResponse> callback) throws ApiException {
+    public Call getCompetitivePricingAsync(String marketplaceId, String itemType, List<String> asins, List<String> skus, final ApiCallback<GetPricingResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -191,7 +201,7 @@ public class ProductPricingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getCompetitivePricingValidateBeforeCall(marketplaceId, itemType, asins, skus, progressListener, progressRequestListener);
+        Call call = getCompetitivePricingValidateBeforeCall(marketplaceId, itemType, asins, skus, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetPricingResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -206,44 +216,44 @@ public class ProductPricingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getItemOffersCall(String marketplaceId, String itemCondition, String asin, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getItemOffersCall(String marketplaceId, String itemCondition, String asin, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/products/pricing/v0/items/{Asin}/offers"
-            .replaceAll("\\{" + "Asin" + "\\}", apiClient.escapeString(asin.toString()));
+                .replaceAll("\\{" + "Asin" + "\\}", apiClient.escapeString(asin.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (marketplaceId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("MarketplaceId", marketplaceId));
+            localVarQueryParams.addAll(apiClient.parameterToPair("MarketplaceId", marketplaceId));
         if (itemCondition != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("ItemCondition", itemCondition));
+            localVarQueryParams.addAll(apiClient.parameterToPair("ItemCondition", itemCondition));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -252,26 +262,25 @@ public class ProductPricingApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getItemOffersValidateBeforeCall(String marketplaceId, String itemCondition, String asin, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+    private Call getItemOffersValidateBeforeCall(String marketplaceId, String itemCondition, String asin, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'marketplaceId' is set
         if (marketplaceId == null) {
             throw new ApiException("Missing the required parameter 'marketplaceId' when calling getItemOffers(Async)");
         }
-        
+
         // verify the required parameter 'itemCondition' is set
         if (itemCondition == null) {
             throw new ApiException("Missing the required parameter 'itemCondition' when calling getItemOffers(Async)");
         }
-        
+
         // verify the required parameter 'asin' is set
         if (asin == null) {
             throw new ApiException("Missing the required parameter 'asin' when calling getItemOffers(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getItemOffersCall(marketplaceId, itemCondition, asin, progressListener, progressRequestListener);
+
+        Call call = getItemOffersCall(marketplaceId, itemCondition, asin, progressListener, progressRequestListener);
         return call;
 
     }
@@ -300,7 +309,7 @@ public class ProductPricingApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetOffersResponse> getItemOffersWithHttpInfo(String marketplaceId, String itemCondition, String asin) throws ApiException {
-        com.squareup.okhttp.Call call = getItemOffersValidateBeforeCall(marketplaceId, itemCondition, asin, null, null);
+        Call call = getItemOffersValidateBeforeCall(marketplaceId, itemCondition, asin, null, null);
         Type localVarReturnType = new TypeToken<GetOffersResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -315,7 +324,7 @@ public class ProductPricingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getItemOffersAsync(String marketplaceId, String itemCondition, String asin, final ApiCallback<GetOffersResponse> callback) throws ApiException {
+    public Call getItemOffersAsync(String marketplaceId, String itemCondition, String asin, final ApiCallback<GetOffersResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -336,7 +345,7 @@ public class ProductPricingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getItemOffersValidateBeforeCall(marketplaceId, itemCondition, asin, progressListener, progressRequestListener);
+        Call call = getItemOffersValidateBeforeCall(marketplaceId, itemCondition, asin, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetOffersResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -351,44 +360,44 @@ public class ProductPricingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getListingOffersCall(String marketplaceId, String itemCondition, String sellerSKU, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getListingOffersCall(String marketplaceId, String itemCondition, String sellerSKU, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/products/pricing/v0/listings/{SellerSKU}/offers"
-            .replaceAll("\\{" + "SellerSKU" + "\\}", apiClient.escapeString(sellerSKU.toString()));
+                .replaceAll("\\{" + "SellerSKU" + "\\}", apiClient.escapeString(sellerSKU.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (marketplaceId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("MarketplaceId", marketplaceId));
+            localVarQueryParams.addAll(apiClient.parameterToPair("MarketplaceId", marketplaceId));
         if (itemCondition != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("ItemCondition", itemCondition));
+            localVarQueryParams.addAll(apiClient.parameterToPair("ItemCondition", itemCondition));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -397,26 +406,25 @@ public class ProductPricingApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getListingOffersValidateBeforeCall(String marketplaceId, String itemCondition, String sellerSKU, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+    private Call getListingOffersValidateBeforeCall(String marketplaceId, String itemCondition, String sellerSKU, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'marketplaceId' is set
         if (marketplaceId == null) {
             throw new ApiException("Missing the required parameter 'marketplaceId' when calling getListingOffers(Async)");
         }
-        
+
         // verify the required parameter 'itemCondition' is set
         if (itemCondition == null) {
             throw new ApiException("Missing the required parameter 'itemCondition' when calling getListingOffers(Async)");
         }
-        
+
         // verify the required parameter 'sellerSKU' is set
         if (sellerSKU == null) {
             throw new ApiException("Missing the required parameter 'sellerSKU' when calling getListingOffers(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getListingOffersCall(marketplaceId, itemCondition, sellerSKU, progressListener, progressRequestListener);
+
+        Call call = getListingOffersCall(marketplaceId, itemCondition, sellerSKU, progressListener, progressRequestListener);
         return call;
 
     }
@@ -445,7 +453,7 @@ public class ProductPricingApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetOffersResponse> getListingOffersWithHttpInfo(String marketplaceId, String itemCondition, String sellerSKU) throws ApiException {
-        com.squareup.okhttp.Call call = getListingOffersValidateBeforeCall(marketplaceId, itemCondition, sellerSKU, null, null);
+        Call call = getListingOffersValidateBeforeCall(marketplaceId, itemCondition, sellerSKU, null, null);
         Type localVarReturnType = new TypeToken<GetOffersResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -460,7 +468,7 @@ public class ProductPricingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getListingOffersAsync(String marketplaceId, String itemCondition, String sellerSKU, final ApiCallback<GetOffersResponse> callback) throws ApiException {
+    public Call getListingOffersAsync(String marketplaceId, String itemCondition, String sellerSKU, final ApiCallback<GetOffersResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -481,7 +489,7 @@ public class ProductPricingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getListingOffersValidateBeforeCall(marketplaceId, itemCondition, sellerSKU, progressListener, progressRequestListener);
+        Call call = getListingOffersValidateBeforeCall(marketplaceId, itemCondition, sellerSKU, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetOffersResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -498,7 +506,7 @@ public class ProductPricingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getPricingCall(String marketplaceId, String itemType, List<String> asins, List<String> skus, String itemCondition, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getPricingCall(String marketplaceId, String itemType, List<String> asins, List<String> skus, String itemCondition, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -507,40 +515,40 @@ public class ProductPricingApi {
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (marketplaceId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("MarketplaceId", marketplaceId));
+            localVarQueryParams.addAll(apiClient.parameterToPair("MarketplaceId", marketplaceId));
         if (asins != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "Asins", asins));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "Asins", asins));
         if (skus != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "Skus", skus));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "Skus", skus));
         if (itemType != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("ItemType", itemType));
+            localVarQueryParams.addAll(apiClient.parameterToPair("ItemType", itemType));
         if (itemCondition != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("ItemCondition", itemCondition));
+            localVarQueryParams.addAll(apiClient.parameterToPair("ItemCondition", itemCondition));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -549,21 +557,20 @@ public class ProductPricingApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getPricingValidateBeforeCall(String marketplaceId, String itemType, List<String> asins, List<String> skus, String itemCondition, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+    private Call getPricingValidateBeforeCall(String marketplaceId, String itemType, List<String> asins, List<String> skus, String itemCondition, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'marketplaceId' is set
         if (marketplaceId == null) {
             throw new ApiException("Missing the required parameter 'marketplaceId' when calling getPricing(Async)");
         }
-        
+
         // verify the required parameter 'itemType' is set
         if (itemType == null) {
             throw new ApiException("Missing the required parameter 'itemType' when calling getPricing(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getPricingCall(marketplaceId, itemType, asins, skus, itemCondition, progressListener, progressRequestListener);
+
+        Call call = getPricingCall(marketplaceId, itemType, asins, skus, itemCondition, progressListener, progressRequestListener);
         return call;
 
     }
@@ -596,7 +603,7 @@ public class ProductPricingApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetPricingResponse> getPricingWithHttpInfo(String marketplaceId, String itemType, List<String> asins, List<String> skus, String itemCondition) throws ApiException {
-        com.squareup.okhttp.Call call = getPricingValidateBeforeCall(marketplaceId, itemType, asins, skus, itemCondition, null, null);
+        Call call = getPricingValidateBeforeCall(marketplaceId, itemType, asins, skus, itemCondition, null, null);
         Type localVarReturnType = new TypeToken<GetPricingResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -613,7 +620,7 @@ public class ProductPricingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getPricingAsync(String marketplaceId, String itemType, List<String> asins, List<String> skus, String itemCondition, final ApiCallback<GetPricingResponse> callback) throws ApiException {
+    public Call getPricingAsync(String marketplaceId, String itemType, List<String> asins, List<String> skus, String itemCondition, final ApiCallback<GetPricingResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -634,7 +641,7 @@ public class ProductPricingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getPricingValidateBeforeCall(marketplaceId, itemType, asins, skus, itemCondition, progressListener, progressRequestListener);
+        Call call = getPricingValidateBeforeCall(marketplaceId, itemType, asins, skus, itemCondition, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetPricingResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -662,22 +669,22 @@ public class ProductPricingApi {
             this.endpoint = endpoint;
             return this;
         }
-        
+
         public Builder lwaAccessTokenCache(LWAAccessTokenCache lwaAccessTokenCache) {
             this.lwaAccessTokenCache = lwaAccessTokenCache;
             return this;
         }
-		
-	   public Builder disableAccessTokenCache() {
+
+        public Builder disableAccessTokenCache() {
             this.disableAccessTokenCache = true;
             return this;
         }
-        
+
         public Builder awsAuthenticationCredentialsProvider(AWSAuthenticationCredentialsProvider awsAuthenticationCredentialsProvider) {
             this.awsAuthenticationCredentialsProvider = awsAuthenticationCredentialsProvider;
             return this;
         }
-        
+
 
         public ProductPricingApi build() {
             if (awsAuthenticationCredentials == null) {
@@ -699,7 +706,7 @@ public class ProductPricingApi {
             else {
                 awsSigV4Signer = new AWSSigV4Signer(awsAuthenticationCredentials,awsAuthenticationCredentialsProvider);
             }
-            
+
             LWAAuthorizationSigner lwaAuthorizationSigner = null;            
             if (disableAccessTokenCache) {
                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials);
@@ -707,14 +714,14 @@ public class ProductPricingApi {
             else {
                 if (lwaAccessTokenCache == null) {
                     lwaAccessTokenCache = new LWAAccessTokenCacheImpl();                  
-                 }
-                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
+                }
+                lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
             }
 
             return new ProductPricingApi(new ApiClient()
-                .setAWSSigV4Signer(awsSigV4Signer)
-                .setLWAAuthorizationSigner(lwaAuthorizationSigner)
-                .setBasePath(endpoint));
+                    .setAWSSigV4Signer(awsSigV4Signer)
+                    .setLWAAuthorizationSigner(lwaAuthorizationSigner)
+                    .setBasePath(endpoint));
         }
     }
 }

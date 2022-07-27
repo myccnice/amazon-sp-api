@@ -14,82 +14,76 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.AsinSet;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * PostContentDocumentAsinRelationsRequest
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class PostContentDocumentAsinRelationsRequest {
-  @SerializedName("asinSet")
-  private AsinSet asinSet = null;
+    @SerializedName("asinSet")
+    private AsinSet asinSet = null;
 
-  public PostContentDocumentAsinRelationsRequest asinSet(AsinSet asinSet) {
-    this.asinSet = asinSet;
-    return this;
-  }
-
-   /**
-   * Get asinSet
-   * @return asinSet
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public AsinSet getAsinSet() {
-    return asinSet;
-  }
-
-  public void setAsinSet(AsinSet asinSet) {
-    this.asinSet = asinSet;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public PostContentDocumentAsinRelationsRequest asinSet(AsinSet asinSet) {
+        this.asinSet = asinSet;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get asinSet
+     * @return asinSet
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public AsinSet getAsinSet() {
+        return asinSet;
     }
-    PostContentDocumentAsinRelationsRequest postContentDocumentAsinRelationsRequest = (PostContentDocumentAsinRelationsRequest) o;
-    return Objects.equals(this.asinSet, postContentDocumentAsinRelationsRequest.asinSet);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(asinSet);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PostContentDocumentAsinRelationsRequest {\n");
-    
-    sb.append("    asinSet: ").append(toIndentedString(asinSet)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setAsinSet(AsinSet asinSet) {
+        this.asinSet = asinSet;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PostContentDocumentAsinRelationsRequest postContentDocumentAsinRelationsRequest = (PostContentDocumentAsinRelationsRequest) o;
+        return Objects.equals(this.asinSet, postContentDocumentAsinRelationsRequest.asinSet);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(asinSet);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class PostContentDocumentAsinRelationsRequest {\n");
+
+        sb.append("    asinSet: ").append(toIndentedString(asinSet)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

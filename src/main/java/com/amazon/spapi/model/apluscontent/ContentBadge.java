@@ -13,12 +13,8 @@
 
 package com.amazon.spapi.model.apluscontent;
 
-import java.util.Objects;
-import java.util.Arrays;
-import io.swagger.annotations.ApiModel;
-import com.google.gson.annotations.SerializedName;
-
 import java.io.IOException;
+
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
@@ -29,52 +25,52 @@ import com.google.gson.stream.JsonWriter;
  */
 @JsonAdapter(ContentBadge.Adapter.class)
 public enum ContentBadge {
-  
-  BULK("BULK"),
-  
-  GENERATED("GENERATED"),
-  
-  LAUNCHPAD("LAUNCHPAD"),
-  
-  PREMIUM("PREMIUM"),
-  
-  STANDARD("STANDARD");
 
-  private String value;
+    BULK("BULK"),
 
-  ContentBadge(String value) {
-    this.value = value;
-  }
+    GENERATED("GENERATED"),
 
-  public String getValue() {
-    return value;
-  }
+    LAUNCHPAD("LAUNCHPAD"),
 
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
+    PREMIUM("PREMIUM"),
 
-  public static ContentBadge fromValue(String text) {
-    for (ContentBadge b : ContentBadge.values()) {
-      if (String.valueOf(b.value).equals(text)) {
-        return b;
-      }
+    STANDARD("STANDARD");
+
+    private String value;
+
+    ContentBadge(String value) {
+        this.value = value;
     }
-    return null;
-  }
 
-  public static class Adapter extends TypeAdapter<ContentBadge> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final ContentBadge enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
+    public String getValue() {
+        return value;
     }
 
     @Override
-    public ContentBadge read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return ContentBadge.fromValue(String.valueOf(value));
+    public String toString() {
+        return String.valueOf(value);
     }
-  }
+
+    public static ContentBadge fromValue(String text) {
+        for (ContentBadge b : ContentBadge.values()) {
+            if (String.valueOf(b.value).equals(text)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ContentBadge> {
+        @Override
+        public void write(final JsonWriter jsonWriter, final ContentBadge enumeration) throws IOException {
+            jsonWriter.value(enumeration.getValue());
+        }
+
+        @Override
+        public ContentBadge read(final JsonReader jsonReader) throws IOException {
+            String value = jsonReader.nextString();
+            return ContentBadge.fromValue(String.valueOf(value));
+        }
+    }
 }
 

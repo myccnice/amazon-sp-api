@@ -14,15 +14,11 @@
 package com.amazon.spapi.model.catalogitems;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * The creator type attribute of an item.
@@ -30,89 +26,89 @@ import java.io.IOException;
 @ApiModel(description = "The creator type attribute of an item.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:17:36.166+08:00")
 public class CreatorType {
-  @SerializedName("value")
-  private String value = null;
+    @SerializedName("value")
+    private String value = null;
 
-  @SerializedName("Role")
-  private String role = null;
+    @SerializedName("Role")
+    private String role = null;
 
-  public CreatorType value(String value) {
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * The value of the attribute.
-   * @return value
-  **/
-  @ApiModelProperty(value = "The value of the attribute.")
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
-    this.value = value;
-  }
-
-  public CreatorType role(String role) {
-    this.role = role;
-    return this;
-  }
-
-   /**
-   * The role of the value.
-   * @return role
-  **/
-  @ApiModelProperty(value = "The role of the value.")
-  public String getRole() {
-    return role;
-  }
-
-  public void setRole(String role) {
-    this.role = role;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public CreatorType value(String value) {
+        this.value = value;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The value of the attribute.
+     * @return value
+     **/
+    @ApiModelProperty(value = "The value of the attribute.")
+    public String getValue() {
+        return value;
     }
-    CreatorType creatorType = (CreatorType) o;
-    return Objects.equals(this.value, creatorType.value) &&
-        Objects.equals(this.role, creatorType.role);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(value, role);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class CreatorType {\n");
-    
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setValue(String value) {
+        this.value = value;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public CreatorType role(String role) {
+        this.role = role;
+        return this;
+    }
+
+    /**
+     * The role of the value.
+     * @return role
+     **/
+    @ApiModelProperty(value = "The role of the value.")
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CreatorType creatorType = (CreatorType) o;
+        return Objects.equals(this.value, creatorType.value) &&
+                Objects.equals(this.role, creatorType.role);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, role);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class CreatorType {\n");
+
+        sb.append("    value: ").append(toIndentedString(value)).append("\n");
+        sb.append("    role: ").append(toIndentedString(role)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

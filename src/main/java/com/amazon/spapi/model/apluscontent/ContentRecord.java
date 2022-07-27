@@ -14,17 +14,11 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.ContentDocument;
-import com.amazon.spapi.model.apluscontent.ContentMetadata;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * A content document with additional information for content management.
@@ -32,112 +26,112 @@ import java.io.IOException;
 @ApiModel(description = "A content document with additional information for content management.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class ContentRecord {
-  @SerializedName("contentReferenceKey")
-  private String contentReferenceKey = null;
+    @SerializedName("contentReferenceKey")
+    private String contentReferenceKey = null;
 
-  @SerializedName("contentMetadata")
-  private ContentMetadata contentMetadata = null;
+    @SerializedName("contentMetadata")
+    private ContentMetadata contentMetadata = null;
 
-  @SerializedName("contentDocument")
-  private ContentDocument contentDocument = null;
+    @SerializedName("contentDocument")
+    private ContentDocument contentDocument = null;
 
-  public ContentRecord contentReferenceKey(String contentReferenceKey) {
-    this.contentReferenceKey = contentReferenceKey;
-    return this;
-  }
-
-   /**
-   * Get contentReferenceKey
-   * @return contentReferenceKey
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getContentReferenceKey() {
-    return contentReferenceKey;
-  }
-
-  public void setContentReferenceKey(String contentReferenceKey) {
-    this.contentReferenceKey = contentReferenceKey;
-  }
-
-  public ContentRecord contentMetadata(ContentMetadata contentMetadata) {
-    this.contentMetadata = contentMetadata;
-    return this;
-  }
-
-   /**
-   * Get contentMetadata
-   * @return contentMetadata
-  **/
-  @ApiModelProperty(value = "")
-  public ContentMetadata getContentMetadata() {
-    return contentMetadata;
-  }
-
-  public void setContentMetadata(ContentMetadata contentMetadata) {
-    this.contentMetadata = contentMetadata;
-  }
-
-  public ContentRecord contentDocument(ContentDocument contentDocument) {
-    this.contentDocument = contentDocument;
-    return this;
-  }
-
-   /**
-   * Get contentDocument
-   * @return contentDocument
-  **/
-  @ApiModelProperty(value = "")
-  public ContentDocument getContentDocument() {
-    return contentDocument;
-  }
-
-  public void setContentDocument(ContentDocument contentDocument) {
-    this.contentDocument = contentDocument;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public ContentRecord contentReferenceKey(String contentReferenceKey) {
+        this.contentReferenceKey = contentReferenceKey;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get contentReferenceKey
+     * @return contentReferenceKey
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public String getContentReferenceKey() {
+        return contentReferenceKey;
     }
-    ContentRecord contentRecord = (ContentRecord) o;
-    return Objects.equals(this.contentReferenceKey, contentRecord.contentReferenceKey) &&
-        Objects.equals(this.contentMetadata, contentRecord.contentMetadata) &&
-        Objects.equals(this.contentDocument, contentRecord.contentDocument);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(contentReferenceKey, contentMetadata, contentDocument);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ContentRecord {\n");
-    
-    sb.append("    contentReferenceKey: ").append(toIndentedString(contentReferenceKey)).append("\n");
-    sb.append("    contentMetadata: ").append(toIndentedString(contentMetadata)).append("\n");
-    sb.append("    contentDocument: ").append(toIndentedString(contentDocument)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setContentReferenceKey(String contentReferenceKey) {
+        this.contentReferenceKey = contentReferenceKey;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public ContentRecord contentMetadata(ContentMetadata contentMetadata) {
+        this.contentMetadata = contentMetadata;
+        return this;
+    }
+
+    /**
+     * Get contentMetadata
+     * @return contentMetadata
+     **/
+    @ApiModelProperty(value = "")
+    public ContentMetadata getContentMetadata() {
+        return contentMetadata;
+    }
+
+    public void setContentMetadata(ContentMetadata contentMetadata) {
+        this.contentMetadata = contentMetadata;
+    }
+
+    public ContentRecord contentDocument(ContentDocument contentDocument) {
+        this.contentDocument = contentDocument;
+        return this;
+    }
+
+    /**
+     * Get contentDocument
+     * @return contentDocument
+     **/
+    @ApiModelProperty(value = "")
+    public ContentDocument getContentDocument() {
+        return contentDocument;
+    }
+
+    public void setContentDocument(ContentDocument contentDocument) {
+        this.contentDocument = contentDocument;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ContentRecord contentRecord = (ContentRecord) o;
+        return Objects.equals(this.contentReferenceKey, contentRecord.contentReferenceKey) &&
+                Objects.equals(this.contentMetadata, contentRecord.contentMetadata) &&
+                Objects.equals(this.contentDocument, contentRecord.contentDocument);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contentReferenceKey, contentMetadata, contentDocument);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ContentRecord {\n");
+
+        sb.append("    contentReferenceKey: ").append(toIndentedString(contentReferenceKey)).append("\n");
+        sb.append("    contentMetadata: ").append(toIndentedString(contentMetadata)).append("\n");
+        sb.append("    contentDocument: ").append(toIndentedString(contentDocument)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

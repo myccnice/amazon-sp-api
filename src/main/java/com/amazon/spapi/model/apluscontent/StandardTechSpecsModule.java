@@ -13,20 +13,14 @@
 
 package com.amazon.spapi.model.apluscontent;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.StandardTextPairBlock;
-import com.amazon.spapi.model.apluscontent.TextComponent;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import com.google.gson.annotations.SerializedName;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * The standard table of technical feature names and definitions.
@@ -34,119 +28,119 @@ import java.util.List;
 @ApiModel(description = "The standard table of technical feature names and definitions.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class StandardTechSpecsModule {
-  @SerializedName("headline")
-  private TextComponent headline = null;
+    @SerializedName("headline")
+    private TextComponent headline = null;
 
-  @SerializedName("specificationList")
-  private List<StandardTextPairBlock> specificationList = new ArrayList<StandardTextPairBlock>();
+    @SerializedName("specificationList")
+    private List<StandardTextPairBlock> specificationList = new ArrayList<StandardTextPairBlock>();
 
-  @SerializedName("tableCount")
-  private Integer tableCount = null;
+    @SerializedName("tableCount")
+    private Integer tableCount = null;
 
-  public StandardTechSpecsModule headline(TextComponent headline) {
-    this.headline = headline;
-    return this;
-  }
-
-   /**
-   * Get headline
-   * @return headline
-  **/
-  @ApiModelProperty(value = "")
-  public TextComponent getHeadline() {
-    return headline;
-  }
-
-  public void setHeadline(TextComponent headline) {
-    this.headline = headline;
-  }
-
-  public StandardTechSpecsModule specificationList(List<StandardTextPairBlock> specificationList) {
-    this.specificationList = specificationList;
-    return this;
-  }
-
-  public StandardTechSpecsModule addSpecificationListItem(StandardTextPairBlock specificationListItem) {
-    this.specificationList.add(specificationListItem);
-    return this;
-  }
-
-   /**
-   * The specification list.
-   * @return specificationList
-  **/
-  @ApiModelProperty(required = true, value = "The specification list.")
-  public List<StandardTextPairBlock> getSpecificationList() {
-    return specificationList;
-  }
-
-  public void setSpecificationList(List<StandardTextPairBlock> specificationList) {
-    this.specificationList = specificationList;
-  }
-
-  public StandardTechSpecsModule tableCount(Integer tableCount) {
-    this.tableCount = tableCount;
-    return this;
-  }
-
-   /**
-   * The number of tables to present. Features are evenly divided between the tables.
-   * minimum: 1
-   * maximum: 2
-   * @return tableCount
-  **/
-  @ApiModelProperty(value = "The number of tables to present. Features are evenly divided between the tables.")
-  public Integer getTableCount() {
-    return tableCount;
-  }
-
-  public void setTableCount(Integer tableCount) {
-    this.tableCount = tableCount;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public StandardTechSpecsModule headline(TextComponent headline) {
+        this.headline = headline;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get headline
+     * @return headline
+     **/
+    @ApiModelProperty(value = "")
+    public TextComponent getHeadline() {
+        return headline;
     }
-    StandardTechSpecsModule standardTechSpecsModule = (StandardTechSpecsModule) o;
-    return Objects.equals(this.headline, standardTechSpecsModule.headline) &&
-        Objects.equals(this.specificationList, standardTechSpecsModule.specificationList) &&
-        Objects.equals(this.tableCount, standardTechSpecsModule.tableCount);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(headline, specificationList, tableCount);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class StandardTechSpecsModule {\n");
-    
-    sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
-    sb.append("    specificationList: ").append(toIndentedString(specificationList)).append("\n");
-    sb.append("    tableCount: ").append(toIndentedString(tableCount)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setHeadline(TextComponent headline) {
+        this.headline = headline;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public StandardTechSpecsModule specificationList(List<StandardTextPairBlock> specificationList) {
+        this.specificationList = specificationList;
+        return this;
+    }
+
+    public StandardTechSpecsModule addSpecificationListItem(StandardTextPairBlock specificationListItem) {
+        this.specificationList.add(specificationListItem);
+        return this;
+    }
+
+    /**
+     * The specification list.
+     * @return specificationList
+     **/
+    @ApiModelProperty(required = true, value = "The specification list.")
+    public List<StandardTextPairBlock> getSpecificationList() {
+        return specificationList;
+    }
+
+    public void setSpecificationList(List<StandardTextPairBlock> specificationList) {
+        this.specificationList = specificationList;
+    }
+
+    public StandardTechSpecsModule tableCount(Integer tableCount) {
+        this.tableCount = tableCount;
+        return this;
+    }
+
+    /**
+     * The number of tables to present. Features are evenly divided between the tables.
+     * minimum: 1
+     * maximum: 2
+     * @return tableCount
+     **/
+    @ApiModelProperty(value = "The number of tables to present. Features are evenly divided between the tables.")
+    public Integer getTableCount() {
+        return tableCount;
+    }
+
+    public void setTableCount(Integer tableCount) {
+        this.tableCount = tableCount;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        StandardTechSpecsModule standardTechSpecsModule = (StandardTechSpecsModule) o;
+        return Objects.equals(this.headline, standardTechSpecsModule.headline) &&
+                Objects.equals(this.specificationList, standardTechSpecsModule.specificationList) &&
+                Objects.equals(this.tableCount, standardTechSpecsModule.tableCount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(headline, specificationList, tableCount);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class StandardTechSpecsModule {\n");
+
+        sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
+        sb.append("    specificationList: ").append(toIndentedString(specificationList)).append("\n");
+        sb.append("    tableCount: ").append(toIndentedString(tableCount)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

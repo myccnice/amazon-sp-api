@@ -14,12 +14,12 @@ public class BaseTest {
 
     protected CredentialConfigDTO getJingTongYunConfig() {
         CredentialConfigDTO dto = new CredentialConfigDTO();
-        dto.setAccessKeyId("AKIA2DLNGWT4ZVTYO2IT");
-        dto.setSecretKey("xxx");
-        dto.setRoleArn("arn:aws:iam::694403118329:role/iam_role");
-        dto.setClientId("amzn1.application-oa2-client.10212ced02014df1a79a783777a3fcf3");
-        dto.setClientSecret("18e5aff8a6a5d2d94a54fb4c5e4b11cd657a1880485ec81d4aeaa6721c2ba3c7");
-        dto.setRefreshToken("xxx");
+        dto.setAccessKeyId("AKIA2DLNGWT4VB2IDJFF");
+        dto.setSecretKey("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");
+        dto.setRoleArn("arn:aws:iam::694403118329:role/erp-role");
+        dto.setClientId("amzn1.application-oa2-client.e015a393a2804d1cb3422eb20e17a732");
+        dto.setClientSecret("c860f12fde8b962b3e94328e4c8d26ea9f9801ebfa7e66a2e75e1ad7c068a708");
+        dto.setRefreshToken("Atzr|IwEBIBhkwi9WBvVpjR6TXFYbqOpE30x5VqVlv-seLLRYjkJ-nrRnpKOYl8H7G4oogdxxLkF4Tek_st15yXyytohwrDnxcMHuXgzRlbm27cyoJWsXi7_36Ts5yd46B1TOu5zt2IXBgY0o-iTHYNpAPEk5C-B5jTNbSHhDSh8Q5ahByfcu1Nn8LwgfStVhVVauJC3uVHvfnaLpZ0_A1wn3nveWwIjt4XGPvI-yGfnf1ggKD_H9s8yZFhsoBT0HNgyHxbSC-BRoLcB0BmRRI7BQJ4_3u2iK8nkGCJYXvNwlzV4V-Wnzp6s6cGV8LVcEeGZq4BZB-pk");
         dto.setCountry(String.valueOf(MarketplaceId.US.getId()));
         return dto;
     }

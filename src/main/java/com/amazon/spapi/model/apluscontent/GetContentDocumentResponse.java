@@ -14,107 +14,99 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.AplusResponse;
-import com.amazon.spapi.model.apluscontent.ContentRecord;
-import com.amazon.spapi.model.apluscontent.MessageSet;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * GetContentDocumentResponse
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class GetContentDocumentResponse {
-  @SerializedName("warnings")
-  private MessageSet warnings = null;
+    @SerializedName("warnings")
+    private MessageSet warnings = null;
 
-  @SerializedName("contentRecord")
-  private ContentRecord contentRecord = null;
+    @SerializedName("contentRecord")
+    private ContentRecord contentRecord = null;
 
-  public GetContentDocumentResponse warnings(MessageSet warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @ApiModelProperty(value = "")
-  public MessageSet getWarnings() {
-    return warnings;
-  }
-
-  public void setWarnings(MessageSet warnings) {
-    this.warnings = warnings;
-  }
-
-  public GetContentDocumentResponse contentRecord(ContentRecord contentRecord) {
-    this.contentRecord = contentRecord;
-    return this;
-  }
-
-   /**
-   * Get contentRecord
-   * @return contentRecord
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public ContentRecord getContentRecord() {
-    return contentRecord;
-  }
-
-  public void setContentRecord(ContentRecord contentRecord) {
-    this.contentRecord = contentRecord;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public GetContentDocumentResponse warnings(MessageSet warnings) {
+        this.warnings = warnings;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get warnings
+     * @return warnings
+     **/
+    @ApiModelProperty(value = "")
+    public MessageSet getWarnings() {
+        return warnings;
     }
-    GetContentDocumentResponse getContentDocumentResponse = (GetContentDocumentResponse) o;
-    return Objects.equals(this.warnings, getContentDocumentResponse.warnings) &&
-        Objects.equals(this.contentRecord, getContentDocumentResponse.contentRecord);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(warnings, contentRecord);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GetContentDocumentResponse {\n");
-    
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
-    sb.append("    contentRecord: ").append(toIndentedString(contentRecord)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setWarnings(MessageSet warnings) {
+        this.warnings = warnings;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public GetContentDocumentResponse contentRecord(ContentRecord contentRecord) {
+        this.contentRecord = contentRecord;
+        return this;
+    }
+
+    /**
+     * Get contentRecord
+     * @return contentRecord
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public ContentRecord getContentRecord() {
+        return contentRecord;
+    }
+
+    public void setContentRecord(ContentRecord contentRecord) {
+        this.contentRecord = contentRecord;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetContentDocumentResponse getContentDocumentResponse = (GetContentDocumentResponse) o;
+        return Objects.equals(this.warnings, getContentDocumentResponse.warnings) &&
+                Objects.equals(this.contentRecord, getContentDocumentResponse.contentRecord);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(warnings, contentRecord);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class GetContentDocumentResponse {\n");
+
+        sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
+        sb.append("    contentRecord: ").append(toIndentedString(contentRecord)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

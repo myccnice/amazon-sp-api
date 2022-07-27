@@ -14,106 +14,99 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.AplusResponse;
-import com.amazon.spapi.model.apluscontent.MessageSet;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * PostContentDocumentResponse
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class PostContentDocumentResponse {
-  @SerializedName("warnings")
-  private MessageSet warnings = null;
+    @SerializedName("warnings")
+    private MessageSet warnings = null;
 
-  @SerializedName("contentReferenceKey")
-  private String contentReferenceKey = null;
+    @SerializedName("contentReferenceKey")
+    private String contentReferenceKey = null;
 
-  public PostContentDocumentResponse warnings(MessageSet warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @ApiModelProperty(value = "")
-  public MessageSet getWarnings() {
-    return warnings;
-  }
-
-  public void setWarnings(MessageSet warnings) {
-    this.warnings = warnings;
-  }
-
-  public PostContentDocumentResponse contentReferenceKey(String contentReferenceKey) {
-    this.contentReferenceKey = contentReferenceKey;
-    return this;
-  }
-
-   /**
-   * Get contentReferenceKey
-   * @return contentReferenceKey
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getContentReferenceKey() {
-    return contentReferenceKey;
-  }
-
-  public void setContentReferenceKey(String contentReferenceKey) {
-    this.contentReferenceKey = contentReferenceKey;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public PostContentDocumentResponse warnings(MessageSet warnings) {
+        this.warnings = warnings;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get warnings
+     * @return warnings
+     **/
+    @ApiModelProperty(value = "")
+    public MessageSet getWarnings() {
+        return warnings;
     }
-    PostContentDocumentResponse postContentDocumentResponse = (PostContentDocumentResponse) o;
-    return Objects.equals(this.warnings, postContentDocumentResponse.warnings) &&
-        Objects.equals(this.contentReferenceKey, postContentDocumentResponse.contentReferenceKey);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(warnings, contentReferenceKey);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PostContentDocumentResponse {\n");
-    
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
-    sb.append("    contentReferenceKey: ").append(toIndentedString(contentReferenceKey)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setWarnings(MessageSet warnings) {
+        this.warnings = warnings;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public PostContentDocumentResponse contentReferenceKey(String contentReferenceKey) {
+        this.contentReferenceKey = contentReferenceKey;
+        return this;
+    }
+
+    /**
+     * Get contentReferenceKey
+     * @return contentReferenceKey
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public String getContentReferenceKey() {
+        return contentReferenceKey;
+    }
+
+    public void setContentReferenceKey(String contentReferenceKey) {
+        this.contentReferenceKey = contentReferenceKey;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PostContentDocumentResponse postContentDocumentResponse = (PostContentDocumentResponse) o;
+        return Objects.equals(this.warnings, postContentDocumentResponse.warnings) &&
+                Objects.equals(this.contentReferenceKey, postContentDocumentResponse.contentReferenceKey);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(warnings, contentReferenceKey);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class PostContentDocumentResponse {\n");
+
+        sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
+        sb.append("    contentReferenceKey: ").append(toIndentedString(contentReferenceKey)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

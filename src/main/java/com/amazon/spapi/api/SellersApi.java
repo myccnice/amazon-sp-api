@@ -9,30 +9,41 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
-
 package com.amazon.spapi.api;
 
-import com.amazon.spapi.client.*;
-import com.amazon.spapi.SellingPartnerAPIAA.*;
-
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
-
-
-import com.amazon.spapi.model.sellers.GetMarketplaceParticipationsResponse;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSSigV4Signer;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCache;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationSigner;
+import com.amazon.spapi.client.ApiCallback;
+import com.amazon.spapi.client.ApiClient;
+import com.amazon.spapi.client.ApiException;
+import com.amazon.spapi.client.ApiResponse;
+import com.amazon.spapi.client.Configuration;
+import com.amazon.spapi.client.Pair;
+import com.amazon.spapi.client.ProgressRequestBody;
+import com.amazon.spapi.client.ProgressResponseBody;
+import com.amazon.spapi.client.StringUtil;
+import com.amazon.spapi.model.sellers.GetMarketplaceParticipationsResponse;
+import com.google.gson.reflect.TypeToken;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.Response;
+
 public class SellersApi {
     private ApiClient apiClient;
 
-    SellersApi() {
+    public SellersApi() {
         this(Configuration.getDefaultApiClient());
     }
 
@@ -55,7 +66,7 @@ public class SellersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getMarketplaceParticipationsCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getMarketplaceParticipationsCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -81,10 +92,10 @@ public class SellersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -96,13 +107,9 @@ public class SellersApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getMarketplaceParticipationsValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-
-        com.squareup.okhttp.Call call = getMarketplaceParticipationsCall(progressListener, progressRequestListener);
+    private Call getMarketplaceParticipationsValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Call call = getMarketplaceParticipationsCall(progressListener, progressRequestListener);
         return call;
-
     }
 
     /**
@@ -123,7 +130,7 @@ public class SellersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetMarketplaceParticipationsResponse> getMarketplaceParticipationsWithHttpInfo() throws ApiException {
-        com.squareup.okhttp.Call call = getMarketplaceParticipationsValidateBeforeCall(null, null);
+        Call call = getMarketplaceParticipationsValidateBeforeCall(null, null);
         Type localVarReturnType = new TypeToken<GetMarketplaceParticipationsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -135,7 +142,7 @@ public class SellersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getMarketplaceParticipationsAsync(final ApiCallback<GetMarketplaceParticipationsResponse> callback) throws ApiException {
+    public Call getMarketplaceParticipationsAsync(final ApiCallback<GetMarketplaceParticipationsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -156,7 +163,7 @@ public class SellersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getMarketplaceParticipationsValidateBeforeCall(progressListener, progressRequestListener);
+        Call call = getMarketplaceParticipationsValidateBeforeCall(progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetMarketplaceParticipationsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

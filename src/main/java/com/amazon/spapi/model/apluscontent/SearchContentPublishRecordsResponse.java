@@ -14,130 +14,122 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.AplusPaginatedResponse;
-import com.amazon.spapi.model.apluscontent.MessageSet;
-import com.amazon.spapi.model.apluscontent.PublishRecordList;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * SearchContentPublishRecordsResponse
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class SearchContentPublishRecordsResponse {
-  @SerializedName("warnings")
-  private MessageSet warnings = null;
+    @SerializedName("warnings")
+    private MessageSet warnings = null;
 
-  @SerializedName("nextPageToken")
-  private String nextPageToken = null;
+    @SerializedName("nextPageToken")
+    private String nextPageToken = null;
 
-  @SerializedName("publishRecordList")
-  private PublishRecordList publishRecordList = null;
+    @SerializedName("publishRecordList")
+    private PublishRecordList publishRecordList = null;
 
-  public SearchContentPublishRecordsResponse warnings(MessageSet warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @ApiModelProperty(value = "")
-  public MessageSet getWarnings() {
-    return warnings;
-  }
-
-  public void setWarnings(MessageSet warnings) {
-    this.warnings = warnings;
-  }
-
-  public SearchContentPublishRecordsResponse nextPageToken(String nextPageToken) {
-    this.nextPageToken = nextPageToken;
-    return this;
-  }
-
-   /**
-   * Get nextPageToken
-   * @return nextPageToken
-  **/
-  @ApiModelProperty(value = "")
-  public String getNextPageToken() {
-    return nextPageToken;
-  }
-
-  public void setNextPageToken(String nextPageToken) {
-    this.nextPageToken = nextPageToken;
-  }
-
-  public SearchContentPublishRecordsResponse publishRecordList(PublishRecordList publishRecordList) {
-    this.publishRecordList = publishRecordList;
-    return this;
-  }
-
-   /**
-   * Get publishRecordList
-   * @return publishRecordList
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public PublishRecordList getPublishRecordList() {
-    return publishRecordList;
-  }
-
-  public void setPublishRecordList(PublishRecordList publishRecordList) {
-    this.publishRecordList = publishRecordList;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public SearchContentPublishRecordsResponse warnings(MessageSet warnings) {
+        this.warnings = warnings;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get warnings
+     * @return warnings
+     **/
+    @ApiModelProperty(value = "")
+    public MessageSet getWarnings() {
+        return warnings;
     }
-    SearchContentPublishRecordsResponse searchContentPublishRecordsResponse = (SearchContentPublishRecordsResponse) o;
-    return Objects.equals(this.warnings, searchContentPublishRecordsResponse.warnings) &&
-        Objects.equals(this.nextPageToken, searchContentPublishRecordsResponse.nextPageToken) &&
-        Objects.equals(this.publishRecordList, searchContentPublishRecordsResponse.publishRecordList);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(warnings, nextPageToken, publishRecordList);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SearchContentPublishRecordsResponse {\n");
-    
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
-    sb.append("    nextPageToken: ").append(toIndentedString(nextPageToken)).append("\n");
-    sb.append("    publishRecordList: ").append(toIndentedString(publishRecordList)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setWarnings(MessageSet warnings) {
+        this.warnings = warnings;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public SearchContentPublishRecordsResponse nextPageToken(String nextPageToken) {
+        this.nextPageToken = nextPageToken;
+        return this;
+    }
+
+    /**
+     * Get nextPageToken
+     * @return nextPageToken
+     **/
+    @ApiModelProperty(value = "")
+    public String getNextPageToken() {
+        return nextPageToken;
+    }
+
+    public void setNextPageToken(String nextPageToken) {
+        this.nextPageToken = nextPageToken;
+    }
+
+    public SearchContentPublishRecordsResponse publishRecordList(PublishRecordList publishRecordList) {
+        this.publishRecordList = publishRecordList;
+        return this;
+    }
+
+    /**
+     * Get publishRecordList
+     * @return publishRecordList
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public PublishRecordList getPublishRecordList() {
+        return publishRecordList;
+    }
+
+    public void setPublishRecordList(PublishRecordList publishRecordList) {
+        this.publishRecordList = publishRecordList;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SearchContentPublishRecordsResponse searchContentPublishRecordsResponse = (SearchContentPublishRecordsResponse) o;
+        return Objects.equals(this.warnings, searchContentPublishRecordsResponse.warnings) &&
+                Objects.equals(this.nextPageToken, searchContentPublishRecordsResponse.nextPageToken) &&
+                Objects.equals(this.publishRecordList, searchContentPublishRecordsResponse.publishRecordList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(warnings, nextPageToken, publishRecordList);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class SearchContentPublishRecordsResponse {\n");
+
+        sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
+        sb.append("    nextPageToken: ").append(toIndentedString(nextPageToken)).append("\n");
+        sb.append("    publishRecordList: ").append(toIndentedString(publishRecordList)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

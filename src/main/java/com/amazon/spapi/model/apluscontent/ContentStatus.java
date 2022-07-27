@@ -13,12 +13,8 @@
 
 package com.amazon.spapi.model.apluscontent;
 
-import java.util.Objects;
-import java.util.Arrays;
-import io.swagger.annotations.ApiModel;
-import com.google.gson.annotations.SerializedName;
-
 import java.io.IOException;
+
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
@@ -29,50 +25,50 @@ import com.google.gson.stream.JsonWriter;
  */
 @JsonAdapter(ContentStatus.Adapter.class)
 public enum ContentStatus {
-  
-  APPROVED("APPROVED"),
-  
-  DRAFT("DRAFT"),
-  
-  REJECTED("REJECTED"),
-  
-  SUBMITTED("SUBMITTED");
 
-  private String value;
+    APPROVED("APPROVED"),
 
-  ContentStatus(String value) {
-    this.value = value;
-  }
+    DRAFT("DRAFT"),
 
-  public String getValue() {
-    return value;
-  }
+    REJECTED("REJECTED"),
 
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
+    SUBMITTED("SUBMITTED");
 
-  public static ContentStatus fromValue(String text) {
-    for (ContentStatus b : ContentStatus.values()) {
-      if (String.valueOf(b.value).equals(text)) {
-        return b;
-      }
+    private String value;
+
+    ContentStatus(String value) {
+        this.value = value;
     }
-    return null;
-  }
 
-  public static class Adapter extends TypeAdapter<ContentStatus> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final ContentStatus enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
+    public String getValue() {
+        return value;
     }
 
     @Override
-    public ContentStatus read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return ContentStatus.fromValue(String.valueOf(value));
+    public String toString() {
+        return String.valueOf(value);
     }
-  }
+
+    public static ContentStatus fromValue(String text) {
+        for (ContentStatus b : ContentStatus.values()) {
+            if (String.valueOf(b.value).equals(text)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ContentStatus> {
+        @Override
+        public void write(final JsonWriter jsonWriter, final ContentStatus enumeration) throws IOException {
+            jsonWriter.value(enumeration.getValue());
+        }
+
+        @Override
+        public ContentStatus read(final JsonReader jsonReader) throws IOException {
+            String value = jsonReader.nextString();
+            return ContentStatus.fromValue(String.valueOf(value));
+        }
+    }
 }
 

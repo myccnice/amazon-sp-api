@@ -14,16 +14,11 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.IntegerWithUnits;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * The dimensions extending from the top left corner of the cropped image, or the top left corner of the original image if there is no cropping. Only &#x60;pixels&#x60; is allowed as the units value for ImageDimensions.
@@ -31,89 +26,89 @@ import java.io.IOException;
 @ApiModel(description = "The dimensions extending from the top left corner of the cropped image, or the top left corner of the original image if there is no cropping. Only `pixels` is allowed as the units value for ImageDimensions.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class ImageDimensions {
-  @SerializedName("width")
-  private IntegerWithUnits width = null;
+    @SerializedName("width")
+    private IntegerWithUnits width = null;
 
-  @SerializedName("height")
-  private IntegerWithUnits height = null;
+    @SerializedName("height")
+    private IntegerWithUnits height = null;
 
-  public ImageDimensions width(IntegerWithUnits width) {
-    this.width = width;
-    return this;
-  }
-
-   /**
-   * Get width
-   * @return width
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public IntegerWithUnits getWidth() {
-    return width;
-  }
-
-  public void setWidth(IntegerWithUnits width) {
-    this.width = width;
-  }
-
-  public ImageDimensions height(IntegerWithUnits height) {
-    this.height = height;
-    return this;
-  }
-
-   /**
-   * Get height
-   * @return height
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public IntegerWithUnits getHeight() {
-    return height;
-  }
-
-  public void setHeight(IntegerWithUnits height) {
-    this.height = height;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public ImageDimensions width(IntegerWithUnits width) {
+        this.width = width;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get width
+     * @return width
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public IntegerWithUnits getWidth() {
+        return width;
     }
-    ImageDimensions imageDimensions = (ImageDimensions) o;
-    return Objects.equals(this.width, imageDimensions.width) &&
-        Objects.equals(this.height, imageDimensions.height);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(width, height);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ImageDimensions {\n");
-    
-    sb.append("    width: ").append(toIndentedString(width)).append("\n");
-    sb.append("    height: ").append(toIndentedString(height)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setWidth(IntegerWithUnits width) {
+        this.width = width;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public ImageDimensions height(IntegerWithUnits height) {
+        this.height = height;
+        return this;
+    }
+
+    /**
+     * Get height
+     * @return height
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public IntegerWithUnits getHeight() {
+        return height;
+    }
+
+    public void setHeight(IntegerWithUnits height) {
+        this.height = height;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ImageDimensions imageDimensions = (ImageDimensions) o;
+        return Objects.equals(this.width, imageDimensions.width) &&
+                Objects.equals(this.height, imageDimensions.height);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(width, height);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ImageDimensions {\n");
+
+        sb.append("    width: ").append(toIndentedString(width)).append("\n");
+        sb.append("    height: ").append(toIndentedString(height)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

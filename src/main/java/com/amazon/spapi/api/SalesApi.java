@@ -9,30 +9,41 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
-
 package com.amazon.spapi.api;
 
-import com.amazon.spapi.client.*;
-import com.amazon.spapi.SellingPartnerAPIAA.*;
-
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
-
-
-import com.amazon.spapi.model.sales.GetOrderMetricsResponse;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSSigV4Signer;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCache;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationSigner;
+import com.amazon.spapi.client.ApiCallback;
+import com.amazon.spapi.client.ApiClient;
+import com.amazon.spapi.client.ApiException;
+import com.amazon.spapi.client.ApiResponse;
+import com.amazon.spapi.client.Configuration;
+import com.amazon.spapi.client.Pair;
+import com.amazon.spapi.client.ProgressRequestBody;
+import com.amazon.spapi.client.ProgressResponseBody;
+import com.amazon.spapi.client.StringUtil;
+import com.amazon.spapi.model.sales.GetOrderMetricsResponse;
+import com.google.gson.reflect.TypeToken;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.Response;
+
 public class SalesApi {
     private ApiClient apiClient;
 
-    SalesApi() {
+    public SalesApi() {
         this(Configuration.getDefaultApiClient());
     }
 
@@ -64,7 +75,7 @@ public class SalesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getOrderMetricsCall(List<String> marketplaceIds, String interval, String granularity, String granularityTimeZone, String buyerType, String fulfillmentNetwork, String firstDayOfWeek, String asin, String sku, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getOrderMetricsCall(List<String> marketplaceIds, String interval, String granularity, String granularityTimeZone, String buyerType, String fulfillmentNetwork, String firstDayOfWeek, String asin, String sku, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -73,48 +84,48 @@ public class SalesApi {
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (marketplaceIds != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "marketplaceIds", marketplaceIds));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "marketplaceIds", marketplaceIds));
         if (interval != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("interval", interval));
+            localVarQueryParams.addAll(apiClient.parameterToPair("interval", interval));
         if (granularityTimeZone != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("granularityTimeZone", granularityTimeZone));
+            localVarQueryParams.addAll(apiClient.parameterToPair("granularityTimeZone", granularityTimeZone));
         if (granularity != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("granularity", granularity));
+            localVarQueryParams.addAll(apiClient.parameterToPair("granularity", granularity));
         if (buyerType != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("buyerType", buyerType));
+            localVarQueryParams.addAll(apiClient.parameterToPair("buyerType", buyerType));
         if (fulfillmentNetwork != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("fulfillmentNetwork", fulfillmentNetwork));
+            localVarQueryParams.addAll(apiClient.parameterToPair("fulfillmentNetwork", fulfillmentNetwork));
         if (firstDayOfWeek != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("firstDayOfWeek", firstDayOfWeek));
+            localVarQueryParams.addAll(apiClient.parameterToPair("firstDayOfWeek", firstDayOfWeek));
         if (asin != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("asin", asin));
+            localVarQueryParams.addAll(apiClient.parameterToPair("asin", asin));
         if (sku != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("sku", sku));
+            localVarQueryParams.addAll(apiClient.parameterToPair("sku", sku));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -123,26 +134,25 @@ public class SalesApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getOrderMetricsValidateBeforeCall(List<String> marketplaceIds, String interval, String granularity, String granularityTimeZone, String buyerType, String fulfillmentNetwork, String firstDayOfWeek, String asin, String sku, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+    private Call getOrderMetricsValidateBeforeCall(List<String> marketplaceIds, String interval, String granularity, String granularityTimeZone, String buyerType, String fulfillmentNetwork, String firstDayOfWeek, String asin, String sku, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'marketplaceIds' is set
         if (marketplaceIds == null) {
             throw new ApiException("Missing the required parameter 'marketplaceIds' when calling getOrderMetrics(Async)");
         }
-        
+
         // verify the required parameter 'interval' is set
         if (interval == null) {
             throw new ApiException("Missing the required parameter 'interval' when calling getOrderMetrics(Async)");
         }
-        
+
         // verify the required parameter 'granularity' is set
         if (granularity == null) {
             throw new ApiException("Missing the required parameter 'granularity' when calling getOrderMetrics(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getOrderMetricsCall(marketplaceIds, interval, granularity, granularityTimeZone, buyerType, fulfillmentNetwork, firstDayOfWeek, asin, sku, progressListener, progressRequestListener);
+
+        Call call = getOrderMetricsCall(marketplaceIds, interval, granularity, granularityTimeZone, buyerType, fulfillmentNetwork, firstDayOfWeek, asin, sku, progressListener, progressRequestListener);
         return call;
 
     }
@@ -183,7 +193,7 @@ public class SalesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetOrderMetricsResponse> getOrderMetricsWithHttpInfo(List<String> marketplaceIds, String interval, String granularity, String granularityTimeZone, String buyerType, String fulfillmentNetwork, String firstDayOfWeek, String asin, String sku) throws ApiException {
-        com.squareup.okhttp.Call call = getOrderMetricsValidateBeforeCall(marketplaceIds, interval, granularity, granularityTimeZone, buyerType, fulfillmentNetwork, firstDayOfWeek, asin, sku, null, null);
+        Call call = getOrderMetricsValidateBeforeCall(marketplaceIds, interval, granularity, granularityTimeZone, buyerType, fulfillmentNetwork, firstDayOfWeek, asin, sku, null, null);
         Type localVarReturnType = new TypeToken<GetOrderMetricsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -204,7 +214,7 @@ public class SalesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getOrderMetricsAsync(List<String> marketplaceIds, String interval, String granularity, String granularityTimeZone, String buyerType, String fulfillmentNetwork, String firstDayOfWeek, String asin, String sku, final ApiCallback<GetOrderMetricsResponse> callback) throws ApiException {
+    public Call getOrderMetricsAsync(List<String> marketplaceIds, String interval, String granularity, String granularityTimeZone, String buyerType, String fulfillmentNetwork, String firstDayOfWeek, String asin, String sku, final ApiCallback<GetOrderMetricsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -225,7 +235,7 @@ public class SalesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getOrderMetricsValidateBeforeCall(marketplaceIds, interval, granularity, granularityTimeZone, buyerType, fulfillmentNetwork, firstDayOfWeek, asin, sku, progressListener, progressRequestListener);
+        Call call = getOrderMetricsValidateBeforeCall(marketplaceIds, interval, granularity, granularityTimeZone, buyerType, fulfillmentNetwork, firstDayOfWeek, asin, sku, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetOrderMetricsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -253,22 +263,22 @@ public class SalesApi {
             this.endpoint = endpoint;
             return this;
         }
-        
+
         public Builder lwaAccessTokenCache(LWAAccessTokenCache lwaAccessTokenCache) {
             this.lwaAccessTokenCache = lwaAccessTokenCache;
             return this;
         }
-		
-	   public Builder disableAccessTokenCache() {
+
+        public Builder disableAccessTokenCache() {
             this.disableAccessTokenCache = true;
             return this;
         }
-        
+
         public Builder awsAuthenticationCredentialsProvider(AWSAuthenticationCredentialsProvider awsAuthenticationCredentialsProvider) {
             this.awsAuthenticationCredentialsProvider = awsAuthenticationCredentialsProvider;
             return this;
         }
-        
+
 
         public SalesApi build() {
             if (awsAuthenticationCredentials == null) {
@@ -290,7 +300,7 @@ public class SalesApi {
             else {
                 awsSigV4Signer = new AWSSigV4Signer(awsAuthenticationCredentials,awsAuthenticationCredentialsProvider);
             }
-            
+
             LWAAuthorizationSigner lwaAuthorizationSigner = null;            
             if (disableAccessTokenCache) {
                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials);
@@ -298,14 +308,14 @@ public class SalesApi {
             else {
                 if (lwaAccessTokenCache == null) {
                     lwaAccessTokenCache = new LWAAccessTokenCacheImpl();                  
-                 }
-                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
+                }
+                lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
             }
 
             return new SalesApi(new ApiClient()
-                .setAWSSigV4Signer(awsSigV4Signer)
-                .setLWAAuthorizationSigner(lwaAuthorizationSigner)
-                .setBasePath(endpoint));
+                    .setAWSSigV4Signer(awsSigV4Signer)
+                    .setLWAAuthorizationSigner(lwaAuthorizationSigner)
+                    .setBasePath(endpoint));
         }
     }
 }

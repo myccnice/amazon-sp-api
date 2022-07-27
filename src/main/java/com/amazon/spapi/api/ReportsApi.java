@@ -9,18 +9,33 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
-
 package com.amazon.spapi.api;
 
-import com.amazon.spapi.client.*;
-import com.amazon.spapi.SellingPartnerAPIAA.*;
-
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.threeten.bp.OffsetDateTime;
 
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSSigV4Signer;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCache;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationSigner;
+import com.amazon.spapi.client.ApiCallback;
+import com.amazon.spapi.client.ApiClient;
+import com.amazon.spapi.client.ApiException;
+import com.amazon.spapi.client.ApiResponse;
+import com.amazon.spapi.client.Configuration;
+import com.amazon.spapi.client.Pair;
+import com.amazon.spapi.client.ProgressRequestBody;
+import com.amazon.spapi.client.ProgressResponseBody;
+import com.amazon.spapi.client.StringUtil;
 import com.amazon.spapi.model.reports.CancelReportResponse;
 import com.amazon.spapi.model.reports.CancelReportScheduleResponse;
 import com.amazon.spapi.model.reports.CreateReportResponse;
@@ -32,13 +47,10 @@ import com.amazon.spapi.model.reports.GetReportResponse;
 import com.amazon.spapi.model.reports.GetReportScheduleResponse;
 import com.amazon.spapi.model.reports.GetReportSchedulesResponse;
 import com.amazon.spapi.model.reports.GetReportsResponse;
-import org.threeten.bp.OffsetDateTime;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.google.gson.reflect.TypeToken;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.Response;
 
 public class ReportsApi {
     private ApiClient apiClient;
@@ -67,12 +79,12 @@ public class ReportsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call cancelReportCall(String reportId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call cancelReportCall(String reportId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/reports/2020-09-04/reports/{reportId}"
-            .replaceAll("\\{" + "reportId" + "\\}", apiClient.escapeString(reportId.toString()));
+                .replaceAll("\\{" + "reportId" + "\\}", apiClient.escapeString(reportId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -82,25 +94,25 @@ public class ReportsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -109,16 +121,16 @@ public class ReportsApi {
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call cancelReportValidateBeforeCall(String reportId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call cancelReportValidateBeforeCall(String reportId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'reportId' is set
         if (reportId == null) {
             throw new ApiException("Missing the required parameter 'reportId' when calling cancelReport(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = cancelReportCall(reportId, progressListener, progressRequestListener);
+
+        Call call = cancelReportCall(reportId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -143,7 +155,7 @@ public class ReportsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<CancelReportResponse> cancelReportWithHttpInfo(String reportId) throws ApiException {
-        com.squareup.okhttp.Call call = cancelReportValidateBeforeCall(reportId, null, null);
+        Call call = cancelReportValidateBeforeCall(reportId, null, null);
         Type localVarReturnType = new TypeToken<CancelReportResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -156,7 +168,7 @@ public class ReportsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call cancelReportAsync(String reportId, final ApiCallback<CancelReportResponse> callback) throws ApiException {
+    public Call cancelReportAsync(String reportId, final ApiCallback<CancelReportResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -177,7 +189,7 @@ public class ReportsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = cancelReportValidateBeforeCall(reportId, progressListener, progressRequestListener);
+        Call call = cancelReportValidateBeforeCall(reportId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<CancelReportResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -190,12 +202,12 @@ public class ReportsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call cancelReportScheduleCall(String reportScheduleId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call cancelReportScheduleCall(String reportScheduleId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/reports/2020-09-04/schedules/{reportScheduleId}"
-            .replaceAll("\\{" + "reportScheduleId" + "\\}", apiClient.escapeString(reportScheduleId.toString()));
+                .replaceAll("\\{" + "reportScheduleId" + "\\}", apiClient.escapeString(reportScheduleId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -205,25 +217,25 @@ public class ReportsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -232,16 +244,16 @@ public class ReportsApi {
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call cancelReportScheduleValidateBeforeCall(String reportScheduleId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call cancelReportScheduleValidateBeforeCall(String reportScheduleId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'reportScheduleId' is set
         if (reportScheduleId == null) {
             throw new ApiException("Missing the required parameter 'reportScheduleId' when calling cancelReportSchedule(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = cancelReportScheduleCall(reportScheduleId, progressListener, progressRequestListener);
+
+        Call call = cancelReportScheduleCall(reportScheduleId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -266,7 +278,7 @@ public class ReportsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<CancelReportScheduleResponse> cancelReportScheduleWithHttpInfo(String reportScheduleId) throws ApiException {
-        com.squareup.okhttp.Call call = cancelReportScheduleValidateBeforeCall(reportScheduleId, null, null);
+        Call call = cancelReportScheduleValidateBeforeCall(reportScheduleId, null, null);
         Type localVarReturnType = new TypeToken<CancelReportScheduleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -279,7 +291,7 @@ public class ReportsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call cancelReportScheduleAsync(String reportScheduleId, final ApiCallback<CancelReportScheduleResponse> callback) throws ApiException {
+    public Call cancelReportScheduleAsync(String reportScheduleId, final ApiCallback<CancelReportScheduleResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -300,7 +312,7 @@ public class ReportsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = cancelReportScheduleValidateBeforeCall(reportScheduleId, progressListener, progressRequestListener);
+        Call call = cancelReportScheduleValidateBeforeCall(reportScheduleId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<CancelReportScheduleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -313,7 +325,7 @@ public class ReportsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createReportCall(CreateReportSpecification body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call createReportCall(CreateReportSpecification body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -327,25 +339,25 @@ public class ReportsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -354,16 +366,16 @@ public class ReportsApi {
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createReportValidateBeforeCall(CreateReportSpecification body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call createReportValidateBeforeCall(CreateReportSpecification body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling createReport(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = createReportCall(body, progressListener, progressRequestListener);
+
+        Call call = createReportCall(body, progressListener, progressRequestListener);
         return call;
 
     }
@@ -388,7 +400,7 @@ public class ReportsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<CreateReportResponse> createReportWithHttpInfo(CreateReportSpecification body) throws ApiException {
-        com.squareup.okhttp.Call call = createReportValidateBeforeCall(body, null, null);
+        Call call = createReportValidateBeforeCall(body, null, null);
         Type localVarReturnType = new TypeToken<CreateReportResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -401,7 +413,7 @@ public class ReportsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createReportAsync(CreateReportSpecification body, final ApiCallback<CreateReportResponse> callback) throws ApiException {
+    public Call createReportAsync(CreateReportSpecification body, final ApiCallback<CreateReportResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -422,7 +434,7 @@ public class ReportsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createReportValidateBeforeCall(body, progressListener, progressRequestListener);
+        Call call = createReportValidateBeforeCall(body, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<CreateReportResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -435,7 +447,7 @@ public class ReportsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createReportScheduleCall(CreateReportScheduleSpecification body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call createReportScheduleCall(CreateReportScheduleSpecification body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -449,25 +461,25 @@ public class ReportsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -476,16 +488,16 @@ public class ReportsApi {
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createReportScheduleValidateBeforeCall(CreateReportScheduleSpecification body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call createReportScheduleValidateBeforeCall(CreateReportScheduleSpecification body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling createReportSchedule(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = createReportScheduleCall(body, progressListener, progressRequestListener);
+
+        Call call = createReportScheduleCall(body, progressListener, progressRequestListener);
         return call;
 
     }
@@ -510,7 +522,7 @@ public class ReportsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<CreateReportScheduleResponse> createReportScheduleWithHttpInfo(CreateReportScheduleSpecification body) throws ApiException {
-        com.squareup.okhttp.Call call = createReportScheduleValidateBeforeCall(body, null, null);
+        Call call = createReportScheduleValidateBeforeCall(body, null, null);
         Type localVarReturnType = new TypeToken<CreateReportScheduleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -523,7 +535,7 @@ public class ReportsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createReportScheduleAsync(CreateReportScheduleSpecification body, final ApiCallback<CreateReportScheduleResponse> callback) throws ApiException {
+    public Call createReportScheduleAsync(CreateReportScheduleSpecification body, final ApiCallback<CreateReportScheduleResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -544,7 +556,7 @@ public class ReportsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createReportScheduleValidateBeforeCall(body, progressListener, progressRequestListener);
+        Call call = createReportScheduleValidateBeforeCall(body, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<CreateReportScheduleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -557,12 +569,12 @@ public class ReportsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getReportCall(String reportId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getReportCall(String reportId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/reports/2020-09-04/reports/{reportId}"
-            .replaceAll("\\{" + "reportId" + "\\}", apiClient.escapeString(reportId.toString()));
+                .replaceAll("\\{" + "reportId" + "\\}", apiClient.escapeString(reportId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -572,25 +584,25 @@ public class ReportsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -599,16 +611,16 @@ public class ReportsApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getReportValidateBeforeCall(String reportId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call getReportValidateBeforeCall(String reportId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'reportId' is set
         if (reportId == null) {
             throw new ApiException("Missing the required parameter 'reportId' when calling getReport(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getReportCall(reportId, progressListener, progressRequestListener);
+
+        Call call = getReportCall(reportId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -633,7 +645,7 @@ public class ReportsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetReportResponse> getReportWithHttpInfo(String reportId) throws ApiException {
-        com.squareup.okhttp.Call call = getReportValidateBeforeCall(reportId, null, null);
+        Call call = getReportValidateBeforeCall(reportId, null, null);
         Type localVarReturnType = new TypeToken<GetReportResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -646,7 +658,7 @@ public class ReportsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getReportAsync(String reportId, final ApiCallback<GetReportResponse> callback) throws ApiException {
+    public Call getReportAsync(String reportId, final ApiCallback<GetReportResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -667,7 +679,7 @@ public class ReportsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getReportValidateBeforeCall(reportId, progressListener, progressRequestListener);
+        Call call = getReportValidateBeforeCall(reportId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetReportResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -680,12 +692,12 @@ public class ReportsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getReportDocumentCall(String reportDocumentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getReportDocumentCall(String reportDocumentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/reports/2020-09-04/documents/{reportDocumentId}"
-            .replaceAll("\\{" + "reportDocumentId" + "\\}", apiClient.escapeString(reportDocumentId.toString()));
+                .replaceAll("\\{" + "reportDocumentId" + "\\}", apiClient.escapeString(reportDocumentId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -695,25 +707,25 @@ public class ReportsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -722,16 +734,16 @@ public class ReportsApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getReportDocumentValidateBeforeCall(String reportDocumentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call getReportDocumentValidateBeforeCall(String reportDocumentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'reportDocumentId' is set
         if (reportDocumentId == null) {
             throw new ApiException("Missing the required parameter 'reportDocumentId' when calling getReportDocument(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getReportDocumentCall(reportDocumentId, progressListener, progressRequestListener);
+
+        Call call = getReportDocumentCall(reportDocumentId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -756,7 +768,7 @@ public class ReportsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetReportDocumentResponse> getReportDocumentWithHttpInfo(String reportDocumentId) throws ApiException {
-        com.squareup.okhttp.Call call = getReportDocumentValidateBeforeCall(reportDocumentId, null, null);
+        Call call = getReportDocumentValidateBeforeCall(reportDocumentId, null, null);
         Type localVarReturnType = new TypeToken<GetReportDocumentResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -769,7 +781,7 @@ public class ReportsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getReportDocumentAsync(String reportDocumentId, final ApiCallback<GetReportDocumentResponse> callback) throws ApiException {
+    public Call getReportDocumentAsync(String reportDocumentId, final ApiCallback<GetReportDocumentResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -790,7 +802,7 @@ public class ReportsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getReportDocumentValidateBeforeCall(reportDocumentId, progressListener, progressRequestListener);
+        Call call = getReportDocumentValidateBeforeCall(reportDocumentId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetReportDocumentResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -803,12 +815,12 @@ public class ReportsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getReportScheduleCall(String reportScheduleId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getReportScheduleCall(String reportScheduleId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/reports/2020-09-04/schedules/{reportScheduleId}"
-            .replaceAll("\\{" + "reportScheduleId" + "\\}", apiClient.escapeString(reportScheduleId.toString()));
+                .replaceAll("\\{" + "reportScheduleId" + "\\}", apiClient.escapeString(reportScheduleId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -818,25 +830,25 @@ public class ReportsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -845,16 +857,16 @@ public class ReportsApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getReportScheduleValidateBeforeCall(String reportScheduleId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call getReportScheduleValidateBeforeCall(String reportScheduleId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'reportScheduleId' is set
         if (reportScheduleId == null) {
             throw new ApiException("Missing the required parameter 'reportScheduleId' when calling getReportSchedule(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getReportScheduleCall(reportScheduleId, progressListener, progressRequestListener);
+
+        Call call = getReportScheduleCall(reportScheduleId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -879,7 +891,7 @@ public class ReportsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetReportScheduleResponse> getReportScheduleWithHttpInfo(String reportScheduleId) throws ApiException {
-        com.squareup.okhttp.Call call = getReportScheduleValidateBeforeCall(reportScheduleId, null, null);
+        Call call = getReportScheduleValidateBeforeCall(reportScheduleId, null, null);
         Type localVarReturnType = new TypeToken<GetReportScheduleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -892,7 +904,7 @@ public class ReportsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getReportScheduleAsync(String reportScheduleId, final ApiCallback<GetReportScheduleResponse> callback) throws ApiException {
+    public Call getReportScheduleAsync(String reportScheduleId, final ApiCallback<GetReportScheduleResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -913,7 +925,7 @@ public class ReportsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getReportScheduleValidateBeforeCall(reportScheduleId, progressListener, progressRequestListener);
+        Call call = getReportScheduleValidateBeforeCall(reportScheduleId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetReportScheduleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -926,7 +938,7 @@ public class ReportsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getReportSchedulesCall(List<String> reportTypes, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getReportSchedulesCall(List<String> reportTypes, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -935,32 +947,32 @@ public class ReportsApi {
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (reportTypes != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "reportTypes", reportTypes));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "reportTypes", reportTypes));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -969,16 +981,16 @@ public class ReportsApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getReportSchedulesValidateBeforeCall(List<String> reportTypes, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call getReportSchedulesValidateBeforeCall(List<String> reportTypes, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'reportTypes' is set
         if (reportTypes == null) {
             throw new ApiException("Missing the required parameter 'reportTypes' when calling getReportSchedules(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getReportSchedulesCall(reportTypes, progressListener, progressRequestListener);
+
+        Call call = getReportSchedulesCall(reportTypes, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1003,7 +1015,7 @@ public class ReportsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetReportSchedulesResponse> getReportSchedulesWithHttpInfo(List<String> reportTypes) throws ApiException {
-        com.squareup.okhttp.Call call = getReportSchedulesValidateBeforeCall(reportTypes, null, null);
+        Call call = getReportSchedulesValidateBeforeCall(reportTypes, null, null);
         Type localVarReturnType = new TypeToken<GetReportSchedulesResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1016,7 +1028,7 @@ public class ReportsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getReportSchedulesAsync(List<String> reportTypes, final ApiCallback<GetReportSchedulesResponse> callback) throws ApiException {
+    public Call getReportSchedulesAsync(List<String> reportTypes, final ApiCallback<GetReportSchedulesResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1037,7 +1049,7 @@ public class ReportsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getReportSchedulesValidateBeforeCall(reportTypes, progressListener, progressRequestListener);
+        Call call = getReportSchedulesValidateBeforeCall(reportTypes, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetReportSchedulesResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1056,7 +1068,7 @@ public class ReportsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getReportsCall(List<String> reportTypes, List<String> processingStatuses, List<String> marketplaceIds, Integer pageSize, OffsetDateTime createdSince, OffsetDateTime createdUntil, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getReportsCall(List<String> reportTypes, List<String> processingStatuses, List<String> marketplaceIds, Integer pageSize, OffsetDateTime createdSince, OffsetDateTime createdUntil, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1065,44 +1077,44 @@ public class ReportsApi {
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (reportTypes != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "reportTypes", reportTypes));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "reportTypes", reportTypes));
         if (processingStatuses != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "processingStatuses", processingStatuses));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "processingStatuses", processingStatuses));
         if (marketplaceIds != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "marketplaceIds", marketplaceIds));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "marketplaceIds", marketplaceIds));
         if (pageSize != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("pageSize", pageSize));
+            localVarQueryParams.addAll(apiClient.parameterToPair("pageSize", pageSize));
         if (createdSince != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("createdSince", createdSince));
+            localVarQueryParams.addAll(apiClient.parameterToPair("createdSince", createdSince));
         if (createdUntil != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("createdUntil", createdUntil));
+            localVarQueryParams.addAll(apiClient.parameterToPair("createdUntil", createdUntil));
         if (nextToken != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("nextToken", nextToken));
+            localVarQueryParams.addAll(apiClient.parameterToPair("nextToken", nextToken));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -1111,13 +1123,10 @@ public class ReportsApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getReportsValidateBeforeCall(List<String> reportTypes, List<String> processingStatuses, List<String> marketplaceIds, Integer pageSize, OffsetDateTime createdSince, OffsetDateTime createdUntil, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
 
-        com.squareup.okhttp.Call call = getReportsCall(reportTypes, processingStatuses, marketplaceIds, pageSize, createdSince, createdUntil, nextToken, progressListener, progressRequestListener);
+    private Call getReportsValidateBeforeCall(List<String> reportTypes, List<String> processingStatuses, List<String> marketplaceIds, Integer pageSize, OffsetDateTime createdSince, OffsetDateTime createdUntil, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Call call = getReportsCall(reportTypes, processingStatuses, marketplaceIds, pageSize, createdSince, createdUntil, nextToken, progressListener, progressRequestListener);
         return call;
-
     }
 
     /**
@@ -1152,7 +1161,7 @@ public class ReportsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetReportsResponse> getReportsWithHttpInfo(List<String> reportTypes, List<String> processingStatuses, List<String> marketplaceIds, Integer pageSize, OffsetDateTime createdSince, OffsetDateTime createdUntil, String nextToken) throws ApiException {
-        com.squareup.okhttp.Call call = getReportsValidateBeforeCall(reportTypes, processingStatuses, marketplaceIds, pageSize, createdSince, createdUntil, nextToken, null, null);
+        Call call = getReportsValidateBeforeCall(reportTypes, processingStatuses, marketplaceIds, pageSize, createdSince, createdUntil, nextToken, null, null);
         Type localVarReturnType = new TypeToken<GetReportsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1171,7 +1180,7 @@ public class ReportsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getReportsAsync(List<String> reportTypes, List<String> processingStatuses, List<String> marketplaceIds, Integer pageSize, OffsetDateTime createdSince, OffsetDateTime createdUntil, String nextToken, final ApiCallback<GetReportsResponse> callback) throws ApiException {
+    public Call getReportsAsync(List<String> reportTypes, List<String> processingStatuses, List<String> marketplaceIds, Integer pageSize, OffsetDateTime createdSince, OffsetDateTime createdUntil, String nextToken, final ApiCallback<GetReportsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1192,7 +1201,7 @@ public class ReportsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getReportsValidateBeforeCall(reportTypes, processingStatuses, marketplaceIds, pageSize, createdSince, createdUntil, nextToken, progressListener, progressRequestListener);
+        Call call = getReportsValidateBeforeCall(reportTypes, processingStatuses, marketplaceIds, pageSize, createdSince, createdUntil, nextToken, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetReportsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1220,22 +1229,22 @@ public class ReportsApi {
             this.endpoint = endpoint;
             return this;
         }
-        
+
         public Builder lwaAccessTokenCache(LWAAccessTokenCache lwaAccessTokenCache) {
             this.lwaAccessTokenCache = lwaAccessTokenCache;
             return this;
         }
-		
-	   public Builder disableAccessTokenCache() {
+
+        public Builder disableAccessTokenCache() {
             this.disableAccessTokenCache = true;
             return this;
         }
-        
+
         public Builder awsAuthenticationCredentialsProvider(AWSAuthenticationCredentialsProvider awsAuthenticationCredentialsProvider) {
             this.awsAuthenticationCredentialsProvider = awsAuthenticationCredentialsProvider;
             return this;
         }
-        
+
 
         public ReportsApi build() {
             if (awsAuthenticationCredentials == null) {
@@ -1257,7 +1266,7 @@ public class ReportsApi {
             else {
                 awsSigV4Signer = new AWSSigV4Signer(awsAuthenticationCredentials,awsAuthenticationCredentialsProvider);
             }
-            
+
             LWAAuthorizationSigner lwaAuthorizationSigner = null;            
             if (disableAccessTokenCache) {
                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials);
@@ -1265,14 +1274,14 @@ public class ReportsApi {
             else {
                 if (lwaAccessTokenCache == null) {
                     lwaAccessTokenCache = new LWAAccessTokenCacheImpl();                  
-                 }
-                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
+                }
+                lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
             }
 
             return new ReportsApi(new ApiClient()
-                .setAWSSigV4Signer(awsSigV4Signer)
-                .setLWAAuthorizationSigner(lwaAuthorizationSigner)
-                .setBasePath(endpoint));
+                    .setAWSSigV4Signer(awsSigV4Signer)
+                    .setLWAAuthorizationSigner(lwaAuthorizationSigner)
+                    .setBasePath(endpoint));
         }
     }
 }

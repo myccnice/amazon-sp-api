@@ -14,15 +14,11 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * A whole number dimension and its unit of measurement. For example, this can represent 100 pixels.
@@ -30,89 +26,89 @@ import java.io.IOException;
 @ApiModel(description = "A whole number dimension and its unit of measurement. For example, this can represent 100 pixels.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class IntegerWithUnits {
-  @SerializedName("value")
-  private Integer value = null;
+    @SerializedName("value")
+    private Integer value = null;
 
-  @SerializedName("units")
-  private String units = null;
+    @SerializedName("units")
+    private String units = null;
 
-  public IntegerWithUnits value(Integer value) {
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * The dimension value.
-   * @return value
-  **/
-  @ApiModelProperty(required = true, value = "The dimension value.")
-  public Integer getValue() {
-    return value;
-  }
-
-  public void setValue(Integer value) {
-    this.value = value;
-  }
-
-  public IntegerWithUnits units(String units) {
-    this.units = units;
-    return this;
-  }
-
-   /**
-   * The unit of measurement.
-   * @return units
-  **/
-  @ApiModelProperty(required = true, value = "The unit of measurement.")
-  public String getUnits() {
-    return units;
-  }
-
-  public void setUnits(String units) {
-    this.units = units;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public IntegerWithUnits value(Integer value) {
+        this.value = value;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The dimension value.
+     * @return value
+     **/
+    @ApiModelProperty(required = true, value = "The dimension value.")
+    public Integer getValue() {
+        return value;
     }
-    IntegerWithUnits integerWithUnits = (IntegerWithUnits) o;
-    return Objects.equals(this.value, integerWithUnits.value) &&
-        Objects.equals(this.units, integerWithUnits.units);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(value, units);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class IntegerWithUnits {\n");
-    
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    units: ").append(toIndentedString(units)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setValue(Integer value) {
+        this.value = value;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public IntegerWithUnits units(String units) {
+        this.units = units;
+        return this;
+    }
+
+    /**
+     * The unit of measurement.
+     * @return units
+     **/
+    @ApiModelProperty(required = true, value = "The unit of measurement.")
+    public String getUnits() {
+        return units;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        IntegerWithUnits integerWithUnits = (IntegerWithUnits) o;
+        return Objects.equals(this.value, integerWithUnits.value) &&
+                Objects.equals(this.units, integerWithUnits.units);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, units);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class IntegerWithUnits {\n");
+
+        sb.append("    value: ").append(toIndentedString(value)).append("\n");
+        sb.append("    units: ").append(toIndentedString(units)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

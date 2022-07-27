@@ -14,130 +14,122 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.AplusPaginatedResponse;
-import com.amazon.spapi.model.apluscontent.AsinMetadataSet;
-import com.amazon.spapi.model.apluscontent.MessageSet;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * ListContentDocumentAsinRelationsResponse
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class ListContentDocumentAsinRelationsResponse {
-  @SerializedName("warnings")
-  private MessageSet warnings = null;
+    @SerializedName("warnings")
+    private MessageSet warnings = null;
 
-  @SerializedName("nextPageToken")
-  private String nextPageToken = null;
+    @SerializedName("nextPageToken")
+    private String nextPageToken = null;
 
-  @SerializedName("asinMetadataSet")
-  private AsinMetadataSet asinMetadataSet = null;
+    @SerializedName("asinMetadataSet")
+    private AsinMetadataSet asinMetadataSet = null;
 
-  public ListContentDocumentAsinRelationsResponse warnings(MessageSet warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @ApiModelProperty(value = "")
-  public MessageSet getWarnings() {
-    return warnings;
-  }
-
-  public void setWarnings(MessageSet warnings) {
-    this.warnings = warnings;
-  }
-
-  public ListContentDocumentAsinRelationsResponse nextPageToken(String nextPageToken) {
-    this.nextPageToken = nextPageToken;
-    return this;
-  }
-
-   /**
-   * Get nextPageToken
-   * @return nextPageToken
-  **/
-  @ApiModelProperty(value = "")
-  public String getNextPageToken() {
-    return nextPageToken;
-  }
-
-  public void setNextPageToken(String nextPageToken) {
-    this.nextPageToken = nextPageToken;
-  }
-
-  public ListContentDocumentAsinRelationsResponse asinMetadataSet(AsinMetadataSet asinMetadataSet) {
-    this.asinMetadataSet = asinMetadataSet;
-    return this;
-  }
-
-   /**
-   * Get asinMetadataSet
-   * @return asinMetadataSet
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public AsinMetadataSet getAsinMetadataSet() {
-    return asinMetadataSet;
-  }
-
-  public void setAsinMetadataSet(AsinMetadataSet asinMetadataSet) {
-    this.asinMetadataSet = asinMetadataSet;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public ListContentDocumentAsinRelationsResponse warnings(MessageSet warnings) {
+        this.warnings = warnings;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get warnings
+     * @return warnings
+     **/
+    @ApiModelProperty(value = "")
+    public MessageSet getWarnings() {
+        return warnings;
     }
-    ListContentDocumentAsinRelationsResponse listContentDocumentAsinRelationsResponse = (ListContentDocumentAsinRelationsResponse) o;
-    return Objects.equals(this.warnings, listContentDocumentAsinRelationsResponse.warnings) &&
-        Objects.equals(this.nextPageToken, listContentDocumentAsinRelationsResponse.nextPageToken) &&
-        Objects.equals(this.asinMetadataSet, listContentDocumentAsinRelationsResponse.asinMetadataSet);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(warnings, nextPageToken, asinMetadataSet);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ListContentDocumentAsinRelationsResponse {\n");
-    
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
-    sb.append("    nextPageToken: ").append(toIndentedString(nextPageToken)).append("\n");
-    sb.append("    asinMetadataSet: ").append(toIndentedString(asinMetadataSet)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setWarnings(MessageSet warnings) {
+        this.warnings = warnings;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public ListContentDocumentAsinRelationsResponse nextPageToken(String nextPageToken) {
+        this.nextPageToken = nextPageToken;
+        return this;
+    }
+
+    /**
+     * Get nextPageToken
+     * @return nextPageToken
+     **/
+    @ApiModelProperty(value = "")
+    public String getNextPageToken() {
+        return nextPageToken;
+    }
+
+    public void setNextPageToken(String nextPageToken) {
+        this.nextPageToken = nextPageToken;
+    }
+
+    public ListContentDocumentAsinRelationsResponse asinMetadataSet(AsinMetadataSet asinMetadataSet) {
+        this.asinMetadataSet = asinMetadataSet;
+        return this;
+    }
+
+    /**
+     * Get asinMetadataSet
+     * @return asinMetadataSet
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public AsinMetadataSet getAsinMetadataSet() {
+        return asinMetadataSet;
+    }
+
+    public void setAsinMetadataSet(AsinMetadataSet asinMetadataSet) {
+        this.asinMetadataSet = asinMetadataSet;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ListContentDocumentAsinRelationsResponse listContentDocumentAsinRelationsResponse = (ListContentDocumentAsinRelationsResponse) o;
+        return Objects.equals(this.warnings, listContentDocumentAsinRelationsResponse.warnings) &&
+                Objects.equals(this.nextPageToken, listContentDocumentAsinRelationsResponse.nextPageToken) &&
+                Objects.equals(this.asinMetadataSet, listContentDocumentAsinRelationsResponse.asinMetadataSet);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(warnings, nextPageToken, asinMetadataSet);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ListContentDocumentAsinRelationsResponse {\n");
+
+        sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
+        sb.append("    nextPageToken: ").append(toIndentedString(nextPageToken)).append("\n");
+        sb.append("    asinMetadataSet: ").append(toIndentedString(asinMetadataSet)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

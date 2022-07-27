@@ -9,31 +9,42 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
-
 package com.amazon.spapi.api;
 
-import com.amazon.spapi.client.*;
-import com.amazon.spapi.SellingPartnerAPIAA.*;
-
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
-
-
-import com.amazon.spapi.model.productfees.GetMyFeesEstimateRequest;
-import com.amazon.spapi.model.productfees.GetMyFeesEstimateResponse;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSSigV4Signer;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCache;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationSigner;
+import com.amazon.spapi.client.ApiCallback;
+import com.amazon.spapi.client.ApiClient;
+import com.amazon.spapi.client.ApiException;
+import com.amazon.spapi.client.ApiResponse;
+import com.amazon.spapi.client.Configuration;
+import com.amazon.spapi.client.Pair;
+import com.amazon.spapi.client.ProgressRequestBody;
+import com.amazon.spapi.client.ProgressResponseBody;
+import com.amazon.spapi.client.StringUtil;
+import com.amazon.spapi.model.productfees.GetMyFeesEstimateRequest;
+import com.amazon.spapi.model.productfees.GetMyFeesEstimateResponse;
+import com.google.gson.reflect.TypeToken;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.Response;
+
 public class FeesApi {
     private ApiClient apiClient;
 
-    FeesApi() {
+    public FeesApi() {
         this(Configuration.getDefaultApiClient());
     }
 
@@ -58,7 +69,7 @@ public class FeesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getMyFeesEstimateForASINCall(GetMyFeesEstimateRequest body, String asin, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getMyFeesEstimateForASINCall(GetMyFeesEstimateRequest body, String asin, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -85,10 +96,10 @@ public class FeesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -100,8 +111,7 @@ public class FeesApi {
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getMyFeesEstimateForASINValidateBeforeCall(GetMyFeesEstimateRequest body, String asin, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call getMyFeesEstimateForASINValidateBeforeCall(GetMyFeesEstimateRequest body, String asin, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'body' is set
         if (body == null) {
@@ -114,7 +124,7 @@ public class FeesApi {
         }
         
 
-        com.squareup.okhttp.Call call = getMyFeesEstimateForASINCall(body, asin, progressListener, progressRequestListener);
+        Call call = getMyFeesEstimateForASINCall(body, asin, progressListener, progressRequestListener);
         return call;
 
     }
@@ -141,7 +151,7 @@ public class FeesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetMyFeesEstimateResponse> getMyFeesEstimateForASINWithHttpInfo(GetMyFeesEstimateRequest body, String asin) throws ApiException {
-        com.squareup.okhttp.Call call = getMyFeesEstimateForASINValidateBeforeCall(body, asin, null, null);
+        Call call = getMyFeesEstimateForASINValidateBeforeCall(body, asin, null, null);
         Type localVarReturnType = new TypeToken<GetMyFeesEstimateResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -155,7 +165,7 @@ public class FeesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getMyFeesEstimateForASINAsync(GetMyFeesEstimateRequest body, String asin, final ApiCallback<GetMyFeesEstimateResponse> callback) throws ApiException {
+    public Call getMyFeesEstimateForASINAsync(GetMyFeesEstimateRequest body, String asin, final ApiCallback<GetMyFeesEstimateResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -176,7 +186,7 @@ public class FeesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getMyFeesEstimateForASINValidateBeforeCall(body, asin, progressListener, progressRequestListener);
+        Call call = getMyFeesEstimateForASINValidateBeforeCall(body, asin, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetMyFeesEstimateResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -190,7 +200,7 @@ public class FeesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getMyFeesEstimateForSKUCall(GetMyFeesEstimateRequest body, String sellerSKU, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getMyFeesEstimateForSKUCall(GetMyFeesEstimateRequest body, String sellerSKU, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -217,10 +227,10 @@ public class FeesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -232,23 +242,17 @@ public class FeesApi {
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getMyFeesEstimateForSKUValidateBeforeCall(GetMyFeesEstimateRequest body, String sellerSKU, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+    private Call getMyFeesEstimateForSKUValidateBeforeCall(GetMyFeesEstimateRequest body, String sellerSKU, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling getMyFeesEstimateForSKU(Async)");
         }
-        
         // verify the required parameter 'sellerSKU' is set
         if (sellerSKU == null) {
             throw new ApiException("Missing the required parameter 'sellerSKU' when calling getMyFeesEstimateForSKU(Async)");
         }
-        
-
-        com.squareup.okhttp.Call call = getMyFeesEstimateForSKUCall(body, sellerSKU, progressListener, progressRequestListener);
+        Call call = getMyFeesEstimateForSKUCall(body, sellerSKU, progressListener, progressRequestListener);
         return call;
-
     }
 
     /**
@@ -273,7 +277,7 @@ public class FeesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetMyFeesEstimateResponse> getMyFeesEstimateForSKUWithHttpInfo(GetMyFeesEstimateRequest body, String sellerSKU) throws ApiException {
-        com.squareup.okhttp.Call call = getMyFeesEstimateForSKUValidateBeforeCall(body, sellerSKU, null, null);
+        Call call = getMyFeesEstimateForSKUValidateBeforeCall(body, sellerSKU, null, null);
         Type localVarReturnType = new TypeToken<GetMyFeesEstimateResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -287,7 +291,7 @@ public class FeesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getMyFeesEstimateForSKUAsync(GetMyFeesEstimateRequest body, String sellerSKU, final ApiCallback<GetMyFeesEstimateResponse> callback) throws ApiException {
+    public Call getMyFeesEstimateForSKUAsync(GetMyFeesEstimateRequest body, String sellerSKU, final ApiCallback<GetMyFeesEstimateResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -308,7 +312,7 @@ public class FeesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getMyFeesEstimateForSKUValidateBeforeCall(body, sellerSKU, progressListener, progressRequestListener);
+        Call call = getMyFeesEstimateForSKUValidateBeforeCall(body, sellerSKU, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetMyFeesEstimateResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

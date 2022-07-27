@@ -14,16 +14,11 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.IntegerWithUnits;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * The top left corner of the cropped image, specified in the original image&#39;s coordinate space.
@@ -31,89 +26,89 @@ import java.io.IOException;
 @ApiModel(description = "The top left corner of the cropped image, specified in the original image's coordinate space.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class ImageOffsets {
-  @SerializedName("x")
-  private IntegerWithUnits x = null;
+    @SerializedName("x")
+    private IntegerWithUnits x = null;
 
-  @SerializedName("y")
-  private IntegerWithUnits y = null;
+    @SerializedName("y")
+    private IntegerWithUnits y = null;
 
-  public ImageOffsets x(IntegerWithUnits x) {
-    this.x = x;
-    return this;
-  }
-
-   /**
-   * Get x
-   * @return x
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public IntegerWithUnits getX() {
-    return x;
-  }
-
-  public void setX(IntegerWithUnits x) {
-    this.x = x;
-  }
-
-  public ImageOffsets y(IntegerWithUnits y) {
-    this.y = y;
-    return this;
-  }
-
-   /**
-   * Get y
-   * @return y
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public IntegerWithUnits getY() {
-    return y;
-  }
-
-  public void setY(IntegerWithUnits y) {
-    this.y = y;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public ImageOffsets x(IntegerWithUnits x) {
+        this.x = x;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get x
+     * @return x
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public IntegerWithUnits getX() {
+        return x;
     }
-    ImageOffsets imageOffsets = (ImageOffsets) o;
-    return Objects.equals(this.x, imageOffsets.x) &&
-        Objects.equals(this.y, imageOffsets.y);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(x, y);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ImageOffsets {\n");
-    
-    sb.append("    x: ").append(toIndentedString(x)).append("\n");
-    sb.append("    y: ").append(toIndentedString(y)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setX(IntegerWithUnits x) {
+        this.x = x;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public ImageOffsets y(IntegerWithUnits y) {
+        this.y = y;
+        return this;
+    }
+
+    /**
+     * Get y
+     * @return y
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public IntegerWithUnits getY() {
+        return y;
+    }
+
+    public void setY(IntegerWithUnits y) {
+        this.y = y;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ImageOffsets imageOffsets = (ImageOffsets) o;
+        return Objects.equals(this.x, imageOffsets.x) &&
+                Objects.equals(this.y, imageOffsets.y);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ImageOffsets {\n");
+
+        sb.append("    x: ").append(toIndentedString(x)).append("\n");
+        sb.append("    y: ").append(toIndentedString(y)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

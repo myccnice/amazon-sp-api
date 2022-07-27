@@ -14,17 +14,11 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.PositionType;
-import com.amazon.spapi.model.apluscontent.StandardImageTextBlock;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * A standard headline and body text with an image on the side.
@@ -32,89 +26,89 @@ import java.io.IOException;
 @ApiModel(description = "A standard headline and body text with an image on the side.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class StandardSingleSideImageModule {
-  @SerializedName("imagePositionType")
-  private PositionType imagePositionType = null;
+    @SerializedName("imagePositionType")
+    private PositionType imagePositionType = null;
 
-  @SerializedName("block")
-  private StandardImageTextBlock block = null;
+    @SerializedName("block")
+    private StandardImageTextBlock block = null;
 
-  public StandardSingleSideImageModule imagePositionType(PositionType imagePositionType) {
-    this.imagePositionType = imagePositionType;
-    return this;
-  }
-
-   /**
-   * Get imagePositionType
-   * @return imagePositionType
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public PositionType getImagePositionType() {
-    return imagePositionType;
-  }
-
-  public void setImagePositionType(PositionType imagePositionType) {
-    this.imagePositionType = imagePositionType;
-  }
-
-  public StandardSingleSideImageModule block(StandardImageTextBlock block) {
-    this.block = block;
-    return this;
-  }
-
-   /**
-   * Get block
-   * @return block
-  **/
-  @ApiModelProperty(value = "")
-  public StandardImageTextBlock getBlock() {
-    return block;
-  }
-
-  public void setBlock(StandardImageTextBlock block) {
-    this.block = block;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public StandardSingleSideImageModule imagePositionType(PositionType imagePositionType) {
+        this.imagePositionType = imagePositionType;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get imagePositionType
+     * @return imagePositionType
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public PositionType getImagePositionType() {
+        return imagePositionType;
     }
-    StandardSingleSideImageModule standardSingleSideImageModule = (StandardSingleSideImageModule) o;
-    return Objects.equals(this.imagePositionType, standardSingleSideImageModule.imagePositionType) &&
-        Objects.equals(this.block, standardSingleSideImageModule.block);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(imagePositionType, block);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class StandardSingleSideImageModule {\n");
-    
-    sb.append("    imagePositionType: ").append(toIndentedString(imagePositionType)).append("\n");
-    sb.append("    block: ").append(toIndentedString(block)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setImagePositionType(PositionType imagePositionType) {
+        this.imagePositionType = imagePositionType;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public StandardSingleSideImageModule block(StandardImageTextBlock block) {
+        this.block = block;
+        return this;
+    }
+
+    /**
+     * Get block
+     * @return block
+     **/
+    @ApiModelProperty(value = "")
+    public StandardImageTextBlock getBlock() {
+        return block;
+    }
+
+    public void setBlock(StandardImageTextBlock block) {
+        this.block = block;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        StandardSingleSideImageModule standardSingleSideImageModule = (StandardSingleSideImageModule) o;
+        return Objects.equals(this.imagePositionType, standardSingleSideImageModule.imagePositionType) &&
+                Objects.equals(this.block, standardSingleSideImageModule.block);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(imagePositionType, block);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class StandardSingleSideImageModule {\n");
+
+        sb.append("    imagePositionType: ").append(toIndentedString(imagePositionType)).append("\n");
+        sb.append("    block: ").append(toIndentedString(block)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

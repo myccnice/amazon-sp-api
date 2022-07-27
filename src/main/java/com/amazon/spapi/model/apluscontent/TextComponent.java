@@ -14,16 +14,11 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.DecoratorSet;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * Rich text content.
@@ -31,89 +26,89 @@ import java.io.IOException;
 @ApiModel(description = "Rich text content.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class TextComponent {
-  @SerializedName("value")
-  private String value = null;
+    @SerializedName("value")
+    private String value = null;
 
-  @SerializedName("decoratorSet")
-  private DecoratorSet decoratorSet = null;
+    @SerializedName("decoratorSet")
+    private DecoratorSet decoratorSet = null;
 
-  public TextComponent value(String value) {
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * The actual plain text.
-   * @return value
-  **/
-  @ApiModelProperty(required = true, value = "The actual plain text.")
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
-    this.value = value;
-  }
-
-  public TextComponent decoratorSet(DecoratorSet decoratorSet) {
-    this.decoratorSet = decoratorSet;
-    return this;
-  }
-
-   /**
-   * Get decoratorSet
-   * @return decoratorSet
-  **/
-  @ApiModelProperty(value = "")
-  public DecoratorSet getDecoratorSet() {
-    return decoratorSet;
-  }
-
-  public void setDecoratorSet(DecoratorSet decoratorSet) {
-    this.decoratorSet = decoratorSet;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public TextComponent value(String value) {
+        this.value = value;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The actual plain text.
+     * @return value
+     **/
+    @ApiModelProperty(required = true, value = "The actual plain text.")
+    public String getValue() {
+        return value;
     }
-    TextComponent textComponent = (TextComponent) o;
-    return Objects.equals(this.value, textComponent.value) &&
-        Objects.equals(this.decoratorSet, textComponent.decoratorSet);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(value, decoratorSet);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class TextComponent {\n");
-    
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    decoratorSet: ").append(toIndentedString(decoratorSet)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setValue(String value) {
+        this.value = value;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public TextComponent decoratorSet(DecoratorSet decoratorSet) {
+        this.decoratorSet = decoratorSet;
+        return this;
+    }
+
+    /**
+     * Get decoratorSet
+     * @return decoratorSet
+     **/
+    @ApiModelProperty(value = "")
+    public DecoratorSet getDecoratorSet() {
+        return decoratorSet;
+    }
+
+    public void setDecoratorSet(DecoratorSet decoratorSet) {
+        this.decoratorSet = decoratorSet;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TextComponent textComponent = (TextComponent) o;
+        return Objects.equals(this.value, textComponent.value) &&
+                Objects.equals(this.decoratorSet, textComponent.decoratorSet);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, decoratorSet);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class TextComponent {\n");
+
+        sb.append("    value: ").append(toIndentedString(value)).append("\n");
+        sb.append("    decoratorSet: ").append(toIndentedString(decoratorSet)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

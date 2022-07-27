@@ -9,32 +9,44 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
-
 package com.amazon.spapi.api;
 
-import com.amazon.spapi.client.*;
-import com.amazon.spapi.SellingPartnerAPIAA.*;
-
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
-
-
-import com.amazon.spapi.model.fbainventory.GetInventorySummariesResponse;
-import org.threeten.bp.OffsetDateTime;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.threeten.bp.OffsetDateTime;
+
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSSigV4Signer;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCache;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationSigner;
+import com.amazon.spapi.client.ApiCallback;
+import com.amazon.spapi.client.ApiClient;
+import com.amazon.spapi.client.ApiException;
+import com.amazon.spapi.client.ApiResponse;
+import com.amazon.spapi.client.Configuration;
+import com.amazon.spapi.client.Pair;
+import com.amazon.spapi.client.ProgressRequestBody;
+import com.amazon.spapi.client.ProgressResponseBody;
+import com.amazon.spapi.client.StringUtil;
+import com.amazon.spapi.model.fbainventory.GetInventorySummariesResponse;
+import com.google.gson.reflect.TypeToken;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.Response;
+
 
 public class FbaInventoryApi {
     private ApiClient apiClient;
 
-    FbaInventoryApi() {
+    public FbaInventoryApi() {
         this(Configuration.getDefaultApiClient());
     }
 
@@ -64,7 +76,7 @@ public class FbaInventoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getInventorySummariesCall(String granularityType, String granularityId, List<String> marketplaceIds, Boolean details, OffsetDateTime startDateTime, List<String> sellerSkus, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getInventorySummariesCall(String granularityType, String granularityId, List<String> marketplaceIds, Boolean details, OffsetDateTime startDateTime, List<String> sellerSkus, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -73,44 +85,44 @@ public class FbaInventoryApi {
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (details != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("details", details));
+            localVarQueryParams.addAll(apiClient.parameterToPair("details", details));
         if (granularityType != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("granularityType", granularityType));
+            localVarQueryParams.addAll(apiClient.parameterToPair("granularityType", granularityType));
         if (granularityId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("granularityId", granularityId));
+            localVarQueryParams.addAll(apiClient.parameterToPair("granularityId", granularityId));
         if (startDateTime != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("startDateTime", startDateTime));
+            localVarQueryParams.addAll(apiClient.parameterToPair("startDateTime", startDateTime));
         if (sellerSkus != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "sellerSkus", sellerSkus));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "sellerSkus", sellerSkus));
         if (nextToken != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("nextToken", nextToken));
+            localVarQueryParams.addAll(apiClient.parameterToPair("nextToken", nextToken));
         if (marketplaceIds != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "marketplaceIds", marketplaceIds));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "marketplaceIds", marketplaceIds));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -119,32 +131,26 @@ public class FbaInventoryApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getInventorySummariesValidateBeforeCall(String granularityType, String granularityId, List<String> marketplaceIds, Boolean details, OffsetDateTime startDateTime, List<String> sellerSkus, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+    private Call getInventorySummariesValidateBeforeCall(String granularityType, String granularityId, List<String> marketplaceIds, Boolean details, OffsetDateTime startDateTime, List<String> sellerSkus, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'granularityType' is set
         if (granularityType == null) {
             throw new ApiException("Missing the required parameter 'granularityType' when calling getInventorySummaries(Async)");
         }
-        
+
         // verify the required parameter 'granularityId' is set
         if (granularityId == null) {
             throw new ApiException("Missing the required parameter 'granularityId' when calling getInventorySummaries(Async)");
         }
-        
+
         // verify the required parameter 'marketplaceIds' is set
         if (marketplaceIds == null) {
             throw new ApiException("Missing the required parameter 'marketplaceIds' when calling getInventorySummaries(Async)");
         }
-        
-
-        com.squareup.okhttp.Call call = getInventorySummariesCall(granularityType, granularityId, marketplaceIds, details, startDateTime, sellerSkus, nextToken, progressListener, progressRequestListener);
+        Call call = getInventorySummariesCall(granularityType, granularityId, marketplaceIds, details, startDateTime, sellerSkus, nextToken, progressListener, progressRequestListener);
         return call;
-
     }
 
     /**
-     * 
      * Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the startDateTime and sellerSkus parameters:  - All inventory summaries with available details are returned when the startDateTime and sellerSkus parameters are omitted. - When startDateTime is provided, the operation returns inventory summaries that have had changes after the date and time specified. The sellerSkus parameter is ignored. - When the sellerSkus parameter is provided, the operation returns inventory summaries for only the specified sellerSkus.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 90 | 150 |  For more information, see \&quot;Usage Plans and Rate Limits\&quot; in the Selling Partner API documentation.
      * @param granularityType The granularity type for the inventory aggregation level. (required)
      * @param granularityId The granularity ID for the inventory aggregation level. (required)
@@ -175,7 +181,7 @@ public class FbaInventoryApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetInventorySummariesResponse> getInventorySummariesWithHttpInfo(String granularityType, String granularityId, List<String> marketplaceIds, Boolean details, OffsetDateTime startDateTime, List<String> sellerSkus, String nextToken) throws ApiException {
-        com.squareup.okhttp.Call call = getInventorySummariesValidateBeforeCall(granularityType, granularityId, marketplaceIds, details, startDateTime, sellerSkus, nextToken, null, null);
+        Call call = getInventorySummariesValidateBeforeCall(granularityType, granularityId, marketplaceIds, details, startDateTime, sellerSkus, nextToken, null, null);
         Type localVarReturnType = new TypeToken<GetInventorySummariesResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -194,7 +200,7 @@ public class FbaInventoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getInventorySummariesAsync(String granularityType, String granularityId, List<String> marketplaceIds, Boolean details, OffsetDateTime startDateTime, List<String> sellerSkus, String nextToken, final ApiCallback<GetInventorySummariesResponse> callback) throws ApiException {
+    public Call getInventorySummariesAsync(String granularityType, String granularityId, List<String> marketplaceIds, Boolean details, OffsetDateTime startDateTime, List<String> sellerSkus, String nextToken, final ApiCallback<GetInventorySummariesResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -215,7 +221,7 @@ public class FbaInventoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getInventorySummariesValidateBeforeCall(granularityType, granularityId, marketplaceIds, details, startDateTime, sellerSkus, nextToken, progressListener, progressRequestListener);
+        Call call = getInventorySummariesValidateBeforeCall(granularityType, granularityId, marketplaceIds, details, startDateTime, sellerSkus, nextToken, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetInventorySummariesResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -243,22 +249,22 @@ public class FbaInventoryApi {
             this.endpoint = endpoint;
             return this;
         }
-        
+
         public Builder lwaAccessTokenCache(LWAAccessTokenCache lwaAccessTokenCache) {
             this.lwaAccessTokenCache = lwaAccessTokenCache;
             return this;
         }
-		
-	   public Builder disableAccessTokenCache() {
+
+        public Builder disableAccessTokenCache() {
             this.disableAccessTokenCache = true;
             return this;
         }
-        
+
         public Builder awsAuthenticationCredentialsProvider(AWSAuthenticationCredentialsProvider awsAuthenticationCredentialsProvider) {
             this.awsAuthenticationCredentialsProvider = awsAuthenticationCredentialsProvider;
             return this;
         }
-        
+
 
         public FbaInventoryApi build() {
             if (awsAuthenticationCredentials == null) {
@@ -280,7 +286,7 @@ public class FbaInventoryApi {
             else {
                 awsSigV4Signer = new AWSSigV4Signer(awsAuthenticationCredentials,awsAuthenticationCredentialsProvider);
             }
-            
+
             LWAAuthorizationSigner lwaAuthorizationSigner = null;            
             if (disableAccessTokenCache) {
                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials);
@@ -288,14 +294,14 @@ public class FbaInventoryApi {
             else {
                 if (lwaAccessTokenCache == null) {
                     lwaAccessTokenCache = new LWAAccessTokenCacheImpl();                  
-                 }
-                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
+                }
+                lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
             }
 
             return new FbaInventoryApi(new ApiClient()
-                .setAWSSigV4Signer(awsSigV4Signer)
-                .setLWAAuthorizationSigner(lwaAuthorizationSigner)
-                .setBasePath(endpoint));
+                    .setAWSSigV4Signer(awsSigV4Signer)
+                    .setLWAAuthorizationSigner(lwaAuthorizationSigner)
+                    .setBasePath(endpoint));
         }
     }
 }

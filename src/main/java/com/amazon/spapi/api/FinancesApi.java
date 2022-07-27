@@ -9,33 +9,44 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
-
 package com.amazon.spapi.api;
 
-import com.amazon.spapi.client.*;
-import com.amazon.spapi.SellingPartnerAPIAA.*;
-
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
-
-
-import com.amazon.spapi.model.finances.ListFinancialEventGroupsResponse;
-import com.amazon.spapi.model.finances.ListFinancialEventsResponse;
-import org.threeten.bp.OffsetDateTime;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.threeten.bp.OffsetDateTime;
+
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSSigV4Signer;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCache;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationSigner;
+import com.amazon.spapi.client.ApiCallback;
+import com.amazon.spapi.client.ApiClient;
+import com.amazon.spapi.client.ApiException;
+import com.amazon.spapi.client.ApiResponse;
+import com.amazon.spapi.client.Configuration;
+import com.amazon.spapi.client.Pair;
+import com.amazon.spapi.client.ProgressRequestBody;
+import com.amazon.spapi.client.ProgressResponseBody;
+import com.amazon.spapi.client.StringUtil;
+import com.amazon.spapi.model.finances.ListFinancialEventGroupsResponse;
+import com.amazon.spapi.model.finances.ListFinancialEventsResponse;
+import com.google.gson.reflect.TypeToken;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.Response;
 
 public class FinancesApi {
     private ApiClient apiClient;
 
-    FinancesApi() {
+    public FinancesApi() {
         this(Configuration.getDefaultApiClient());
     }
 
@@ -62,7 +73,7 @@ public class FinancesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listFinancialEventGroupsCall(Integer maxResultsPerPage, OffsetDateTime financialEventGroupStartedBefore, OffsetDateTime financialEventGroupStartedAfter, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call listFinancialEventGroupsCall(Integer maxResultsPerPage, OffsetDateTime financialEventGroupStartedBefore, OffsetDateTime financialEventGroupStartedAfter, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -96,10 +107,10 @@ public class FinancesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -111,11 +122,8 @@ public class FinancesApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listFinancialEventGroupsValidateBeforeCall(Integer maxResultsPerPage, OffsetDateTime financialEventGroupStartedBefore, OffsetDateTime financialEventGroupStartedAfter, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-
-        com.squareup.okhttp.Call call = listFinancialEventGroupsCall(maxResultsPerPage, financialEventGroupStartedBefore, financialEventGroupStartedAfter, nextToken, progressListener, progressRequestListener);
+    private Call listFinancialEventGroupsValidateBeforeCall(Integer maxResultsPerPage, OffsetDateTime financialEventGroupStartedBefore, OffsetDateTime financialEventGroupStartedAfter, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Call call = listFinancialEventGroupsCall(maxResultsPerPage, financialEventGroupStartedBefore, financialEventGroupStartedAfter, nextToken, progressListener, progressRequestListener);
         return call;
 
     }
@@ -146,7 +154,7 @@ public class FinancesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<ListFinancialEventGroupsResponse> listFinancialEventGroupsWithHttpInfo(Integer maxResultsPerPage, OffsetDateTime financialEventGroupStartedBefore, OffsetDateTime financialEventGroupStartedAfter, String nextToken) throws ApiException {
-        com.squareup.okhttp.Call call = listFinancialEventGroupsValidateBeforeCall(maxResultsPerPage, financialEventGroupStartedBefore, financialEventGroupStartedAfter, nextToken, null, null);
+        Call call = listFinancialEventGroupsValidateBeforeCall(maxResultsPerPage, financialEventGroupStartedBefore, financialEventGroupStartedAfter, nextToken, null, null);
         Type localVarReturnType = new TypeToken<ListFinancialEventGroupsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -162,7 +170,7 @@ public class FinancesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listFinancialEventGroupsAsync(Integer maxResultsPerPage, OffsetDateTime financialEventGroupStartedBefore, OffsetDateTime financialEventGroupStartedAfter, String nextToken, final ApiCallback<ListFinancialEventGroupsResponse> callback) throws ApiException {
+    public Call listFinancialEventGroupsAsync(Integer maxResultsPerPage, OffsetDateTime financialEventGroupStartedBefore, OffsetDateTime financialEventGroupStartedAfter, String nextToken, final ApiCallback<ListFinancialEventGroupsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -183,7 +191,7 @@ public class FinancesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listFinancialEventGroupsValidateBeforeCall(maxResultsPerPage, financialEventGroupStartedBefore, financialEventGroupStartedAfter, nextToken, progressListener, progressRequestListener);
+        Call call = listFinancialEventGroupsValidateBeforeCall(maxResultsPerPage, financialEventGroupStartedBefore, financialEventGroupStartedAfter, nextToken, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<ListFinancialEventGroupsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -199,7 +207,7 @@ public class FinancesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listFinancialEventsCall(Integer maxResultsPerPage, OffsetDateTime postedAfter, OffsetDateTime postedBefore, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call listFinancialEventsCall(Integer maxResultsPerPage, OffsetDateTime postedAfter, OffsetDateTime postedBefore, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -233,10 +241,10 @@ public class FinancesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -248,11 +256,8 @@ public class FinancesApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listFinancialEventsValidateBeforeCall(Integer maxResultsPerPage, OffsetDateTime postedAfter, OffsetDateTime postedBefore, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-
-        com.squareup.okhttp.Call call = listFinancialEventsCall(maxResultsPerPage, postedAfter, postedBefore, nextToken, progressListener, progressRequestListener);
+    private Call listFinancialEventsValidateBeforeCall(Integer maxResultsPerPage, OffsetDateTime postedAfter, OffsetDateTime postedBefore, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Call call = listFinancialEventsCall(maxResultsPerPage, postedAfter, postedBefore, nextToken, progressListener, progressRequestListener);
         return call;
 
     }
@@ -283,7 +288,7 @@ public class FinancesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<ListFinancialEventsResponse> listFinancialEventsWithHttpInfo(Integer maxResultsPerPage, OffsetDateTime postedAfter, OffsetDateTime postedBefore, String nextToken) throws ApiException {
-        com.squareup.okhttp.Call call = listFinancialEventsValidateBeforeCall(maxResultsPerPage, postedAfter, postedBefore, nextToken, null, null);
+        Call call = listFinancialEventsValidateBeforeCall(maxResultsPerPage, postedAfter, postedBefore, nextToken, null, null);
         Type localVarReturnType = new TypeToken<ListFinancialEventsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -299,7 +304,7 @@ public class FinancesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listFinancialEventsAsync(Integer maxResultsPerPage, OffsetDateTime postedAfter, OffsetDateTime postedBefore, String nextToken, final ApiCallback<ListFinancialEventsResponse> callback) throws ApiException {
+    public Call listFinancialEventsAsync(Integer maxResultsPerPage, OffsetDateTime postedAfter, OffsetDateTime postedBefore, String nextToken, final ApiCallback<ListFinancialEventsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -320,7 +325,7 @@ public class FinancesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listFinancialEventsValidateBeforeCall(maxResultsPerPage, postedAfter, postedBefore, nextToken, progressListener, progressRequestListener);
+        Call call = listFinancialEventsValidateBeforeCall(maxResultsPerPage, postedAfter, postedBefore, nextToken, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<ListFinancialEventsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -335,7 +340,7 @@ public class FinancesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listFinancialEventsByGroupIdCall(String eventGroupId, Integer maxResultsPerPage, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call listFinancialEventsByGroupIdCall(String eventGroupId, Integer maxResultsPerPage, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -366,10 +371,10 @@ public class FinancesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -381,18 +386,12 @@ public class FinancesApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listFinancialEventsByGroupIdValidateBeforeCall(String eventGroupId, Integer maxResultsPerPage, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'eventGroupId' is set
+    private Call listFinancialEventsByGroupIdValidateBeforeCall(String eventGroupId, Integer maxResultsPerPage, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         if (eventGroupId == null) {
             throw new ApiException("Missing the required parameter 'eventGroupId' when calling listFinancialEventsByGroupId(Async)");
         }
-        
-
-        com.squareup.okhttp.Call call = listFinancialEventsByGroupIdCall(eventGroupId, maxResultsPerPage, nextToken, progressListener, progressRequestListener);
+        Call call = listFinancialEventsByGroupIdCall(eventGroupId, maxResultsPerPage, nextToken, progressListener, progressRequestListener);
         return call;
-
     }
 
     /**
@@ -419,7 +418,7 @@ public class FinancesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<ListFinancialEventsResponse> listFinancialEventsByGroupIdWithHttpInfo(String eventGroupId, Integer maxResultsPerPage, String nextToken) throws ApiException {
-        com.squareup.okhttp.Call call = listFinancialEventsByGroupIdValidateBeforeCall(eventGroupId, maxResultsPerPage, nextToken, null, null);
+        Call call = listFinancialEventsByGroupIdValidateBeforeCall(eventGroupId, maxResultsPerPage, nextToken, null, null);
         Type localVarReturnType = new TypeToken<ListFinancialEventsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -434,7 +433,7 @@ public class FinancesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listFinancialEventsByGroupIdAsync(String eventGroupId, Integer maxResultsPerPage, String nextToken, final ApiCallback<ListFinancialEventsResponse> callback) throws ApiException {
+    public Call listFinancialEventsByGroupIdAsync(String eventGroupId, Integer maxResultsPerPage, String nextToken, final ApiCallback<ListFinancialEventsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -455,7 +454,7 @@ public class FinancesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listFinancialEventsByGroupIdValidateBeforeCall(eventGroupId, maxResultsPerPage, nextToken, progressListener, progressRequestListener);
+        Call call = listFinancialEventsByGroupIdValidateBeforeCall(eventGroupId, maxResultsPerPage, nextToken, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<ListFinancialEventsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -470,7 +469,7 @@ public class FinancesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listFinancialEventsByOrderIdCall(String orderId, Integer maxResultsPerPage, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call listFinancialEventsByOrderIdCall(String orderId, Integer maxResultsPerPage, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -501,10 +500,10 @@ public class FinancesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -516,18 +515,13 @@ public class FinancesApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listFinancialEventsByOrderIdValidateBeforeCall(String orderId, Integer maxResultsPerPage, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+    private Call listFinancialEventsByOrderIdValidateBeforeCall(String orderId, Integer maxResultsPerPage, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling listFinancialEventsByOrderId(Async)");
         }
-        
-
-        com.squareup.okhttp.Call call = listFinancialEventsByOrderIdCall(orderId, maxResultsPerPage, nextToken, progressListener, progressRequestListener);
+        Call call = listFinancialEventsByOrderIdCall(orderId, maxResultsPerPage, nextToken, progressListener, progressRequestListener);
         return call;
-
     }
 
     /**
@@ -554,7 +548,7 @@ public class FinancesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<ListFinancialEventsResponse> listFinancialEventsByOrderIdWithHttpInfo(String orderId, Integer maxResultsPerPage, String nextToken) throws ApiException {
-        com.squareup.okhttp.Call call = listFinancialEventsByOrderIdValidateBeforeCall(orderId, maxResultsPerPage, nextToken, null, null);
+        Call call = listFinancialEventsByOrderIdValidateBeforeCall(orderId, maxResultsPerPage, nextToken, null, null);
         Type localVarReturnType = new TypeToken<ListFinancialEventsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -569,7 +563,7 @@ public class FinancesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listFinancialEventsByOrderIdAsync(String orderId, Integer maxResultsPerPage, String nextToken, final ApiCallback<ListFinancialEventsResponse> callback) throws ApiException {
+    public Call listFinancialEventsByOrderIdAsync(String orderId, Integer maxResultsPerPage, String nextToken, final ApiCallback<ListFinancialEventsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -590,7 +584,7 @@ public class FinancesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listFinancialEventsByOrderIdValidateBeforeCall(orderId, maxResultsPerPage, nextToken, progressListener, progressRequestListener);
+        Call call = listFinancialEventsByOrderIdValidateBeforeCall(orderId, maxResultsPerPage, nextToken, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<ListFinancialEventsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

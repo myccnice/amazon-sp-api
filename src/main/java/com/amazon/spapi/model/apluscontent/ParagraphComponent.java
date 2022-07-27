@@ -13,19 +13,14 @@
 
 package com.amazon.spapi.model.apluscontent;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.TextComponent;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import com.google.gson.annotations.SerializedName;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * A list of rich text content, usually presented in a text box.
@@ -33,71 +28,71 @@ import java.util.List;
 @ApiModel(description = "A list of rich text content, usually presented in a text box.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class ParagraphComponent {
-  @SerializedName("textList")
-  private List<TextComponent> textList = new ArrayList<TextComponent>();
+    @SerializedName("textList")
+    private List<TextComponent> textList = new ArrayList<TextComponent>();
 
-  public ParagraphComponent textList(List<TextComponent> textList) {
-    this.textList = textList;
-    return this;
-  }
-
-  public ParagraphComponent addTextListItem(TextComponent textListItem) {
-    this.textList.add(textListItem);
-    return this;
-  }
-
-   /**
-   * Get textList
-   * @return textList
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public List<TextComponent> getTextList() {
-    return textList;
-  }
-
-  public void setTextList(List<TextComponent> textList) {
-    this.textList = textList;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public ParagraphComponent textList(List<TextComponent> textList) {
+        this.textList = textList;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public ParagraphComponent addTextListItem(TextComponent textListItem) {
+        this.textList.add(textListItem);
+        return this;
     }
-    ParagraphComponent paragraphComponent = (ParagraphComponent) o;
-    return Objects.equals(this.textList, paragraphComponent.textList);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(textList);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ParagraphComponent {\n");
-    
-    sb.append("    textList: ").append(toIndentedString(textList)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    /**
+     * Get textList
+     * @return textList
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public List<TextComponent> getTextList() {
+        return textList;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public void setTextList(List<TextComponent> textList) {
+        this.textList = textList;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ParagraphComponent paragraphComponent = (ParagraphComponent) o;
+        return Objects.equals(this.textList, paragraphComponent.textList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(textList);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ParagraphComponent {\n");
+
+        sb.append("    textList: ").append(toIndentedString(textList)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

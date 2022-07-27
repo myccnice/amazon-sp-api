@@ -9,25 +9,36 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
-
 package com.amazon.spapi.api;
 
-import com.amazon.spapi.SellingPartnerAPIAA.*;
-import com.amazon.spapi.client.*;
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
-
-
-import com.amazon.spapi.model.authorization.GetAuthorizationCodeResponse;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSSigV4Signer;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCache;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationSigner;
+import com.amazon.spapi.client.ApiCallback;
+import com.amazon.spapi.client.ApiClient;
+import com.amazon.spapi.client.ApiException;
+import com.amazon.spapi.client.ApiResponse;
+import com.amazon.spapi.client.Configuration;
+import com.amazon.spapi.client.Pair;
+import com.amazon.spapi.client.ProgressRequestBody;
+import com.amazon.spapi.client.ProgressResponseBody;
+import com.amazon.spapi.client.StringUtil;
+import com.amazon.spapi.model.authorization.GetAuthorizationCodeResponse;
+import com.google.gson.reflect.TypeToken;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.Response;
 
 public class AuthorizationApi {
     private ApiClient apiClient;
@@ -58,7 +69,7 @@ public class AuthorizationApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getAuthorizationCodeCall(String sellingPartnerId, String developerId, String mwsAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getAuthorizationCodeCall(String sellingPartnerId, String developerId, String mwsAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -90,10 +101,10 @@ public class AuthorizationApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -105,8 +116,7 @@ public class AuthorizationApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getAuthorizationCodeValidateBeforeCall(String sellingPartnerId, String developerId, String mwsAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call getAuthorizationCodeValidateBeforeCall(String sellingPartnerId, String developerId, String mwsAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'sellingPartnerId' is set
         if (sellingPartnerId == null) {
@@ -124,7 +134,7 @@ public class AuthorizationApi {
         }
         
 
-        com.squareup.okhttp.Call call = getAuthorizationCodeCall(sellingPartnerId, developerId, mwsAuthToken, progressListener, progressRequestListener);
+        Call call = getAuthorizationCodeCall(sellingPartnerId, developerId, mwsAuthToken, progressListener, progressRequestListener);
         return call;
 
     }
@@ -153,7 +163,7 @@ public class AuthorizationApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetAuthorizationCodeResponse> getAuthorizationCodeWithHttpInfo(String sellingPartnerId, String developerId, String mwsAuthToken) throws ApiException {
-        com.squareup.okhttp.Call call = getAuthorizationCodeValidateBeforeCall(sellingPartnerId, developerId, mwsAuthToken, null, null);
+        Call call = getAuthorizationCodeValidateBeforeCall(sellingPartnerId, developerId, mwsAuthToken, null, null);
         Type localVarReturnType = new TypeToken<GetAuthorizationCodeResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -168,7 +178,7 @@ public class AuthorizationApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getAuthorizationCodeAsync(String sellingPartnerId, String developerId, String mwsAuthToken, final ApiCallback<GetAuthorizationCodeResponse> callback) throws ApiException {
+    public Call getAuthorizationCodeAsync(String sellingPartnerId, String developerId, String mwsAuthToken, final ApiCallback<GetAuthorizationCodeResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -189,7 +199,7 @@ public class AuthorizationApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getAuthorizationCodeValidateBeforeCall(sellingPartnerId, developerId, mwsAuthToken, progressListener, progressRequestListener);
+        Call call = getAuthorizationCodeValidateBeforeCall(sellingPartnerId, developerId, mwsAuthToken, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetAuthorizationCodeResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

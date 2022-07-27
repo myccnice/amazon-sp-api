@@ -9,35 +9,46 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
-
 package com.amazon.spapi.api;
 
-import com.amazon.spapi.client.*;
-import com.amazon.spapi.SellingPartnerAPIAA.*;
-
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
-
-
-import com.amazon.spapi.model.orders.GetOrderAddressResponse;
-import com.amazon.spapi.model.orders.GetOrderBuyerInfoResponse;
-import com.amazon.spapi.model.orders.GetOrderItemsBuyerInfoResponse;
-import com.amazon.spapi.model.orders.GetOrderItemsResponse;
-import com.amazon.spapi.model.orders.GetOrderResponse;
-import com.amazon.spapi.model.orders.GetOrdersResponse;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSSigV4Signer;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCache;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationSigner;
+import com.amazon.spapi.client.ApiCallback;
+import com.amazon.spapi.client.ApiClient;
+import com.amazon.spapi.client.ApiException;
+import com.amazon.spapi.client.ApiResponse;
+import com.amazon.spapi.client.Configuration;
+import com.amazon.spapi.client.Pair;
+import com.amazon.spapi.client.ProgressRequestBody;
+import com.amazon.spapi.client.ProgressResponseBody;
+import com.amazon.spapi.client.StringUtil;
+import com.amazon.spapi.model.orders.GetOrderAddressResponse;
+import com.amazon.spapi.model.orders.GetOrderBuyerInfoResponse;
+import com.amazon.spapi.model.orders.GetOrderItemsBuyerInfoResponse;
+import com.amazon.spapi.model.orders.GetOrderItemsResponse;
+import com.amazon.spapi.model.orders.GetOrderResponse;
+import com.amazon.spapi.model.orders.GetOrdersResponse;
+import com.google.gson.reflect.TypeToken;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.Response;
+
 public class OrdersV0Api {
     private ApiClient apiClient;
 
-    OrdersV0Api() {
+    public OrdersV0Api() {
         this(Configuration.getDefaultApiClient());
     }
 
@@ -61,12 +72,12 @@ public class OrdersV0Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getOrderCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getOrderCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/orders/v0/orders/{orderId}"
-            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
+                .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -76,25 +87,25 @@ public class OrdersV0Api {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -103,16 +114,16 @@ public class OrdersV0Api {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getOrderValidateBeforeCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call getOrderValidateBeforeCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling getOrder(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getOrderCall(orderId, progressListener, progressRequestListener);
+
+        Call call = getOrderCall(orderId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -137,7 +148,7 @@ public class OrdersV0Api {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetOrderResponse> getOrderWithHttpInfo(String orderId) throws ApiException {
-        com.squareup.okhttp.Call call = getOrderValidateBeforeCall(orderId, null, null);
+        Call call = getOrderValidateBeforeCall(orderId, null, null);
         Type localVarReturnType = new TypeToken<GetOrderResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -150,7 +161,7 @@ public class OrdersV0Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getOrderAsync(String orderId, final ApiCallback<GetOrderResponse> callback) throws ApiException {
+    public Call getOrderAsync(String orderId, final ApiCallback<GetOrderResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -171,7 +182,7 @@ public class OrdersV0Api {
             };
         }
 
-        com.squareup.okhttp.Call call = getOrderValidateBeforeCall(orderId, progressListener, progressRequestListener);
+        Call call = getOrderValidateBeforeCall(orderId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetOrderResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -184,12 +195,12 @@ public class OrdersV0Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getOrderAddressCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getOrderAddressCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/orders/v0/orders/{orderId}/address"
-            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
+                .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -199,25 +210,25 @@ public class OrdersV0Api {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -226,16 +237,16 @@ public class OrdersV0Api {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getOrderAddressValidateBeforeCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call getOrderAddressValidateBeforeCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling getOrderAddress(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getOrderAddressCall(orderId, progressListener, progressRequestListener);
+
+        Call call = getOrderAddressCall(orderId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -260,7 +271,7 @@ public class OrdersV0Api {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetOrderAddressResponse> getOrderAddressWithHttpInfo(String orderId) throws ApiException {
-        com.squareup.okhttp.Call call = getOrderAddressValidateBeforeCall(orderId, null, null);
+        Call call = getOrderAddressValidateBeforeCall(orderId, null, null);
         Type localVarReturnType = new TypeToken<GetOrderAddressResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -273,7 +284,7 @@ public class OrdersV0Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getOrderAddressAsync(String orderId, final ApiCallback<GetOrderAddressResponse> callback) throws ApiException {
+    public Call getOrderAddressAsync(String orderId, final ApiCallback<GetOrderAddressResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -294,7 +305,7 @@ public class OrdersV0Api {
             };
         }
 
-        com.squareup.okhttp.Call call = getOrderAddressValidateBeforeCall(orderId, progressListener, progressRequestListener);
+        Call call = getOrderAddressValidateBeforeCall(orderId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetOrderAddressResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -307,12 +318,12 @@ public class OrdersV0Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getOrderBuyerInfoCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getOrderBuyerInfoCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/orders/v0/orders/{orderId}/buyerInfo"
-            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
+                .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -322,25 +333,25 @@ public class OrdersV0Api {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -349,16 +360,16 @@ public class OrdersV0Api {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getOrderBuyerInfoValidateBeforeCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call getOrderBuyerInfoValidateBeforeCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling getOrderBuyerInfo(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getOrderBuyerInfoCall(orderId, progressListener, progressRequestListener);
+
+        Call call = getOrderBuyerInfoCall(orderId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -383,7 +394,7 @@ public class OrdersV0Api {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetOrderBuyerInfoResponse> getOrderBuyerInfoWithHttpInfo(String orderId) throws ApiException {
-        com.squareup.okhttp.Call call = getOrderBuyerInfoValidateBeforeCall(orderId, null, null);
+        Call call = getOrderBuyerInfoValidateBeforeCall(orderId, null, null);
         Type localVarReturnType = new TypeToken<GetOrderBuyerInfoResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -396,7 +407,7 @@ public class OrdersV0Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getOrderBuyerInfoAsync(String orderId, final ApiCallback<GetOrderBuyerInfoResponse> callback) throws ApiException {
+    public Call getOrderBuyerInfoAsync(String orderId, final ApiCallback<GetOrderBuyerInfoResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -417,7 +428,7 @@ public class OrdersV0Api {
             };
         }
 
-        com.squareup.okhttp.Call call = getOrderBuyerInfoValidateBeforeCall(orderId, progressListener, progressRequestListener);
+        Call call = getOrderBuyerInfoValidateBeforeCall(orderId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetOrderBuyerInfoResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -431,42 +442,42 @@ public class OrdersV0Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getOrderItemsCall(String orderId, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getOrderItemsCall(String orderId, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/orders/v0/orders/{orderId}/orderItems"
-            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
+                .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (nextToken != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("NextToken", nextToken));
+            localVarQueryParams.addAll(apiClient.parameterToPair("NextToken", nextToken));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -475,16 +486,16 @@ public class OrdersV0Api {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getOrderItemsValidateBeforeCall(String orderId, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call getOrderItemsValidateBeforeCall(String orderId, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling getOrderItems(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getOrderItemsCall(orderId, nextToken, progressListener, progressRequestListener);
+
+        Call call = getOrderItemsCall(orderId, nextToken, progressListener, progressRequestListener);
         return call;
 
     }
@@ -511,7 +522,7 @@ public class OrdersV0Api {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetOrderItemsResponse> getOrderItemsWithHttpInfo(String orderId, String nextToken) throws ApiException {
-        com.squareup.okhttp.Call call = getOrderItemsValidateBeforeCall(orderId, nextToken, null, null);
+        Call call = getOrderItemsValidateBeforeCall(orderId, nextToken, null, null);
         Type localVarReturnType = new TypeToken<GetOrderItemsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -525,7 +536,7 @@ public class OrdersV0Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getOrderItemsAsync(String orderId, String nextToken, final ApiCallback<GetOrderItemsResponse> callback) throws ApiException {
+    public Call getOrderItemsAsync(String orderId, String nextToken, final ApiCallback<GetOrderItemsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -546,7 +557,7 @@ public class OrdersV0Api {
             };
         }
 
-        com.squareup.okhttp.Call call = getOrderItemsValidateBeforeCall(orderId, nextToken, progressListener, progressRequestListener);
+        Call call = getOrderItemsValidateBeforeCall(orderId, nextToken, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetOrderItemsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -560,42 +571,42 @@ public class OrdersV0Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getOrderItemsBuyerInfoCall(String orderId, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getOrderItemsBuyerInfoCall(String orderId, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/orders/v0/orders/{orderId}/orderItems/buyerInfo"
-            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
+                .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (nextToken != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("NextToken", nextToken));
+            localVarQueryParams.addAll(apiClient.parameterToPair("NextToken", nextToken));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -604,16 +615,16 @@ public class OrdersV0Api {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getOrderItemsBuyerInfoValidateBeforeCall(String orderId, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call getOrderItemsBuyerInfoValidateBeforeCall(String orderId, String nextToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling getOrderItemsBuyerInfo(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getOrderItemsBuyerInfoCall(orderId, nextToken, progressListener, progressRequestListener);
+
+        Call call = getOrderItemsBuyerInfoCall(orderId, nextToken, progressListener, progressRequestListener);
         return call;
 
     }
@@ -640,7 +651,7 @@ public class OrdersV0Api {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetOrderItemsBuyerInfoResponse> getOrderItemsBuyerInfoWithHttpInfo(String orderId, String nextToken) throws ApiException {
-        com.squareup.okhttp.Call call = getOrderItemsBuyerInfoValidateBeforeCall(orderId, nextToken, null, null);
+        Call call = getOrderItemsBuyerInfoValidateBeforeCall(orderId, nextToken, null, null);
         Type localVarReturnType = new TypeToken<GetOrderItemsBuyerInfoResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -654,7 +665,7 @@ public class OrdersV0Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getOrderItemsBuyerInfoAsync(String orderId, String nextToken, final ApiCallback<GetOrderItemsBuyerInfoResponse> callback) throws ApiException {
+    public Call getOrderItemsBuyerInfoAsync(String orderId, String nextToken, final ApiCallback<GetOrderItemsBuyerInfoResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -675,7 +686,7 @@ public class OrdersV0Api {
             };
         }
 
-        com.squareup.okhttp.Call call = getOrderItemsBuyerInfoValidateBeforeCall(orderId, nextToken, progressListener, progressRequestListener);
+        Call call = getOrderItemsBuyerInfoValidateBeforeCall(orderId, nextToken, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetOrderItemsBuyerInfoResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -701,7 +712,7 @@ public class OrdersV0Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getOrdersCall(List<String> marketplaceIds, String createdAfter, String createdBefore, String lastUpdatedAfter, String lastUpdatedBefore, List<String> orderStatuses, List<String> fulfillmentChannels, List<String> paymentMethods, String buyerEmail, String sellerOrderId, Integer maxResultsPerPage, List<String> easyShipShipmentStatuses, String nextToken, List<String> amazonOrderIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getOrdersCall(List<String> marketplaceIds, String createdAfter, String createdBefore, String lastUpdatedAfter, String lastUpdatedBefore, List<String> orderStatuses, List<String> fulfillmentChannels, List<String> paymentMethods, String buyerEmail, String sellerOrderId, Integer maxResultsPerPage, List<String> easyShipShipmentStatuses, String nextToken, List<String> amazonOrderIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -710,58 +721,58 @@ public class OrdersV0Api {
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (createdAfter != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("CreatedAfter", createdAfter));
+            localVarQueryParams.addAll(apiClient.parameterToPair("CreatedAfter", createdAfter));
         if (createdBefore != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("CreatedBefore", createdBefore));
+            localVarQueryParams.addAll(apiClient.parameterToPair("CreatedBefore", createdBefore));
         if (lastUpdatedAfter != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("LastUpdatedAfter", lastUpdatedAfter));
+            localVarQueryParams.addAll(apiClient.parameterToPair("LastUpdatedAfter", lastUpdatedAfter));
         if (lastUpdatedBefore != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("LastUpdatedBefore", lastUpdatedBefore));
+            localVarQueryParams.addAll(apiClient.parameterToPair("LastUpdatedBefore", lastUpdatedBefore));
         if (orderStatuses != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "OrderStatuses", orderStatuses));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "OrderStatuses", orderStatuses));
         if (marketplaceIds != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "MarketplaceIds", marketplaceIds));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "MarketplaceIds", marketplaceIds));
         if (fulfillmentChannels != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "FulfillmentChannels", fulfillmentChannels));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "FulfillmentChannels", fulfillmentChannels));
         if (paymentMethods != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "PaymentMethods", paymentMethods));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "PaymentMethods", paymentMethods));
         if (buyerEmail != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("BuyerEmail", buyerEmail));
+            localVarQueryParams.addAll(apiClient.parameterToPair("BuyerEmail", buyerEmail));
         if (sellerOrderId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("SellerOrderId", sellerOrderId));
+            localVarQueryParams.addAll(apiClient.parameterToPair("SellerOrderId", sellerOrderId));
         if (maxResultsPerPage != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("MaxResultsPerPage", maxResultsPerPage));
+            localVarQueryParams.addAll(apiClient.parameterToPair("MaxResultsPerPage", maxResultsPerPage));
         if (easyShipShipmentStatuses != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "EasyShipShipmentStatuses", easyShipShipmentStatuses));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "EasyShipShipmentStatuses", easyShipShipmentStatuses));
         if (nextToken != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("NextToken", nextToken));
+            localVarQueryParams.addAll(apiClient.parameterToPair("NextToken", nextToken));
         if (amazonOrderIds != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "AmazonOrderIds", amazonOrderIds));
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "AmazonOrderIds", amazonOrderIds));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -770,16 +781,16 @@ public class OrdersV0Api {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getOrdersValidateBeforeCall(List<String> marketplaceIds, String createdAfter, String createdBefore, String lastUpdatedAfter, String lastUpdatedBefore, List<String> orderStatuses, List<String> fulfillmentChannels, List<String> paymentMethods, String buyerEmail, String sellerOrderId, Integer maxResultsPerPage, List<String> easyShipShipmentStatuses, String nextToken, List<String> amazonOrderIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call getOrdersValidateBeforeCall(List<String> marketplaceIds, String createdAfter, String createdBefore, String lastUpdatedAfter, String lastUpdatedBefore, List<String> orderStatuses, List<String> fulfillmentChannels, List<String> paymentMethods, String buyerEmail, String sellerOrderId, Integer maxResultsPerPage, List<String> easyShipShipmentStatuses, String nextToken, List<String> amazonOrderIds, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'marketplaceIds' is set
         if (marketplaceIds == null) {
             throw new ApiException("Missing the required parameter 'marketplaceIds' when calling getOrders(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getOrdersCall(marketplaceIds, createdAfter, createdBefore, lastUpdatedAfter, lastUpdatedBefore, orderStatuses, fulfillmentChannels, paymentMethods, buyerEmail, sellerOrderId, maxResultsPerPage, easyShipShipmentStatuses, nextToken, amazonOrderIds, progressListener, progressRequestListener);
+
+        Call call = getOrdersCall(marketplaceIds, createdAfter, createdBefore, lastUpdatedAfter, lastUpdatedBefore, orderStatuses, fulfillmentChannels, paymentMethods, buyerEmail, sellerOrderId, maxResultsPerPage, easyShipShipmentStatuses, nextToken, amazonOrderIds, progressListener, progressRequestListener);
         return call;
 
     }
@@ -830,7 +841,7 @@ public class OrdersV0Api {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetOrdersResponse> getOrdersWithHttpInfo(List<String> marketplaceIds, String createdAfter, String createdBefore, String lastUpdatedAfter, String lastUpdatedBefore, List<String> orderStatuses, List<String> fulfillmentChannels, List<String> paymentMethods, String buyerEmail, String sellerOrderId, Integer maxResultsPerPage, List<String> easyShipShipmentStatuses, String nextToken, List<String> amazonOrderIds) throws ApiException {
-        com.squareup.okhttp.Call call = getOrdersValidateBeforeCall(marketplaceIds, createdAfter, createdBefore, lastUpdatedAfter, lastUpdatedBefore, orderStatuses, fulfillmentChannels, paymentMethods, buyerEmail, sellerOrderId, maxResultsPerPage, easyShipShipmentStatuses, nextToken, amazonOrderIds, null, null);
+        Call call = getOrdersValidateBeforeCall(marketplaceIds, createdAfter, createdBefore, lastUpdatedAfter, lastUpdatedBefore, orderStatuses, fulfillmentChannels, paymentMethods, buyerEmail, sellerOrderId, maxResultsPerPage, easyShipShipmentStatuses, nextToken, amazonOrderIds, null, null);
         Type localVarReturnType = new TypeToken<GetOrdersResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -856,7 +867,7 @@ public class OrdersV0Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getOrdersAsync(List<String> marketplaceIds, String createdAfter, String createdBefore, String lastUpdatedAfter, String lastUpdatedBefore, List<String> orderStatuses, List<String> fulfillmentChannels, List<String> paymentMethods, String buyerEmail, String sellerOrderId, Integer maxResultsPerPage, List<String> easyShipShipmentStatuses, String nextToken, List<String> amazonOrderIds, final ApiCallback<GetOrdersResponse> callback) throws ApiException {
+    public Call getOrdersAsync(List<String> marketplaceIds, String createdAfter, String createdBefore, String lastUpdatedAfter, String lastUpdatedBefore, List<String> orderStatuses, List<String> fulfillmentChannels, List<String> paymentMethods, String buyerEmail, String sellerOrderId, Integer maxResultsPerPage, List<String> easyShipShipmentStatuses, String nextToken, List<String> amazonOrderIds, final ApiCallback<GetOrdersResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -877,7 +888,7 @@ public class OrdersV0Api {
             };
         }
 
-        com.squareup.okhttp.Call call = getOrdersValidateBeforeCall(marketplaceIds, createdAfter, createdBefore, lastUpdatedAfter, lastUpdatedBefore, orderStatuses, fulfillmentChannels, paymentMethods, buyerEmail, sellerOrderId, maxResultsPerPage, easyShipShipmentStatuses, nextToken, amazonOrderIds, progressListener, progressRequestListener);
+        Call call = getOrdersValidateBeforeCall(marketplaceIds, createdAfter, createdBefore, lastUpdatedAfter, lastUpdatedBefore, orderStatuses, fulfillmentChannels, paymentMethods, buyerEmail, sellerOrderId, maxResultsPerPage, easyShipShipmentStatuses, nextToken, amazonOrderIds, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetOrdersResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -905,22 +916,22 @@ public class OrdersV0Api {
             this.endpoint = endpoint;
             return this;
         }
-        
+
         public Builder lwaAccessTokenCache(LWAAccessTokenCache lwaAccessTokenCache) {
             this.lwaAccessTokenCache = lwaAccessTokenCache;
             return this;
         }
-		
-	   public Builder disableAccessTokenCache() {
+
+        public Builder disableAccessTokenCache() {
             this.disableAccessTokenCache = true;
             return this;
         }
-        
+
         public Builder awsAuthenticationCredentialsProvider(AWSAuthenticationCredentialsProvider awsAuthenticationCredentialsProvider) {
             this.awsAuthenticationCredentialsProvider = awsAuthenticationCredentialsProvider;
             return this;
         }
-        
+
 
         public OrdersV0Api build() {
             if (awsAuthenticationCredentials == null) {
@@ -942,7 +953,7 @@ public class OrdersV0Api {
             else {
                 awsSigV4Signer = new AWSSigV4Signer(awsAuthenticationCredentials,awsAuthenticationCredentialsProvider);
             }
-            
+
             LWAAuthorizationSigner lwaAuthorizationSigner = null;            
             if (disableAccessTokenCache) {
                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials);
@@ -950,14 +961,14 @@ public class OrdersV0Api {
             else {
                 if (lwaAccessTokenCache == null) {
                     lwaAccessTokenCache = new LWAAccessTokenCacheImpl();                  
-                 }
-                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
+                }
+                lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
             }
 
             return new OrdersV0Api(new ApiClient()
-                .setAWSSigV4Signer(awsSigV4Signer)
-                .setLWAAuthorizationSigner(lwaAuthorizationSigner)
-                .setBasePath(endpoint));
+                    .setAWSSigV4Signer(awsSigV4Signer)
+                    .setLWAAuthorizationSigner(lwaAuthorizationSigner)
+                    .setBasePath(endpoint));
         }
     }
 }

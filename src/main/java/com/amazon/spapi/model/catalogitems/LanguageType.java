@@ -14,15 +14,11 @@
 package com.amazon.spapi.model.catalogitems;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * The language type attribute of an item.
@@ -30,112 +26,112 @@ import java.io.IOException;
 @ApiModel(description = "The language type attribute of an item.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:17:36.166+08:00")
 public class LanguageType {
-  @SerializedName("Name")
-  private String name = null;
+    @SerializedName("Name")
+    private String name = null;
 
-  @SerializedName("Type")
-  private String type = null;
+    @SerializedName("Type")
+    private String type = null;
 
-  @SerializedName("AudioFormat")
-  private String audioFormat = null;
+    @SerializedName("AudioFormat")
+    private String audioFormat = null;
 
-  public LanguageType name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name attribute of the item.
-   * @return name
-  **/
-  @ApiModelProperty(value = "The name attribute of the item.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public LanguageType type(String type) {
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * The type attribute of the item.
-   * @return type
-  **/
-  @ApiModelProperty(value = "The type attribute of the item.")
-  public String getType() {
-    return type;
-  }
-
-  public void setType(String type) {
-    this.type = type;
-  }
-
-  public LanguageType audioFormat(String audioFormat) {
-    this.audioFormat = audioFormat;
-    return this;
-  }
-
-   /**
-   * The audio format attribute of the item.
-   * @return audioFormat
-  **/
-  @ApiModelProperty(value = "The audio format attribute of the item.")
-  public String getAudioFormat() {
-    return audioFormat;
-  }
-
-  public void setAudioFormat(String audioFormat) {
-    this.audioFormat = audioFormat;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public LanguageType name(String name) {
+        this.name = name;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The name attribute of the item.
+     * @return name
+     **/
+    @ApiModelProperty(value = "The name attribute of the item.")
+    public String getName() {
+        return name;
     }
-    LanguageType languageType = (LanguageType) o;
-    return Objects.equals(this.name, languageType.name) &&
-        Objects.equals(this.type, languageType.type) &&
-        Objects.equals(this.audioFormat, languageType.audioFormat);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(name, type, audioFormat);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class LanguageType {\n");
-    
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    audioFormat: ").append(toIndentedString(audioFormat)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setName(String name) {
+        this.name = name;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public LanguageType type(String type) {
+        this.type = type;
+        return this;
+    }
+
+    /**
+     * The type attribute of the item.
+     * @return type
+     **/
+    @ApiModelProperty(value = "The type attribute of the item.")
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public LanguageType audioFormat(String audioFormat) {
+        this.audioFormat = audioFormat;
+        return this;
+    }
+
+    /**
+     * The audio format attribute of the item.
+     * @return audioFormat
+     **/
+    @ApiModelProperty(value = "The audio format attribute of the item.")
+    public String getAudioFormat() {
+        return audioFormat;
+    }
+
+    public void setAudioFormat(String audioFormat) {
+        this.audioFormat = audioFormat;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LanguageType languageType = (LanguageType) o;
+        return Objects.equals(this.name, languageType.name) &&
+                Objects.equals(this.type, languageType.type) &&
+                Objects.equals(this.audioFormat, languageType.audioFormat);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, type, audioFormat);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class LanguageType {\n");
+
+        sb.append("    name: ").append(toIndentedString(name)).append("\n");
+        sb.append("    type: ").append(toIndentedString(type)).append("\n");
+        sb.append("    audioFormat: ").append(toIndentedString(audioFormat)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

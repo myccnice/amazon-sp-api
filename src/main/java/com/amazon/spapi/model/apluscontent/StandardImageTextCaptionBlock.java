@@ -14,17 +14,11 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.StandardImageTextBlock;
-import com.amazon.spapi.model.apluscontent.TextComponent;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * The A+ Content standard image and text block, with a related caption. The caption may not display on all devices.
@@ -32,89 +26,89 @@ import java.io.IOException;
 @ApiModel(description = "The A+ Content standard image and text block, with a related caption. The caption may not display on all devices.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class StandardImageTextCaptionBlock {
-  @SerializedName("block")
-  private StandardImageTextBlock block = null;
+    @SerializedName("block")
+    private StandardImageTextBlock block = null;
 
-  @SerializedName("caption")
-  private TextComponent caption = null;
+    @SerializedName("caption")
+    private TextComponent caption = null;
 
-  public StandardImageTextCaptionBlock block(StandardImageTextBlock block) {
-    this.block = block;
-    return this;
-  }
-
-   /**
-   * Get block
-   * @return block
-  **/
-  @ApiModelProperty(value = "")
-  public StandardImageTextBlock getBlock() {
-    return block;
-  }
-
-  public void setBlock(StandardImageTextBlock block) {
-    this.block = block;
-  }
-
-  public StandardImageTextCaptionBlock caption(TextComponent caption) {
-    this.caption = caption;
-    return this;
-  }
-
-   /**
-   * Get caption
-   * @return caption
-  **/
-  @ApiModelProperty(value = "")
-  public TextComponent getCaption() {
-    return caption;
-  }
-
-  public void setCaption(TextComponent caption) {
-    this.caption = caption;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public StandardImageTextCaptionBlock block(StandardImageTextBlock block) {
+        this.block = block;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get block
+     * @return block
+     **/
+    @ApiModelProperty(value = "")
+    public StandardImageTextBlock getBlock() {
+        return block;
     }
-    StandardImageTextCaptionBlock standardImageTextCaptionBlock = (StandardImageTextCaptionBlock) o;
-    return Objects.equals(this.block, standardImageTextCaptionBlock.block) &&
-        Objects.equals(this.caption, standardImageTextCaptionBlock.caption);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(block, caption);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class StandardImageTextCaptionBlock {\n");
-    
-    sb.append("    block: ").append(toIndentedString(block)).append("\n");
-    sb.append("    caption: ").append(toIndentedString(caption)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setBlock(StandardImageTextBlock block) {
+        this.block = block;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public StandardImageTextCaptionBlock caption(TextComponent caption) {
+        this.caption = caption;
+        return this;
+    }
+
+    /**
+     * Get caption
+     * @return caption
+     **/
+    @ApiModelProperty(value = "")
+    public TextComponent getCaption() {
+        return caption;
+    }
+
+    public void setCaption(TextComponent caption) {
+        this.caption = caption;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        StandardImageTextCaptionBlock standardImageTextCaptionBlock = (StandardImageTextCaptionBlock) o;
+        return Objects.equals(this.block, standardImageTextCaptionBlock.block) &&
+                Objects.equals(this.caption, standardImageTextCaptionBlock.caption);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(block, caption);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class StandardImageTextCaptionBlock {\n");
+
+        sb.append("    block: ").append(toIndentedString(block)).append("\n");
+        sb.append("    caption: ").append(toIndentedString(caption)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

@@ -9,18 +9,31 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
-
 package com.amazon.spapi.api;
 
-import com.amazon.spapi.client.*;
-import com.amazon.spapi.SellingPartnerAPIAA.*;
-
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
+import com.amazon.spapi.SellingPartnerAPIAA.AWSSigV4Signer;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCache;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
+import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationSigner;
+import com.amazon.spapi.client.ApiCallback;
+import com.amazon.spapi.client.ApiClient;
+import com.amazon.spapi.client.ApiException;
+import com.amazon.spapi.client.ApiResponse;
+import com.amazon.spapi.client.Configuration;
+import com.amazon.spapi.client.Pair;
+import com.amazon.spapi.client.ProgressRequestBody;
+import com.amazon.spapi.client.ProgressResponseBody;
+import com.amazon.spapi.client.StringUtil;
 import com.amazon.spapi.model.shipping.CancelShipmentResponse;
 import com.amazon.spapi.model.shipping.CreateShipmentRequest;
 import com.amazon.spapi.model.shipping.CreateShipmentResponse;
@@ -35,12 +48,10 @@ import com.amazon.spapi.model.shipping.PurchaseShipmentRequest;
 import com.amazon.spapi.model.shipping.PurchaseShipmentResponse;
 import com.amazon.spapi.model.shipping.RetrieveShippingLabelRequest;
 import com.amazon.spapi.model.shipping.RetrieveShippingLabelResponse;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.google.gson.reflect.TypeToken;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.Response;
 
 public class ShippingApi {
     private ApiClient apiClient;
@@ -69,12 +80,12 @@ public class ShippingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call cancelShipmentCall(String shipmentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call cancelShipmentCall(String shipmentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/shipping/v1/shipments/{shipmentId}/cancel"
-            .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()));
+                .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -84,25 +95,25 @@ public class ShippingApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -111,16 +122,16 @@ public class ShippingApi {
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call cancelShipmentValidateBeforeCall(String shipmentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call cancelShipmentValidateBeforeCall(String shipmentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'shipmentId' is set
         if (shipmentId == null) {
             throw new ApiException("Missing the required parameter 'shipmentId' when calling cancelShipment(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = cancelShipmentCall(shipmentId, progressListener, progressRequestListener);
+
+        Call call = cancelShipmentCall(shipmentId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -145,7 +156,7 @@ public class ShippingApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<CancelShipmentResponse> cancelShipmentWithHttpInfo(String shipmentId) throws ApiException {
-        com.squareup.okhttp.Call call = cancelShipmentValidateBeforeCall(shipmentId, null, null);
+        Call call = cancelShipmentValidateBeforeCall(shipmentId, null, null);
         Type localVarReturnType = new TypeToken<CancelShipmentResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -158,7 +169,7 @@ public class ShippingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call cancelShipmentAsync(String shipmentId, final ApiCallback<CancelShipmentResponse> callback) throws ApiException {
+    public Call cancelShipmentAsync(String shipmentId, final ApiCallback<CancelShipmentResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -179,7 +190,7 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = cancelShipmentValidateBeforeCall(shipmentId, progressListener, progressRequestListener);
+        Call call = cancelShipmentValidateBeforeCall(shipmentId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<CancelShipmentResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -192,7 +203,7 @@ public class ShippingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createShipmentCall(CreateShipmentRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call createShipmentCall(CreateShipmentRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -206,25 +217,25 @@ public class ShippingApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -233,16 +244,16 @@ public class ShippingApi {
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createShipmentValidateBeforeCall(CreateShipmentRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call createShipmentValidateBeforeCall(CreateShipmentRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling createShipment(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = createShipmentCall(body, progressListener, progressRequestListener);
+
+        Call call = createShipmentCall(body, progressListener, progressRequestListener);
         return call;
 
     }
@@ -267,7 +278,7 @@ public class ShippingApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<CreateShipmentResponse> createShipmentWithHttpInfo(CreateShipmentRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = createShipmentValidateBeforeCall(body, null, null);
+        Call call = createShipmentValidateBeforeCall(body, null, null);
         Type localVarReturnType = new TypeToken<CreateShipmentResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -280,7 +291,7 @@ public class ShippingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createShipmentAsync(CreateShipmentRequest body, final ApiCallback<CreateShipmentResponse> callback) throws ApiException {
+    public Call createShipmentAsync(CreateShipmentRequest body, final ApiCallback<CreateShipmentResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -301,7 +312,7 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createShipmentValidateBeforeCall(body, progressListener, progressRequestListener);
+        Call call = createShipmentValidateBeforeCall(body, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<CreateShipmentResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -313,7 +324,7 @@ public class ShippingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getAccountCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getAccountCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -327,25 +338,25 @@ public class ShippingApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -354,11 +365,11 @@ public class ShippingApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getAccountValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
 
-        com.squareup.okhttp.Call call = getAccountCall(progressListener, progressRequestListener);
+    private Call getAccountValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
+
+        Call call = getAccountCall(progressListener, progressRequestListener);
         return call;
 
     }
@@ -381,7 +392,7 @@ public class ShippingApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetAccountResponse> getAccountWithHttpInfo() throws ApiException {
-        com.squareup.okhttp.Call call = getAccountValidateBeforeCall(null, null);
+        Call call = getAccountValidateBeforeCall(null, null);
         Type localVarReturnType = new TypeToken<GetAccountResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -393,7 +404,7 @@ public class ShippingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getAccountAsync(final ApiCallback<GetAccountResponse> callback) throws ApiException {
+    public Call getAccountAsync(final ApiCallback<GetAccountResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -414,7 +425,7 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getAccountValidateBeforeCall(progressListener, progressRequestListener);
+        Call call = getAccountValidateBeforeCall(progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetAccountResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -427,7 +438,7 @@ public class ShippingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getRatesCall(GetRatesRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getRatesCall(GetRatesRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -441,25 +452,25 @@ public class ShippingApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -468,16 +479,16 @@ public class ShippingApi {
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getRatesValidateBeforeCall(GetRatesRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call getRatesValidateBeforeCall(GetRatesRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling getRates(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getRatesCall(body, progressListener, progressRequestListener);
+
+        Call call = getRatesCall(body, progressListener, progressRequestListener);
         return call;
 
     }
@@ -502,7 +513,7 @@ public class ShippingApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetRatesResponse> getRatesWithHttpInfo(GetRatesRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = getRatesValidateBeforeCall(body, null, null);
+        Call call = getRatesValidateBeforeCall(body, null, null);
         Type localVarReturnType = new TypeToken<GetRatesResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -515,7 +526,7 @@ public class ShippingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getRatesAsync(GetRatesRequest body, final ApiCallback<GetRatesResponse> callback) throws ApiException {
+    public Call getRatesAsync(GetRatesRequest body, final ApiCallback<GetRatesResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -536,7 +547,7 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getRatesValidateBeforeCall(body, progressListener, progressRequestListener);
+        Call call = getRatesValidateBeforeCall(body, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetRatesResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -549,12 +560,12 @@ public class ShippingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getShipmentCall(String shipmentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getShipmentCall(String shipmentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/shipping/v1/shipments/{shipmentId}"
-            .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()));
+                .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -564,25 +575,25 @@ public class ShippingApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -591,16 +602,16 @@ public class ShippingApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getShipmentValidateBeforeCall(String shipmentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call getShipmentValidateBeforeCall(String shipmentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'shipmentId' is set
         if (shipmentId == null) {
             throw new ApiException("Missing the required parameter 'shipmentId' when calling getShipment(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getShipmentCall(shipmentId, progressListener, progressRequestListener);
+
+        Call call = getShipmentCall(shipmentId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -625,7 +636,7 @@ public class ShippingApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetShipmentResponse> getShipmentWithHttpInfo(String shipmentId) throws ApiException {
-        com.squareup.okhttp.Call call = getShipmentValidateBeforeCall(shipmentId, null, null);
+        Call call = getShipmentValidateBeforeCall(shipmentId, null, null);
         Type localVarReturnType = new TypeToken<GetShipmentResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -638,7 +649,7 @@ public class ShippingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getShipmentAsync(String shipmentId, final ApiCallback<GetShipmentResponse> callback) throws ApiException {
+    public Call getShipmentAsync(String shipmentId, final ApiCallback<GetShipmentResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -659,7 +670,7 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getShipmentValidateBeforeCall(shipmentId, progressListener, progressRequestListener);
+        Call call = getShipmentValidateBeforeCall(shipmentId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetShipmentResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -672,12 +683,12 @@ public class ShippingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getTrackingInformationCall(String trackingId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call getTrackingInformationCall(String trackingId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/shipping/v1/tracking/{trackingId}"
-            .replaceAll("\\{" + "trackingId" + "\\}", apiClient.escapeString(trackingId.toString()));
+                .replaceAll("\\{" + "trackingId" + "\\}", apiClient.escapeString(trackingId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -687,25 +698,25 @@ public class ShippingApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -714,16 +725,16 @@ public class ShippingApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getTrackingInformationValidateBeforeCall(String trackingId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call getTrackingInformationValidateBeforeCall(String trackingId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'trackingId' is set
         if (trackingId == null) {
             throw new ApiException("Missing the required parameter 'trackingId' when calling getTrackingInformation(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getTrackingInformationCall(trackingId, progressListener, progressRequestListener);
+
+        Call call = getTrackingInformationCall(trackingId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -748,7 +759,7 @@ public class ShippingApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetTrackingInformationResponse> getTrackingInformationWithHttpInfo(String trackingId) throws ApiException {
-        com.squareup.okhttp.Call call = getTrackingInformationValidateBeforeCall(trackingId, null, null);
+        Call call = getTrackingInformationValidateBeforeCall(trackingId, null, null);
         Type localVarReturnType = new TypeToken<GetTrackingInformationResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -761,7 +772,7 @@ public class ShippingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getTrackingInformationAsync(String trackingId, final ApiCallback<GetTrackingInformationResponse> callback) throws ApiException {
+    public Call getTrackingInformationAsync(String trackingId, final ApiCallback<GetTrackingInformationResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -782,7 +793,7 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getTrackingInformationValidateBeforeCall(trackingId, progressListener, progressRequestListener);
+        Call call = getTrackingInformationValidateBeforeCall(trackingId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GetTrackingInformationResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -796,12 +807,12 @@ public class ShippingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call purchaseLabelsCall(String shipmentId, PurchaseLabelsRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call purchaseLabelsCall(String shipmentId, PurchaseLabelsRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
         String localVarPath = "/shipping/v1/shipments/{shipmentId}/purchaseLabels"
-            .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()));
+                .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -811,25 +822,25 @@ public class ShippingApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -838,21 +849,21 @@ public class ShippingApi {
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call purchaseLabelsValidateBeforeCall(String shipmentId, PurchaseLabelsRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call purchaseLabelsValidateBeforeCall(String shipmentId, PurchaseLabelsRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'shipmentId' is set
         if (shipmentId == null) {
             throw new ApiException("Missing the required parameter 'shipmentId' when calling purchaseLabels(Async)");
         }
-        
+
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling purchaseLabels(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = purchaseLabelsCall(shipmentId, body, progressListener, progressRequestListener);
+
+        Call call = purchaseLabelsCall(shipmentId, body, progressListener, progressRequestListener);
         return call;
 
     }
@@ -879,7 +890,7 @@ public class ShippingApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<PurchaseLabelsResponse> purchaseLabelsWithHttpInfo(String shipmentId, PurchaseLabelsRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = purchaseLabelsValidateBeforeCall(shipmentId, body, null, null);
+        Call call = purchaseLabelsValidateBeforeCall(shipmentId, body, null, null);
         Type localVarReturnType = new TypeToken<PurchaseLabelsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -893,7 +904,7 @@ public class ShippingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call purchaseLabelsAsync(String shipmentId, PurchaseLabelsRequest body, final ApiCallback<PurchaseLabelsResponse> callback) throws ApiException {
+    public Call purchaseLabelsAsync(String shipmentId, PurchaseLabelsRequest body, final ApiCallback<PurchaseLabelsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -914,7 +925,7 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = purchaseLabelsValidateBeforeCall(shipmentId, body, progressListener, progressRequestListener);
+        Call call = purchaseLabelsValidateBeforeCall(shipmentId, body, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<PurchaseLabelsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -927,7 +938,7 @@ public class ShippingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call purchaseShipmentCall(PurchaseShipmentRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call purchaseShipmentCall(PurchaseShipmentRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -941,25 +952,25 @@ public class ShippingApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -968,16 +979,16 @@ public class ShippingApi {
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call purchaseShipmentValidateBeforeCall(PurchaseShipmentRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call purchaseShipmentValidateBeforeCall(PurchaseShipmentRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling purchaseShipment(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = purchaseShipmentCall(body, progressListener, progressRequestListener);
+
+        Call call = purchaseShipmentCall(body, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1002,7 +1013,7 @@ public class ShippingApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<PurchaseShipmentResponse> purchaseShipmentWithHttpInfo(PurchaseShipmentRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = purchaseShipmentValidateBeforeCall(body, null, null);
+        Call call = purchaseShipmentValidateBeforeCall(body, null, null);
         Type localVarReturnType = new TypeToken<PurchaseShipmentResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1015,7 +1026,7 @@ public class ShippingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call purchaseShipmentAsync(PurchaseShipmentRequest body, final ApiCallback<PurchaseShipmentResponse> callback) throws ApiException {
+    public Call purchaseShipmentAsync(PurchaseShipmentRequest body, final ApiCallback<PurchaseShipmentResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1036,7 +1047,7 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = purchaseShipmentValidateBeforeCall(body, progressListener, progressRequestListener);
+        Call call = purchaseShipmentValidateBeforeCall(body, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<PurchaseShipmentResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1051,13 +1062,13 @@ public class ShippingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call retrieveShippingLabelCall(String shipmentId, String trackingId, RetrieveShippingLabelRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call retrieveShippingLabelCall(String shipmentId, String trackingId, RetrieveShippingLabelRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
         String localVarPath = "/shipping/v1/shipments/{shipmentId}/containers/{trackingId}/label"
-            .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()))
-            .replaceAll("\\{" + "trackingId" + "\\}", apiClient.escapeString(trackingId.toString()));
+                .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()))
+                .replaceAll("\\{" + "trackingId" + "\\}", apiClient.escapeString(trackingId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1067,25 +1078,25 @@ public class ShippingApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -1094,26 +1105,26 @@ public class ShippingApi {
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call retrieveShippingLabelValidateBeforeCall(String shipmentId, String trackingId, RetrieveShippingLabelRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
+    private Call retrieveShippingLabelValidateBeforeCall(String shipmentId, String trackingId, RetrieveShippingLabelRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'shipmentId' is set
         if (shipmentId == null) {
             throw new ApiException("Missing the required parameter 'shipmentId' when calling retrieveShippingLabel(Async)");
         }
-        
+
         // verify the required parameter 'trackingId' is set
         if (trackingId == null) {
             throw new ApiException("Missing the required parameter 'trackingId' when calling retrieveShippingLabel(Async)");
         }
-        
+
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling retrieveShippingLabel(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = retrieveShippingLabelCall(shipmentId, trackingId, body, progressListener, progressRequestListener);
+
+        Call call = retrieveShippingLabelCall(shipmentId, trackingId, body, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1142,7 +1153,7 @@ public class ShippingApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<RetrieveShippingLabelResponse> retrieveShippingLabelWithHttpInfo(String shipmentId, String trackingId, RetrieveShippingLabelRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = retrieveShippingLabelValidateBeforeCall(shipmentId, trackingId, body, null, null);
+        Call call = retrieveShippingLabelValidateBeforeCall(shipmentId, trackingId, body, null, null);
         Type localVarReturnType = new TypeToken<RetrieveShippingLabelResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1157,7 +1168,7 @@ public class ShippingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call retrieveShippingLabelAsync(String shipmentId, String trackingId, RetrieveShippingLabelRequest body, final ApiCallback<RetrieveShippingLabelResponse> callback) throws ApiException {
+    public Call retrieveShippingLabelAsync(String shipmentId, String trackingId, RetrieveShippingLabelRequest body, final ApiCallback<RetrieveShippingLabelResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1178,7 +1189,7 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = retrieveShippingLabelValidateBeforeCall(shipmentId, trackingId, body, progressListener, progressRequestListener);
+        Call call = retrieveShippingLabelValidateBeforeCall(shipmentId, trackingId, body, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<RetrieveShippingLabelResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1206,22 +1217,22 @@ public class ShippingApi {
             this.endpoint = endpoint;
             return this;
         }
-        
+
         public Builder lwaAccessTokenCache(LWAAccessTokenCache lwaAccessTokenCache) {
             this.lwaAccessTokenCache = lwaAccessTokenCache;
             return this;
         }
-		
-	   public Builder disableAccessTokenCache() {
+
+        public Builder disableAccessTokenCache() {
             this.disableAccessTokenCache = true;
             return this;
         }
-        
+
         public Builder awsAuthenticationCredentialsProvider(AWSAuthenticationCredentialsProvider awsAuthenticationCredentialsProvider) {
             this.awsAuthenticationCredentialsProvider = awsAuthenticationCredentialsProvider;
             return this;
         }
-        
+
 
         public ShippingApi build() {
             if (awsAuthenticationCredentials == null) {
@@ -1243,7 +1254,7 @@ public class ShippingApi {
             else {
                 awsSigV4Signer = new AWSSigV4Signer(awsAuthenticationCredentials,awsAuthenticationCredentialsProvider);
             }
-            
+
             LWAAuthorizationSigner lwaAuthorizationSigner = null;            
             if (disableAccessTokenCache) {
                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials);
@@ -1251,14 +1262,14 @@ public class ShippingApi {
             else {
                 if (lwaAccessTokenCache == null) {
                     lwaAccessTokenCache = new LWAAccessTokenCacheImpl();                  
-                 }
-                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
+                }
+                lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
             }
 
             return new ShippingApi(new ApiClient()
-                .setAWSSigV4Signer(awsSigV4Signer)
-                .setLWAAuthorizationSigner(lwaAuthorizationSigner)
-                .setBasePath(endpoint));
+                    .setAWSSigV4Signer(awsSigV4Signer)
+                    .setLWAAuthorizationSigner(lwaAuthorizationSigner)
+                    .setBasePath(endpoint));
         }
     }
 }

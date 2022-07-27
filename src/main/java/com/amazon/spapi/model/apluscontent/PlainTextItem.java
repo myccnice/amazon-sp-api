@@ -14,15 +14,11 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * Plain positional text, used in collections of brief labels and descriptors.
@@ -30,91 +26,91 @@ import java.io.IOException;
 @ApiModel(description = "Plain positional text, used in collections of brief labels and descriptors.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class PlainTextItem {
-  @SerializedName("position")
-  private Integer position = null;
+    @SerializedName("position")
+    private Integer position = null;
 
-  @SerializedName("value")
-  private String value = null;
+    @SerializedName("value")
+    private String value = null;
 
-  public PlainTextItem position(Integer position) {
-    this.position = position;
-    return this;
-  }
-
-   /**
-   * The rank or index of this text item within the collection. Different items cannot occupy the same position within a single collection.
-   * minimum: 1
-   * maximum: 100
-   * @return position
-  **/
-  @ApiModelProperty(required = true, value = "The rank or index of this text item within the collection. Different items cannot occupy the same position within a single collection.")
-  public Integer getPosition() {
-    return position;
-  }
-
-  public void setPosition(Integer position) {
-    this.position = position;
-  }
-
-  public PlainTextItem value(String value) {
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * The actual plain text.
-   * @return value
-  **/
-  @ApiModelProperty(required = true, value = "The actual plain text.")
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
-    this.value = value;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public PlainTextItem position(Integer position) {
+        this.position = position;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The rank or index of this text item within the collection. Different items cannot occupy the same position within a single collection.
+     * minimum: 1
+     * maximum: 100
+     * @return position
+     **/
+    @ApiModelProperty(required = true, value = "The rank or index of this text item within the collection. Different items cannot occupy the same position within a single collection.")
+    public Integer getPosition() {
+        return position;
     }
-    PlainTextItem plainTextItem = (PlainTextItem) o;
-    return Objects.equals(this.position, plainTextItem.position) &&
-        Objects.equals(this.value, plainTextItem.value);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(position, value);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PlainTextItem {\n");
-    
-    sb.append("    position: ").append(toIndentedString(position)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setPosition(Integer position) {
+        this.position = position;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public PlainTextItem value(String value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * The actual plain text.
+     * @return value
+     **/
+    @ApiModelProperty(required = true, value = "The actual plain text.")
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PlainTextItem plainTextItem = (PlainTextItem) o;
+        return Objects.equals(this.position, plainTextItem.position) &&
+                Objects.equals(this.value, plainTextItem.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position, value);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class PlainTextItem {\n");
+
+        sb.append("    position: ").append(toIndentedString(position)).append("\n");
+        sb.append("    value: ").append(toIndentedString(value)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

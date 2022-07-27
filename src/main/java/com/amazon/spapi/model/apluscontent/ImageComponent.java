@@ -14,16 +14,11 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.ImageCropSpecification;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * A reference to an image, hosted in the A+ Content media library.
@@ -31,112 +26,112 @@ import java.io.IOException;
 @ApiModel(description = "A reference to an image, hosted in the A+ Content media library.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class ImageComponent {
-  @SerializedName("uploadDestinationId")
-  private String uploadDestinationId = null;
+    @SerializedName("uploadDestinationId")
+    private String uploadDestinationId = null;
 
-  @SerializedName("imageCropSpecification")
-  private ImageCropSpecification imageCropSpecification = null;
+    @SerializedName("imageCropSpecification")
+    private ImageCropSpecification imageCropSpecification = null;
 
-  @SerializedName("altText")
-  private String altText = null;
+    @SerializedName("altText")
+    private String altText = null;
 
-  public ImageComponent uploadDestinationId(String uploadDestinationId) {
-    this.uploadDestinationId = uploadDestinationId;
-    return this;
-  }
-
-   /**
-   * This identifier is provided by the Selling Partner API for Uploads.
-   * @return uploadDestinationId
-  **/
-  @ApiModelProperty(required = true, value = "This identifier is provided by the Selling Partner API for Uploads.")
-  public String getUploadDestinationId() {
-    return uploadDestinationId;
-  }
-
-  public void setUploadDestinationId(String uploadDestinationId) {
-    this.uploadDestinationId = uploadDestinationId;
-  }
-
-  public ImageComponent imageCropSpecification(ImageCropSpecification imageCropSpecification) {
-    this.imageCropSpecification = imageCropSpecification;
-    return this;
-  }
-
-   /**
-   * Get imageCropSpecification
-   * @return imageCropSpecification
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public ImageCropSpecification getImageCropSpecification() {
-    return imageCropSpecification;
-  }
-
-  public void setImageCropSpecification(ImageCropSpecification imageCropSpecification) {
-    this.imageCropSpecification = imageCropSpecification;
-  }
-
-  public ImageComponent altText(String altText) {
-    this.altText = altText;
-    return this;
-  }
-
-   /**
-   * The alternative text for the image.
-   * @return altText
-  **/
-  @ApiModelProperty(required = true, value = "The alternative text for the image.")
-  public String getAltText() {
-    return altText;
-  }
-
-  public void setAltText(String altText) {
-    this.altText = altText;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public ImageComponent uploadDestinationId(String uploadDestinationId) {
+        this.uploadDestinationId = uploadDestinationId;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * This identifier is provided by the Selling Partner API for Uploads.
+     * @return uploadDestinationId
+     **/
+    @ApiModelProperty(required = true, value = "This identifier is provided by the Selling Partner API for Uploads.")
+    public String getUploadDestinationId() {
+        return uploadDestinationId;
     }
-    ImageComponent imageComponent = (ImageComponent) o;
-    return Objects.equals(this.uploadDestinationId, imageComponent.uploadDestinationId) &&
-        Objects.equals(this.imageCropSpecification, imageComponent.imageCropSpecification) &&
-        Objects.equals(this.altText, imageComponent.altText);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(uploadDestinationId, imageCropSpecification, altText);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ImageComponent {\n");
-    
-    sb.append("    uploadDestinationId: ").append(toIndentedString(uploadDestinationId)).append("\n");
-    sb.append("    imageCropSpecification: ").append(toIndentedString(imageCropSpecification)).append("\n");
-    sb.append("    altText: ").append(toIndentedString(altText)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setUploadDestinationId(String uploadDestinationId) {
+        this.uploadDestinationId = uploadDestinationId;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public ImageComponent imageCropSpecification(ImageCropSpecification imageCropSpecification) {
+        this.imageCropSpecification = imageCropSpecification;
+        return this;
+    }
+
+    /**
+     * Get imageCropSpecification
+     * @return imageCropSpecification
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public ImageCropSpecification getImageCropSpecification() {
+        return imageCropSpecification;
+    }
+
+    public void setImageCropSpecification(ImageCropSpecification imageCropSpecification) {
+        this.imageCropSpecification = imageCropSpecification;
+    }
+
+    public ImageComponent altText(String altText) {
+        this.altText = altText;
+        return this;
+    }
+
+    /**
+     * The alternative text for the image.
+     * @return altText
+     **/
+    @ApiModelProperty(required = true, value = "The alternative text for the image.")
+    public String getAltText() {
+        return altText;
+    }
+
+    public void setAltText(String altText) {
+        this.altText = altText;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ImageComponent imageComponent = (ImageComponent) o;
+        return Objects.equals(this.uploadDestinationId, imageComponent.uploadDestinationId) &&
+                Objects.equals(this.imageCropSpecification, imageComponent.imageCropSpecification) &&
+                Objects.equals(this.altText, imageComponent.altText);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uploadDestinationId, imageCropSpecification, altText);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ImageComponent {\n");
+
+        sb.append("    uploadDestinationId: ").append(toIndentedString(uploadDestinationId)).append("\n");
+        sb.append("    imageCropSpecification: ").append(toIndentedString(imageCropSpecification)).append("\n");
+        sb.append("    altText: ").append(toIndentedString(altText)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

@@ -14,16 +14,11 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.TextComponent;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * The A+ Content standard label and description block, comprised of a pair of text components.
@@ -31,89 +26,89 @@ import java.io.IOException;
 @ApiModel(description = "The A+ Content standard label and description block, comprised of a pair of text components.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class StandardTextPairBlock {
-  @SerializedName("label")
-  private TextComponent label = null;
+    @SerializedName("label")
+    private TextComponent label = null;
 
-  @SerializedName("description")
-  private TextComponent description = null;
+    @SerializedName("description")
+    private TextComponent description = null;
 
-  public StandardTextPairBlock label(TextComponent label) {
-    this.label = label;
-    return this;
-  }
-
-   /**
-   * Get label
-   * @return label
-  **/
-  @ApiModelProperty(value = "")
-  public TextComponent getLabel() {
-    return label;
-  }
-
-  public void setLabel(TextComponent label) {
-    this.label = label;
-  }
-
-  public StandardTextPairBlock description(TextComponent description) {
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * Get description
-   * @return description
-  **/
-  @ApiModelProperty(value = "")
-  public TextComponent getDescription() {
-    return description;
-  }
-
-  public void setDescription(TextComponent description) {
-    this.description = description;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public StandardTextPairBlock label(TextComponent label) {
+        this.label = label;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get label
+     * @return label
+     **/
+    @ApiModelProperty(value = "")
+    public TextComponent getLabel() {
+        return label;
     }
-    StandardTextPairBlock standardTextPairBlock = (StandardTextPairBlock) o;
-    return Objects.equals(this.label, standardTextPairBlock.label) &&
-        Objects.equals(this.description, standardTextPairBlock.description);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(label, description);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class StandardTextPairBlock {\n");
-    
-    sb.append("    label: ").append(toIndentedString(label)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setLabel(TextComponent label) {
+        this.label = label;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public StandardTextPairBlock description(TextComponent description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * Get description
+     * @return description
+     **/
+    @ApiModelProperty(value = "")
+    public TextComponent getDescription() {
+        return description;
+    }
+
+    public void setDescription(TextComponent description) {
+        this.description = description;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        StandardTextPairBlock standardTextPairBlock = (StandardTextPairBlock) o;
+        return Objects.equals(this.label, standardTextPairBlock.label) &&
+                Objects.equals(this.description, standardTextPairBlock.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(label, description);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class StandardTextPairBlock {\n");
+
+        sb.append("    label: ").append(toIndentedString(label)).append("\n");
+        sb.append("    description: ").append(toIndentedString(description)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

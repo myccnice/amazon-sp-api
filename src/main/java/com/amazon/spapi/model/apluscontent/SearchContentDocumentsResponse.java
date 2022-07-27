@@ -14,130 +14,122 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.AplusPaginatedResponse;
-import com.amazon.spapi.model.apluscontent.ContentMetadataRecordList;
-import com.amazon.spapi.model.apluscontent.MessageSet;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * SearchContentDocumentsResponse
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class SearchContentDocumentsResponse {
-  @SerializedName("warnings")
-  private MessageSet warnings = null;
+    @SerializedName("warnings")
+    private MessageSet warnings = null;
 
-  @SerializedName("nextPageToken")
-  private String nextPageToken = null;
+    @SerializedName("nextPageToken")
+    private String nextPageToken = null;
 
-  @SerializedName("contentMetadataRecords")
-  private ContentMetadataRecordList contentMetadataRecords = null;
+    @SerializedName("contentMetadataRecords")
+    private ContentMetadataRecordList contentMetadataRecords = null;
 
-  public SearchContentDocumentsResponse warnings(MessageSet warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @ApiModelProperty(value = "")
-  public MessageSet getWarnings() {
-    return warnings;
-  }
-
-  public void setWarnings(MessageSet warnings) {
-    this.warnings = warnings;
-  }
-
-  public SearchContentDocumentsResponse nextPageToken(String nextPageToken) {
-    this.nextPageToken = nextPageToken;
-    return this;
-  }
-
-   /**
-   * Get nextPageToken
-   * @return nextPageToken
-  **/
-  @ApiModelProperty(value = "")
-  public String getNextPageToken() {
-    return nextPageToken;
-  }
-
-  public void setNextPageToken(String nextPageToken) {
-    this.nextPageToken = nextPageToken;
-  }
-
-  public SearchContentDocumentsResponse contentMetadataRecords(ContentMetadataRecordList contentMetadataRecords) {
-    this.contentMetadataRecords = contentMetadataRecords;
-    return this;
-  }
-
-   /**
-   * The content metadata records.
-   * @return contentMetadataRecords
-  **/
-  @ApiModelProperty(required = true, value = "The content metadata records.")
-  public ContentMetadataRecordList getContentMetadataRecords() {
-    return contentMetadataRecords;
-  }
-
-  public void setContentMetadataRecords(ContentMetadataRecordList contentMetadataRecords) {
-    this.contentMetadataRecords = contentMetadataRecords;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public SearchContentDocumentsResponse warnings(MessageSet warnings) {
+        this.warnings = warnings;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get warnings
+     * @return warnings
+     **/
+    @ApiModelProperty(value = "")
+    public MessageSet getWarnings() {
+        return warnings;
     }
-    SearchContentDocumentsResponse searchContentDocumentsResponse = (SearchContentDocumentsResponse) o;
-    return Objects.equals(this.warnings, searchContentDocumentsResponse.warnings) &&
-        Objects.equals(this.nextPageToken, searchContentDocumentsResponse.nextPageToken) &&
-        Objects.equals(this.contentMetadataRecords, searchContentDocumentsResponse.contentMetadataRecords);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(warnings, nextPageToken, contentMetadataRecords);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SearchContentDocumentsResponse {\n");
-    
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
-    sb.append("    nextPageToken: ").append(toIndentedString(nextPageToken)).append("\n");
-    sb.append("    contentMetadataRecords: ").append(toIndentedString(contentMetadataRecords)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setWarnings(MessageSet warnings) {
+        this.warnings = warnings;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public SearchContentDocumentsResponse nextPageToken(String nextPageToken) {
+        this.nextPageToken = nextPageToken;
+        return this;
+    }
+
+    /**
+     * Get nextPageToken
+     * @return nextPageToken
+     **/
+    @ApiModelProperty(value = "")
+    public String getNextPageToken() {
+        return nextPageToken;
+    }
+
+    public void setNextPageToken(String nextPageToken) {
+        this.nextPageToken = nextPageToken;
+    }
+
+    public SearchContentDocumentsResponse contentMetadataRecords(ContentMetadataRecordList contentMetadataRecords) {
+        this.contentMetadataRecords = contentMetadataRecords;
+        return this;
+    }
+
+    /**
+     * The content metadata records.
+     * @return contentMetadataRecords
+     **/
+    @ApiModelProperty(required = true, value = "The content metadata records.")
+    public ContentMetadataRecordList getContentMetadataRecords() {
+        return contentMetadataRecords;
+    }
+
+    public void setContentMetadataRecords(ContentMetadataRecordList contentMetadataRecords) {
+        this.contentMetadataRecords = contentMetadataRecords;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SearchContentDocumentsResponse searchContentDocumentsResponse = (SearchContentDocumentsResponse) o;
+        return Objects.equals(this.warnings, searchContentDocumentsResponse.warnings) &&
+                Objects.equals(this.nextPageToken, searchContentDocumentsResponse.nextPageToken) &&
+                Objects.equals(this.contentMetadataRecords, searchContentDocumentsResponse.contentMetadataRecords);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(warnings, nextPageToken, contentMetadataRecords);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class SearchContentDocumentsResponse {\n");
+
+        sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
+        sb.append("    nextPageToken: ").append(toIndentedString(nextPageToken)).append("\n");
+        sb.append("    contentMetadataRecords: ").append(toIndentedString(contentMetadataRecords)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

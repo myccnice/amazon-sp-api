@@ -18,6 +18,8 @@ import java.util.List;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T16:24:23.485+08:00")
 public class ApiException extends Exception {
+
+    private static final long serialVersionUID = 6316707563449005636L;
     private int code = 0;
     private Map<String, List<String>> responseHeaders = null;
     private String responseBody = null;

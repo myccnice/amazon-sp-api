@@ -72,7 +72,8 @@ public class LWAAuthorizationSignerTest {
                 .build());
     }
 
-    @Before @BeforeEach
+    @Before
+    @BeforeEach
     public void init() {
         request = new Request.Builder()
                 .url("https://www.amazon.com/api")
@@ -170,7 +171,6 @@ public class LWAAuthorizationSignerTest {
         
         testlwaSigner.setLwaClient(testLWAClient);
         testLWAClient.setLWAAccessTokenCache(testLWACache);
-        Request actualSignedRequest = testlwaSigner.sign(request);
         Request actualSignedSecondRequest = testlwaSigner.sign(request);
 
         assertEquals("Azta|foo", actualSignedSecondRequest.header("x-amz-access-token"));

@@ -13,116 +13,108 @@
 
 package com.amazon.spapi.model.apluscontent;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.AplusResponse;
-import com.amazon.spapi.model.Error;
-import com.amazon.spapi.model.ErrorList;
-import com.amazon.spapi.model.apluscontent.MessageSet;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import com.amazon.spapi.model.Error;
+import com.google.gson.annotations.SerializedName;
+
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * ValidateContentDocumentAsinRelationsResponse
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class ValidateContentDocumentAsinRelationsResponse {
-  @SerializedName("warnings")
-  private MessageSet warnings = null;
+    @SerializedName("warnings")
+    private MessageSet warnings = null;
 
-  @SerializedName("errors")
-  private List<Error> errors = new ArrayList<Error>();
+    @SerializedName("errors")
+    private List<Error> errors = new ArrayList<Error>();
 
-  public ValidateContentDocumentAsinRelationsResponse warnings(MessageSet warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @ApiModelProperty(value = "")
-  public MessageSet getWarnings() {
-    return warnings;
-  }
-
-  public void setWarnings(MessageSet warnings) {
-    this.warnings = warnings;
-  }
-
-  public ValidateContentDocumentAsinRelationsResponse errors(List<Error> errors) {
-    this.errors = errors;
-    return this;
-  }
-
-  public ValidateContentDocumentAsinRelationsResponse addErrorsItem(Error errorsItem) {
-    this.errors.add(errorsItem);
-    return this;
-  }
-
-   /**
-   * A list of error responses returned when a request is unsuccessful.
-   * @return errors
-  **/
-  @ApiModelProperty(required = true, value = "A list of error responses returned when a request is unsuccessful.")
-  public List<Error> getErrors() {
-    return errors;
-  }
-
-  public void setErrors(List<Error> errors) {
-    this.errors = errors;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public ValidateContentDocumentAsinRelationsResponse warnings(MessageSet warnings) {
+        this.warnings = warnings;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get warnings
+     * @return warnings
+     **/
+    @ApiModelProperty(value = "")
+    public MessageSet getWarnings() {
+        return warnings;
     }
-    ValidateContentDocumentAsinRelationsResponse validateContentDocumentAsinRelationsResponse = (ValidateContentDocumentAsinRelationsResponse) o;
-    return Objects.equals(this.warnings, validateContentDocumentAsinRelationsResponse.warnings) &&
-        Objects.equals(this.errors, validateContentDocumentAsinRelationsResponse.errors);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(warnings, errors);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ValidateContentDocumentAsinRelationsResponse {\n");
-    
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setWarnings(MessageSet warnings) {
+        this.warnings = warnings;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public ValidateContentDocumentAsinRelationsResponse errors(List<Error> errors) {
+        this.errors = errors;
+        return this;
+    }
+
+    public ValidateContentDocumentAsinRelationsResponse addErrorsItem(Error errorsItem) {
+        this.errors.add(errorsItem);
+        return this;
+    }
+
+    /**
+     * A list of error responses returned when a request is unsuccessful.
+     * @return errors
+     **/
+    @ApiModelProperty(required = true, value = "A list of error responses returned when a request is unsuccessful.")
+    public List<Error> getErrors() {
+        return errors;
+    }
+
+    public void setErrors(List<Error> errors) {
+        this.errors = errors;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ValidateContentDocumentAsinRelationsResponse validateContentDocumentAsinRelationsResponse = (ValidateContentDocumentAsinRelationsResponse) o;
+        return Objects.equals(this.warnings, validateContentDocumentAsinRelationsResponse.warnings) &&
+                Objects.equals(this.errors, validateContentDocumentAsinRelationsResponse.errors);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(warnings, errors);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ValidateContentDocumentAsinRelationsResponse {\n");
+
+        sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
+        sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

@@ -4,6 +4,8 @@ package com.amazon.spapi.documents.exception;
  * The details of an HTTP response that indicates failure.
  */
 public class HttpResponseException extends Exception {
+
+    private static final long serialVersionUID = -8116624026771850601L;
     private final String body;
     private final int code;
 

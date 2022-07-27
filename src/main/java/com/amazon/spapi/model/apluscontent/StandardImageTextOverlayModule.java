@@ -14,17 +14,11 @@
 package com.amazon.spapi.model.apluscontent;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.apluscontent.ColorType;
-import com.amazon.spapi.model.apluscontent.StandardImageTextBlock;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * A standard background image with a floating text box.
@@ -32,89 +26,89 @@ import java.io.IOException;
 @ApiModel(description = "A standard background image with a floating text box.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-03T10:37:36.644+08:00")
 public class StandardImageTextOverlayModule {
-  @SerializedName("overlayColorType")
-  private ColorType overlayColorType = null;
+    @SerializedName("overlayColorType")
+    private ColorType overlayColorType = null;
 
-  @SerializedName("block")
-  private StandardImageTextBlock block = null;
+    @SerializedName("block")
+    private StandardImageTextBlock block = null;
 
-  public StandardImageTextOverlayModule overlayColorType(ColorType overlayColorType) {
-    this.overlayColorType = overlayColorType;
-    return this;
-  }
-
-   /**
-   * Get overlayColorType
-   * @return overlayColorType
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public ColorType getOverlayColorType() {
-    return overlayColorType;
-  }
-
-  public void setOverlayColorType(ColorType overlayColorType) {
-    this.overlayColorType = overlayColorType;
-  }
-
-  public StandardImageTextOverlayModule block(StandardImageTextBlock block) {
-    this.block = block;
-    return this;
-  }
-
-   /**
-   * Get block
-   * @return block
-  **/
-  @ApiModelProperty(value = "")
-  public StandardImageTextBlock getBlock() {
-    return block;
-  }
-
-  public void setBlock(StandardImageTextBlock block) {
-    this.block = block;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public StandardImageTextOverlayModule overlayColorType(ColorType overlayColorType) {
+        this.overlayColorType = overlayColorType;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get overlayColorType
+     * @return overlayColorType
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public ColorType getOverlayColorType() {
+        return overlayColorType;
     }
-    StandardImageTextOverlayModule standardImageTextOverlayModule = (StandardImageTextOverlayModule) o;
-    return Objects.equals(this.overlayColorType, standardImageTextOverlayModule.overlayColorType) &&
-        Objects.equals(this.block, standardImageTextOverlayModule.block);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(overlayColorType, block);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class StandardImageTextOverlayModule {\n");
-    
-    sb.append("    overlayColorType: ").append(toIndentedString(overlayColorType)).append("\n");
-    sb.append("    block: ").append(toIndentedString(block)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setOverlayColorType(ColorType overlayColorType) {
+        this.overlayColorType = overlayColorType;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public StandardImageTextOverlayModule block(StandardImageTextBlock block) {
+        this.block = block;
+        return this;
+    }
+
+    /**
+     * Get block
+     * @return block
+     **/
+    @ApiModelProperty(value = "")
+    public StandardImageTextBlock getBlock() {
+        return block;
+    }
+
+    public void setBlock(StandardImageTextBlock block) {
+        this.block = block;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        StandardImageTextOverlayModule standardImageTextOverlayModule = (StandardImageTextOverlayModule) o;
+        return Objects.equals(this.overlayColorType, standardImageTextOverlayModule.overlayColorType) &&
+                Objects.equals(this.block, standardImageTextOverlayModule.block);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(overlayColorType, block);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class StandardImageTextOverlayModule {\n");
+
+        sb.append("    overlayColorType: ").append(toIndentedString(overlayColorType)).append("\n");
+        sb.append("    block: ").append(toIndentedString(block)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 
