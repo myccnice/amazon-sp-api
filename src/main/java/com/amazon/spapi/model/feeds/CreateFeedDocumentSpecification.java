@@ -14,81 +14,76 @@
 package com.amazon.spapi.model.feeds;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * CreateFeedDocumentSpecification
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:33:48.553+08:00")
 public class CreateFeedDocumentSpecification {
-  @SerializedName("contentType")
-  private String contentType = null;
+    @SerializedName("contentType")
+    private String contentType = null;
 
-  public CreateFeedDocumentSpecification contentType(String contentType) {
-    this.contentType = contentType;
-    return this;
-  }
-
-   /**
-   * The content type of the feed.
-   * @return contentType
-  **/
-  @ApiModelProperty(required = true, value = "The content type of the feed.")
-  public String getContentType() {
-    return contentType;
-  }
-
-  public void setContentType(String contentType) {
-    this.contentType = contentType;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public CreateFeedDocumentSpecification contentType(String contentType) {
+        this.contentType = contentType;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The content type of the feed.
+     * @return contentType
+     **/
+    @ApiModelProperty(required = true, value = "The content type of the feed.")
+    public String getContentType() {
+        return contentType;
     }
-    CreateFeedDocumentSpecification createFeedDocumentSpecification = (CreateFeedDocumentSpecification) o;
-    return Objects.equals(this.contentType, createFeedDocumentSpecification.contentType);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(contentType);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class CreateFeedDocumentSpecification {\n");
-    
-    sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CreateFeedDocumentSpecification createFeedDocumentSpecification = (CreateFeedDocumentSpecification) o;
+        return Objects.equals(this.contentType, createFeedDocumentSpecification.contentType);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contentType);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class CreateFeedDocumentSpecification {\n");
+
+        sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

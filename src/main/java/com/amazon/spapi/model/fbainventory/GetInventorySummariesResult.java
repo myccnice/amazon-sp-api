@@ -14,15 +14,11 @@
 package com.amazon.spapi.model.fbainventory;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * The payload schema for the getInventorySummaries operation.
@@ -30,89 +26,89 @@ import java.io.IOException;
 @ApiModel(description = "The payload schema for the getInventorySummaries operation.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:24:28.343+08:00")
 public class GetInventorySummariesResult {
-  @SerializedName("granularity")
-  private Granularity granularity = null;
+    @SerializedName("granularity")
+    private Granularity granularity = null;
 
-  @SerializedName("inventorySummaries")
-  private InventorySummaries inventorySummaries = null;
+    @SerializedName("inventorySummaries")
+    private InventorySummaries inventorySummaries = null;
 
-  public GetInventorySummariesResult granularity(Granularity granularity) {
-    this.granularity = granularity;
-    return this;
-  }
-
-   /**
-   * Get granularity
-   * @return granularity
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public Granularity getGranularity() {
-    return granularity;
-  }
-
-  public void setGranularity(Granularity granularity) {
-    this.granularity = granularity;
-  }
-
-  public GetInventorySummariesResult inventorySummaries(InventorySummaries inventorySummaries) {
-    this.inventorySummaries = inventorySummaries;
-    return this;
-  }
-
-   /**
-   * Get inventorySummaries
-   * @return inventorySummaries
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public InventorySummaries getInventorySummaries() {
-    return inventorySummaries;
-  }
-
-  public void setInventorySummaries(InventorySummaries inventorySummaries) {
-    this.inventorySummaries = inventorySummaries;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public GetInventorySummariesResult granularity(Granularity granularity) {
+        this.granularity = granularity;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get granularity
+     * @return granularity
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public Granularity getGranularity() {
+        return granularity;
     }
-    GetInventorySummariesResult getInventorySummariesResult = (GetInventorySummariesResult) o;
-    return Objects.equals(this.granularity, getInventorySummariesResult.granularity) &&
-        Objects.equals(this.inventorySummaries, getInventorySummariesResult.inventorySummaries);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(granularity, inventorySummaries);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GetInventorySummariesResult {\n");
-    
-    sb.append("    granularity: ").append(toIndentedString(granularity)).append("\n");
-    sb.append("    inventorySummaries: ").append(toIndentedString(inventorySummaries)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setGranularity(Granularity granularity) {
+        this.granularity = granularity;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public GetInventorySummariesResult inventorySummaries(InventorySummaries inventorySummaries) {
+        this.inventorySummaries = inventorySummaries;
+        return this;
+    }
+
+    /**
+     * Get inventorySummaries
+     * @return inventorySummaries
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public InventorySummaries getInventorySummaries() {
+        return inventorySummaries;
+    }
+
+    public void setInventorySummaries(InventorySummaries inventorySummaries) {
+        this.inventorySummaries = inventorySummaries;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetInventorySummariesResult getInventorySummariesResult = (GetInventorySummariesResult) o;
+        return Objects.equals(this.granularity, getInventorySummariesResult.granularity) &&
+                Objects.equals(this.inventorySummaries, getInventorySummariesResult.inventorySummaries);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(granularity, inventorySummaries);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class GetInventorySummariesResult {\n");
+
+        sb.append("    granularity: ").append(toIndentedString(granularity)).append("\n");
+        sb.append("    inventorySummaries: ").append(toIndentedString(inventorySummaries)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

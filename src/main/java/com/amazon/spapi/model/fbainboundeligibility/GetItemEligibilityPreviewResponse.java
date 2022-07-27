@@ -14,16 +14,12 @@
 package com.amazon.spapi.model.fbainboundeligibility;
 
 import java.util.Objects;
-import java.util.Arrays;
+
 import com.amazon.spapi.model.ErrorList;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * The response schema for the getItemEligibilityPreview operation.
@@ -31,89 +27,89 @@ import java.io.IOException;
 @ApiModel(description = "The response schema for the getItemEligibilityPreview operation.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:20:38.428+08:00")
 public class GetItemEligibilityPreviewResponse {
-  @SerializedName("payload")
-  private ItemEligibilityPreview payload = null;
+    @SerializedName("payload")
+    private ItemEligibilityPreview payload = null;
 
-  @SerializedName("errors")
-  private ErrorList errors = null;
+    @SerializedName("errors")
+    private ErrorList errors = null;
 
-  public GetItemEligibilityPreviewResponse payload(ItemEligibilityPreview payload) {
-    this.payload = payload;
-    return this;
-  }
-
-   /**
-   * The payload for the getItemEligibilityPreview operation.
-   * @return payload
-  **/
-  @ApiModelProperty(value = "The payload for the getItemEligibilityPreview operation.")
-  public ItemEligibilityPreview getPayload() {
-    return payload;
-  }
-
-  public void setPayload(ItemEligibilityPreview payload) {
-    this.payload = payload;
-  }
-
-  public GetItemEligibilityPreviewResponse errors(ErrorList errors) {
-    this.errors = errors;
-    return this;
-  }
-
-   /**
-   * An unexpected condition occurred during the GetItemEligibilityPreview operation.
-   * @return errors
-  **/
-  @ApiModelProperty(value = "An unexpected condition occurred during the GetItemEligibilityPreview operation.")
-  public ErrorList getErrors() {
-    return errors;
-  }
-
-  public void setErrors(ErrorList errors) {
-    this.errors = errors;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public GetItemEligibilityPreviewResponse payload(ItemEligibilityPreview payload) {
+        this.payload = payload;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The payload for the getItemEligibilityPreview operation.
+     * @return payload
+     **/
+    @ApiModelProperty(value = "The payload for the getItemEligibilityPreview operation.")
+    public ItemEligibilityPreview getPayload() {
+        return payload;
     }
-    GetItemEligibilityPreviewResponse getItemEligibilityPreviewResponse = (GetItemEligibilityPreviewResponse) o;
-    return Objects.equals(this.payload, getItemEligibilityPreviewResponse.payload) &&
-        Objects.equals(this.errors, getItemEligibilityPreviewResponse.errors);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(payload, errors);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GetItemEligibilityPreviewResponse {\n");
-    
-    sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setPayload(ItemEligibilityPreview payload) {
+        this.payload = payload;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public GetItemEligibilityPreviewResponse errors(ErrorList errors) {
+        this.errors = errors;
+        return this;
+    }
+
+    /**
+     * An unexpected condition occurred during the GetItemEligibilityPreview operation.
+     * @return errors
+     **/
+    @ApiModelProperty(value = "An unexpected condition occurred during the GetItemEligibilityPreview operation.")
+    public ErrorList getErrors() {
+        return errors;
+    }
+
+    public void setErrors(ErrorList errors) {
+        this.errors = errors;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetItemEligibilityPreviewResponse getItemEligibilityPreviewResponse = (GetItemEligibilityPreviewResponse) o;
+        return Objects.equals(this.payload, getItemEligibilityPreviewResponse.payload) &&
+                Objects.equals(this.errors, getItemEligibilityPreviewResponse.errors);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(payload, errors);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class GetItemEligibilityPreviewResponse {\n");
+
+        sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
+        sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

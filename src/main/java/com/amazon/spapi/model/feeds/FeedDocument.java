@@ -13,196 +13,196 @@
 
 package com.amazon.spapi.model.feeds;
 
+import java.io.IOException;
 import java.util.Objects;
-import java.util.Arrays;
+
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * FeedDocument
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:33:48.553+08:00")
 public class FeedDocument {
-  @SerializedName("feedDocumentId")
-  private String feedDocumentId = null;
+    @SerializedName("feedDocumentId")
+    private String feedDocumentId = null;
 
-  @SerializedName("url")
-  private String url = null;
+    @SerializedName("url")
+    private String url = null;
 
-  @SerializedName("encryptionDetails")
-  private FeedDocumentEncryptionDetails encryptionDetails = null;
+    @SerializedName("encryptionDetails")
+    private FeedDocumentEncryptionDetails encryptionDetails = null;
 
-  /**
-   * If present, the feed document contents are compressed using the indicated algorithm.
-   */
-  @JsonAdapter(CompressionAlgorithmEnum.Adapter.class)
-  public enum CompressionAlgorithmEnum {
-    GZIP("GZIP");
+    /**
+     * If present, the feed document contents are compressed using the indicated algorithm.
+     */
+    @JsonAdapter(CompressionAlgorithmEnum.Adapter.class)
+    public enum CompressionAlgorithmEnum {
+        GZIP("GZIP");
 
-    private String value;
+        private String value;
 
-    CompressionAlgorithmEnum(String value) {
-      this.value = value;
+        CompressionAlgorithmEnum(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+        public static CompressionAlgorithmEnum fromValue(String text) {
+            for (CompressionAlgorithmEnum b : CompressionAlgorithmEnum.values()) {
+                if (String.valueOf(b.value).equals(text)) {
+                    return b;
+                }
+            }
+            return null;
+        }
+
+        public static class Adapter extends TypeAdapter<CompressionAlgorithmEnum> {
+            @Override
+            public void write(final JsonWriter jsonWriter, final CompressionAlgorithmEnum enumeration) throws IOException {
+                jsonWriter.value(enumeration.getValue());
+            }
+
+            @Override
+            public CompressionAlgorithmEnum read(final JsonReader jsonReader) throws IOException {
+                String value = jsonReader.nextString();
+                return CompressionAlgorithmEnum.fromValue(String.valueOf(value));
+            }
+        }
     }
 
-    public String getValue() {
-      return value;
+    @SerializedName("compressionAlgorithm")
+    private CompressionAlgorithmEnum compressionAlgorithm = null;
+
+    public FeedDocument feedDocumentId(String feedDocumentId) {
+        this.feedDocumentId = feedDocumentId;
+        return this;
+    }
+
+    /**
+     * The identifier for the feed document. This identifier is unique only in combination with a seller ID.
+     * @return feedDocumentId
+     **/
+    @ApiModelProperty(required = true, value = "The identifier for the feed document. This identifier is unique only in combination with a seller ID.")
+    public String getFeedDocumentId() {
+        return feedDocumentId;
+    }
+
+    public void setFeedDocumentId(String feedDocumentId) {
+        this.feedDocumentId = feedDocumentId;
+    }
+
+    public FeedDocument url(String url) {
+        this.url = url;
+        return this;
+    }
+
+    /**
+     * A presigned URL for the feed document. This URL expires after 5 minutes.
+     * @return url
+     **/
+    @ApiModelProperty(required = true, value = "A presigned URL for the feed document. This URL expires after 5 minutes.")
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public FeedDocument encryptionDetails(FeedDocumentEncryptionDetails encryptionDetails) {
+        this.encryptionDetails = encryptionDetails;
+        return this;
+    }
+
+    /**
+     * Get encryptionDetails
+     * @return encryptionDetails
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public FeedDocumentEncryptionDetails getEncryptionDetails() {
+        return encryptionDetails;
+    }
+
+    public void setEncryptionDetails(FeedDocumentEncryptionDetails encryptionDetails) {
+        this.encryptionDetails = encryptionDetails;
+    }
+
+    public FeedDocument compressionAlgorithm(CompressionAlgorithmEnum compressionAlgorithm) {
+        this.compressionAlgorithm = compressionAlgorithm;
+        return this;
+    }
+
+    /**
+     * If present, the feed document contents are compressed using the indicated algorithm.
+     * @return compressionAlgorithm
+     **/
+    @ApiModelProperty(value = "If present, the feed document contents are compressed using the indicated algorithm.")
+    public CompressionAlgorithmEnum getCompressionAlgorithm() {
+        return compressionAlgorithm;
+    }
+
+    public void setCompressionAlgorithm(CompressionAlgorithmEnum compressionAlgorithm) {
+        this.compressionAlgorithm = compressionAlgorithm;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        FeedDocument feedDocument = (FeedDocument) o;
+        return Objects.equals(this.feedDocumentId, feedDocument.feedDocumentId) &&
+                Objects.equals(this.url, feedDocument.url) &&
+                Objects.equals(this.encryptionDetails, feedDocument.encryptionDetails) &&
+                Objects.equals(this.compressionAlgorithm, feedDocument.compressionAlgorithm);
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(feedDocumentId, url, encryptionDetails, compressionAlgorithm);
+    }
+
+
+    @Override
     public String toString() {
-      return String.valueOf(value);
+        StringBuilder sb = new StringBuilder();
+        sb.append("class FeedDocument {\n");
+
+        sb.append("    feedDocumentId: ").append(toIndentedString(feedDocumentId)).append("\n");
+        sb.append("    url: ").append(toIndentedString(url)).append("\n");
+        sb.append("    encryptionDetails: ").append(toIndentedString(encryptionDetails)).append("\n");
+        sb.append("    compressionAlgorithm: ").append(toIndentedString(compressionAlgorithm)).append("\n");
+        sb.append("}");
+        return sb.toString();
     }
 
-    public static CompressionAlgorithmEnum fromValue(String text) {
-      for (CompressionAlgorithmEnum b : CompressionAlgorithmEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
         }
-      }
-      return null;
+        return o.toString().replace("\n", "\n    ");
     }
-
-    public static class Adapter extends TypeAdapter<CompressionAlgorithmEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final CompressionAlgorithmEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public CompressionAlgorithmEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return CompressionAlgorithmEnum.fromValue(String.valueOf(value));
-      }
-    }
-  }
-
-  @SerializedName("compressionAlgorithm")
-  private CompressionAlgorithmEnum compressionAlgorithm = null;
-
-  public FeedDocument feedDocumentId(String feedDocumentId) {
-    this.feedDocumentId = feedDocumentId;
-    return this;
-  }
-
-   /**
-   * The identifier for the feed document. This identifier is unique only in combination with a seller ID.
-   * @return feedDocumentId
-  **/
-  @ApiModelProperty(required = true, value = "The identifier for the feed document. This identifier is unique only in combination with a seller ID.")
-  public String getFeedDocumentId() {
-    return feedDocumentId;
-  }
-
-  public void setFeedDocumentId(String feedDocumentId) {
-    this.feedDocumentId = feedDocumentId;
-  }
-
-  public FeedDocument url(String url) {
-    this.url = url;
-    return this;
-  }
-
-   /**
-   * A presigned URL for the feed document. This URL expires after 5 minutes.
-   * @return url
-  **/
-  @ApiModelProperty(required = true, value = "A presigned URL for the feed document. This URL expires after 5 minutes.")
-  public String getUrl() {
-    return url;
-  }
-
-  public void setUrl(String url) {
-    this.url = url;
-  }
-
-  public FeedDocument encryptionDetails(FeedDocumentEncryptionDetails encryptionDetails) {
-    this.encryptionDetails = encryptionDetails;
-    return this;
-  }
-
-   /**
-   * Get encryptionDetails
-   * @return encryptionDetails
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public FeedDocumentEncryptionDetails getEncryptionDetails() {
-    return encryptionDetails;
-  }
-
-  public void setEncryptionDetails(FeedDocumentEncryptionDetails encryptionDetails) {
-    this.encryptionDetails = encryptionDetails;
-  }
-
-  public FeedDocument compressionAlgorithm(CompressionAlgorithmEnum compressionAlgorithm) {
-    this.compressionAlgorithm = compressionAlgorithm;
-    return this;
-  }
-
-   /**
-   * If present, the feed document contents are compressed using the indicated algorithm.
-   * @return compressionAlgorithm
-  **/
-  @ApiModelProperty(value = "If present, the feed document contents are compressed using the indicated algorithm.")
-  public CompressionAlgorithmEnum getCompressionAlgorithm() {
-    return compressionAlgorithm;
-  }
-
-  public void setCompressionAlgorithm(CompressionAlgorithmEnum compressionAlgorithm) {
-    this.compressionAlgorithm = compressionAlgorithm;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    FeedDocument feedDocument = (FeedDocument) o;
-    return Objects.equals(this.feedDocumentId, feedDocument.feedDocumentId) &&
-        Objects.equals(this.url, feedDocument.url) &&
-        Objects.equals(this.encryptionDetails, feedDocument.encryptionDetails) &&
-        Objects.equals(this.compressionAlgorithm, feedDocument.compressionAlgorithm);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(feedDocumentId, url, encryptionDetails, compressionAlgorithm);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class FeedDocument {\n");
-    
-    sb.append("    feedDocumentId: ").append(toIndentedString(feedDocumentId)).append("\n");
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
-    sb.append("    encryptionDetails: ").append(toIndentedString(encryptionDetails)).append("\n");
-    sb.append("    compressionAlgorithm: ").append(toIndentedString(compressionAlgorithm)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
 
 }
 

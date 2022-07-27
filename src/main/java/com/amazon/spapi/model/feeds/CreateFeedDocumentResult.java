@@ -14,15 +14,11 @@
 package com.amazon.spapi.model.feeds;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * Information required to encrypt and upload a feed document&#39;s contents.
@@ -30,112 +26,112 @@ import java.io.IOException;
 @ApiModel(description = "Information required to encrypt and upload a feed document's contents.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:33:48.553+08:00")
 public class CreateFeedDocumentResult {
-  @SerializedName("feedDocumentId")
-  private String feedDocumentId = null;
+    @SerializedName("feedDocumentId")
+    private String feedDocumentId = null;
 
-  @SerializedName("url")
-  private String url = null;
+    @SerializedName("url")
+    private String url = null;
 
-  @SerializedName("encryptionDetails")
-  private FeedDocumentEncryptionDetails encryptionDetails = null;
+    @SerializedName("encryptionDetails")
+    private FeedDocumentEncryptionDetails encryptionDetails = null;
 
-  public CreateFeedDocumentResult feedDocumentId(String feedDocumentId) {
-    this.feedDocumentId = feedDocumentId;
-    return this;
-  }
-
-   /**
-   * The identifier of the feed document.
-   * @return feedDocumentId
-  **/
-  @ApiModelProperty(required = true, value = "The identifier of the feed document.")
-  public String getFeedDocumentId() {
-    return feedDocumentId;
-  }
-
-  public void setFeedDocumentId(String feedDocumentId) {
-    this.feedDocumentId = feedDocumentId;
-  }
-
-  public CreateFeedDocumentResult url(String url) {
-    this.url = url;
-    return this;
-  }
-
-   /**
-   * The presigned URL for uploading the feed contents. This URL expires after 5 minutes.
-   * @return url
-  **/
-  @ApiModelProperty(required = true, value = "The presigned URL for uploading the feed contents. This URL expires after 5 minutes.")
-  public String getUrl() {
-    return url;
-  }
-
-  public void setUrl(String url) {
-    this.url = url;
-  }
-
-  public CreateFeedDocumentResult encryptionDetails(FeedDocumentEncryptionDetails encryptionDetails) {
-    this.encryptionDetails = encryptionDetails;
-    return this;
-  }
-
-   /**
-   * Get encryptionDetails
-   * @return encryptionDetails
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public FeedDocumentEncryptionDetails getEncryptionDetails() {
-    return encryptionDetails;
-  }
-
-  public void setEncryptionDetails(FeedDocumentEncryptionDetails encryptionDetails) {
-    this.encryptionDetails = encryptionDetails;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public CreateFeedDocumentResult feedDocumentId(String feedDocumentId) {
+        this.feedDocumentId = feedDocumentId;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The identifier of the feed document.
+     * @return feedDocumentId
+     **/
+    @ApiModelProperty(required = true, value = "The identifier of the feed document.")
+    public String getFeedDocumentId() {
+        return feedDocumentId;
     }
-    CreateFeedDocumentResult createFeedDocumentResult = (CreateFeedDocumentResult) o;
-    return Objects.equals(this.feedDocumentId, createFeedDocumentResult.feedDocumentId) &&
-        Objects.equals(this.url, createFeedDocumentResult.url) &&
-        Objects.equals(this.encryptionDetails, createFeedDocumentResult.encryptionDetails);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(feedDocumentId, url, encryptionDetails);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class CreateFeedDocumentResult {\n");
-    
-    sb.append("    feedDocumentId: ").append(toIndentedString(feedDocumentId)).append("\n");
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
-    sb.append("    encryptionDetails: ").append(toIndentedString(encryptionDetails)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setFeedDocumentId(String feedDocumentId) {
+        this.feedDocumentId = feedDocumentId;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public CreateFeedDocumentResult url(String url) {
+        this.url = url;
+        return this;
+    }
+
+    /**
+     * The presigned URL for uploading the feed contents. This URL expires after 5 minutes.
+     * @return url
+     **/
+    @ApiModelProperty(required = true, value = "The presigned URL for uploading the feed contents. This URL expires after 5 minutes.")
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public CreateFeedDocumentResult encryptionDetails(FeedDocumentEncryptionDetails encryptionDetails) {
+        this.encryptionDetails = encryptionDetails;
+        return this;
+    }
+
+    /**
+     * Get encryptionDetails
+     * @return encryptionDetails
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public FeedDocumentEncryptionDetails getEncryptionDetails() {
+        return encryptionDetails;
+    }
+
+    public void setEncryptionDetails(FeedDocumentEncryptionDetails encryptionDetails) {
+        this.encryptionDetails = encryptionDetails;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CreateFeedDocumentResult createFeedDocumentResult = (CreateFeedDocumentResult) o;
+        return Objects.equals(this.feedDocumentId, createFeedDocumentResult.feedDocumentId) &&
+                Objects.equals(this.url, createFeedDocumentResult.url) &&
+                Objects.equals(this.encryptionDetails, createFeedDocumentResult.encryptionDetails);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(feedDocumentId, url, encryptionDetails);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class CreateFeedDocumentResult {\n");
+
+        sb.append("    feedDocumentId: ").append(toIndentedString(feedDocumentId)).append("\n");
+        sb.append("    url: ").append(toIndentedString(url)).append("\n");
+        sb.append("    encryptionDetails: ").append(toIndentedString(encryptionDetails)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

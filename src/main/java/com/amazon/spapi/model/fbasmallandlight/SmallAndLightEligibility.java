@@ -14,16 +14,11 @@
 package com.amazon.spapi.model.fbasmallandlight;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.fbasmallandlight.SmallAndLightEligibilityStatus;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * The Small and Light eligibility status of the item indicated by the specified seller SKU.
@@ -31,112 +26,112 @@ import java.io.IOException;
 @ApiModel(description = "The Small and Light eligibility status of the item indicated by the specified seller SKU.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:31:52.166+08:00")
 public class SmallAndLightEligibility {
-  @SerializedName("marketplaceId")
-  private String marketplaceId = null;
+    @SerializedName("marketplaceId")
+    private String marketplaceId = null;
 
-  @SerializedName("sellerSKU")
-  private String sellerSKU = null;
+    @SerializedName("sellerSKU")
+    private String sellerSKU = null;
 
-  @SerializedName("status")
-  private SmallAndLightEligibilityStatus status = null;
+    @SerializedName("status")
+    private SmallAndLightEligibilityStatus status = null;
 
-  public SmallAndLightEligibility marketplaceId(String marketplaceId) {
-    this.marketplaceId = marketplaceId;
-    return this;
-  }
-
-   /**
-   * Get marketplaceId
-   * @return marketplaceId
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getMarketplaceId() {
-    return marketplaceId;
-  }
-
-  public void setMarketplaceId(String marketplaceId) {
-    this.marketplaceId = marketplaceId;
-  }
-
-  public SmallAndLightEligibility sellerSKU(String sellerSKU) {
-    this.sellerSKU = sellerSKU;
-    return this;
-  }
-
-   /**
-   * Get sellerSKU
-   * @return sellerSKU
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getSellerSKU() {
-    return sellerSKU;
-  }
-
-  public void setSellerSKU(String sellerSKU) {
-    this.sellerSKU = sellerSKU;
-  }
-
-  public SmallAndLightEligibility status(SmallAndLightEligibilityStatus status) {
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * Get status
-   * @return status
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public SmallAndLightEligibilityStatus getStatus() {
-    return status;
-  }
-
-  public void setStatus(SmallAndLightEligibilityStatus status) {
-    this.status = status;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public SmallAndLightEligibility marketplaceId(String marketplaceId) {
+        this.marketplaceId = marketplaceId;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get marketplaceId
+     * @return marketplaceId
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public String getMarketplaceId() {
+        return marketplaceId;
     }
-    SmallAndLightEligibility smallAndLightEligibility = (SmallAndLightEligibility) o;
-    return Objects.equals(this.marketplaceId, smallAndLightEligibility.marketplaceId) &&
-        Objects.equals(this.sellerSKU, smallAndLightEligibility.sellerSKU) &&
-        Objects.equals(this.status, smallAndLightEligibility.status);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(marketplaceId, sellerSKU, status);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SmallAndLightEligibility {\n");
-    
-    sb.append("    marketplaceId: ").append(toIndentedString(marketplaceId)).append("\n");
-    sb.append("    sellerSKU: ").append(toIndentedString(sellerSKU)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setMarketplaceId(String marketplaceId) {
+        this.marketplaceId = marketplaceId;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public SmallAndLightEligibility sellerSKU(String sellerSKU) {
+        this.sellerSKU = sellerSKU;
+        return this;
+    }
+
+    /**
+     * Get sellerSKU
+     * @return sellerSKU
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public String getSellerSKU() {
+        return sellerSKU;
+    }
+
+    public void setSellerSKU(String sellerSKU) {
+        this.sellerSKU = sellerSKU;
+    }
+
+    public SmallAndLightEligibility status(SmallAndLightEligibilityStatus status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * Get status
+     * @return status
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public SmallAndLightEligibilityStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(SmallAndLightEligibilityStatus status) {
+        this.status = status;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SmallAndLightEligibility smallAndLightEligibility = (SmallAndLightEligibility) o;
+        return Objects.equals(this.marketplaceId, smallAndLightEligibility.marketplaceId) &&
+                Objects.equals(this.sellerSKU, smallAndLightEligibility.sellerSKU) &&
+                Objects.equals(this.status, smallAndLightEligibility.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(marketplaceId, sellerSKU, status);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class SmallAndLightEligibility {\n");
+
+        sb.append("    marketplaceId: ").append(toIndentedString(marketplaceId)).append("\n");
+        sb.append("    sellerSKU: ").append(toIndentedString(sellerSKU)).append("\n");
+        sb.append("    status: ").append(toIndentedString(status)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

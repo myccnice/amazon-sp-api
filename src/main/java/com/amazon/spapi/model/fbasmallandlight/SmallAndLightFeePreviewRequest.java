@@ -13,19 +13,14 @@
 
 package com.amazon.spapi.model.fbasmallandlight;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.fbasmallandlight.Item;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import com.google.gson.annotations.SerializedName;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Request schema for submitting items for which to retrieve fee estimates.
@@ -33,94 +28,94 @@ import java.util.List;
 @ApiModel(description = "Request schema for submitting items for which to retrieve fee estimates.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:31:52.166+08:00")
 public class SmallAndLightFeePreviewRequest {
-  @SerializedName("marketplaceId")
-  private String marketplaceId = null;
+    @SerializedName("marketplaceId")
+    private String marketplaceId = null;
 
-  @SerializedName("items")
-  private List<Item> items = new ArrayList<Item>();
+    @SerializedName("items")
+    private List<Item> items = new ArrayList<Item>();
 
-  public SmallAndLightFeePreviewRequest marketplaceId(String marketplaceId) {
-    this.marketplaceId = marketplaceId;
-    return this;
-  }
-
-   /**
-   * Get marketplaceId
-   * @return marketplaceId
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getMarketplaceId() {
-    return marketplaceId;
-  }
-
-  public void setMarketplaceId(String marketplaceId) {
-    this.marketplaceId = marketplaceId;
-  }
-
-  public SmallAndLightFeePreviewRequest items(List<Item> items) {
-    this.items = items;
-    return this;
-  }
-
-  public SmallAndLightFeePreviewRequest addItemsItem(Item itemsItem) {
-    this.items.add(itemsItem);
-    return this;
-  }
-
-   /**
-   * A list of items for which to retrieve fee estimates (limit: 25).
-   * @return items
-  **/
-  @ApiModelProperty(required = true, value = "A list of items for which to retrieve fee estimates (limit: 25).")
-  public List<Item> getItems() {
-    return items;
-  }
-
-  public void setItems(List<Item> items) {
-    this.items = items;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public SmallAndLightFeePreviewRequest marketplaceId(String marketplaceId) {
+        this.marketplaceId = marketplaceId;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get marketplaceId
+     * @return marketplaceId
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public String getMarketplaceId() {
+        return marketplaceId;
     }
-    SmallAndLightFeePreviewRequest smallAndLightFeePreviewRequest = (SmallAndLightFeePreviewRequest) o;
-    return Objects.equals(this.marketplaceId, smallAndLightFeePreviewRequest.marketplaceId) &&
-        Objects.equals(this.items, smallAndLightFeePreviewRequest.items);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(marketplaceId, items);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SmallAndLightFeePreviewRequest {\n");
-    
-    sb.append("    marketplaceId: ").append(toIndentedString(marketplaceId)).append("\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setMarketplaceId(String marketplaceId) {
+        this.marketplaceId = marketplaceId;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public SmallAndLightFeePreviewRequest items(List<Item> items) {
+        this.items = items;
+        return this;
+    }
+
+    public SmallAndLightFeePreviewRequest addItemsItem(Item itemsItem) {
+        this.items.add(itemsItem);
+        return this;
+    }
+
+    /**
+     * A list of items for which to retrieve fee estimates (limit: 25).
+     * @return items
+     **/
+    @ApiModelProperty(required = true, value = "A list of items for which to retrieve fee estimates (limit: 25).")
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SmallAndLightFeePreviewRequest smallAndLightFeePreviewRequest = (SmallAndLightFeePreviewRequest) o;
+        return Objects.equals(this.marketplaceId, smallAndLightFeePreviewRequest.marketplaceId) &&
+                Objects.equals(this.items, smallAndLightFeePreviewRequest.items);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(marketplaceId, items);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class SmallAndLightFeePreviewRequest {\n");
+
+        sb.append("    marketplaceId: ").append(toIndentedString(marketplaceId)).append("\n");
+        sb.append("    items: ").append(toIndentedString(items)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

@@ -14,16 +14,11 @@
 package com.amazon.spapi.model.finances;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.finances.FeeComponentList;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * A fee event related to Amazon Imaging services.
@@ -31,135 +26,135 @@ import java.io.IOException;
 @ApiModel(description = "A fee event related to Amazon Imaging services.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:01:58.583+08:00")
 public class ImagingServicesFeeEvent {
-  @SerializedName("ImagingRequestBillingItemID")
-  private String imagingRequestBillingItemID = null;
+    @SerializedName("ImagingRequestBillingItemID")
+    private String imagingRequestBillingItemID = null;
 
-  @SerializedName("ASIN")
-  private String ASIN = null;
+    @SerializedName("ASIN")
+    private String ASIN = null;
 
-  @SerializedName("PostedDate")
-  private String postedDate = null;
+    @SerializedName("PostedDate")
+    private String postedDate = null;
 
-  @SerializedName("FeeList")
-  private FeeComponentList feeList = null;
+    @SerializedName("FeeList")
+    private FeeComponentList feeList = null;
 
-  public ImagingServicesFeeEvent imagingRequestBillingItemID(String imagingRequestBillingItemID) {
-    this.imagingRequestBillingItemID = imagingRequestBillingItemID;
-    return this;
-  }
-
-   /**
-   * The identifier for the imaging services request.
-   * @return imagingRequestBillingItemID
-  **/
-  @ApiModelProperty(value = "The identifier for the imaging services request.")
-  public String getImagingRequestBillingItemID() {
-    return imagingRequestBillingItemID;
-  }
-
-  public void setImagingRequestBillingItemID(String imagingRequestBillingItemID) {
-    this.imagingRequestBillingItemID = imagingRequestBillingItemID;
-  }
-
-  public ImagingServicesFeeEvent ASIN(String ASIN) {
-    this.ASIN = ASIN;
-    return this;
-  }
-
-   /**
-   * The Amazon Standard Identification Number (ASIN) of the item for which the imaging service was requested.
-   * @return ASIN
-  **/
-  @ApiModelProperty(value = "The Amazon Standard Identification Number (ASIN) of the item for which the imaging service was requested.")
-  public String getASIN() {
-    return ASIN;
-  }
-
-  public void setASIN(String ASIN) {
-    this.ASIN = ASIN;
-  }
-
-  public ImagingServicesFeeEvent postedDate(String postedDate) {
-    this.postedDate = postedDate;
-    return this;
-  }
-
-   /**
-   * The date and time when the financial event was posted.
-   * @return postedDate
-  **/
-  @ApiModelProperty(value = "The date and time when the financial event was posted.")
-  public String getPostedDate() {
-    return postedDate;
-  }
-
-  public void setPostedDate(String postedDate) {
-    this.postedDate = postedDate;
-  }
-
-  public ImagingServicesFeeEvent feeList(FeeComponentList feeList) {
-    this.feeList = feeList;
-    return this;
-  }
-
-   /**
-   * A list of fees associated with the event.
-   * @return feeList
-  **/
-  @ApiModelProperty(value = "A list of fees associated with the event.")
-  public FeeComponentList getFeeList() {
-    return feeList;
-  }
-
-  public void setFeeList(FeeComponentList feeList) {
-    this.feeList = feeList;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public ImagingServicesFeeEvent imagingRequestBillingItemID(String imagingRequestBillingItemID) {
+        this.imagingRequestBillingItemID = imagingRequestBillingItemID;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The identifier for the imaging services request.
+     * @return imagingRequestBillingItemID
+     **/
+    @ApiModelProperty(value = "The identifier for the imaging services request.")
+    public String getImagingRequestBillingItemID() {
+        return imagingRequestBillingItemID;
     }
-    ImagingServicesFeeEvent imagingServicesFeeEvent = (ImagingServicesFeeEvent) o;
-    return Objects.equals(this.imagingRequestBillingItemID, imagingServicesFeeEvent.imagingRequestBillingItemID) &&
-        Objects.equals(this.ASIN, imagingServicesFeeEvent.ASIN) &&
-        Objects.equals(this.postedDate, imagingServicesFeeEvent.postedDate) &&
-        Objects.equals(this.feeList, imagingServicesFeeEvent.feeList);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(imagingRequestBillingItemID, ASIN, postedDate, feeList);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ImagingServicesFeeEvent {\n");
-    
-    sb.append("    imagingRequestBillingItemID: ").append(toIndentedString(imagingRequestBillingItemID)).append("\n");
-    sb.append("    ASIN: ").append(toIndentedString(ASIN)).append("\n");
-    sb.append("    postedDate: ").append(toIndentedString(postedDate)).append("\n");
-    sb.append("    feeList: ").append(toIndentedString(feeList)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setImagingRequestBillingItemID(String imagingRequestBillingItemID) {
+        this.imagingRequestBillingItemID = imagingRequestBillingItemID;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public ImagingServicesFeeEvent ASIN(String ASIN) {
+        this.ASIN = ASIN;
+        return this;
+    }
+
+    /**
+     * The Amazon Standard Identification Number (ASIN) of the item for which the imaging service was requested.
+     * @return ASIN
+     **/
+    @ApiModelProperty(value = "The Amazon Standard Identification Number (ASIN) of the item for which the imaging service was requested.")
+    public String getASIN() {
+        return ASIN;
+    }
+
+    public void setASIN(String ASIN) {
+        this.ASIN = ASIN;
+    }
+
+    public ImagingServicesFeeEvent postedDate(String postedDate) {
+        this.postedDate = postedDate;
+        return this;
+    }
+
+    /**
+     * The date and time when the financial event was posted.
+     * @return postedDate
+     **/
+    @ApiModelProperty(value = "The date and time when the financial event was posted.")
+    public String getPostedDate() {
+        return postedDate;
+    }
+
+    public void setPostedDate(String postedDate) {
+        this.postedDate = postedDate;
+    }
+
+    public ImagingServicesFeeEvent feeList(FeeComponentList feeList) {
+        this.feeList = feeList;
+        return this;
+    }
+
+    /**
+     * A list of fees associated with the event.
+     * @return feeList
+     **/
+    @ApiModelProperty(value = "A list of fees associated with the event.")
+    public FeeComponentList getFeeList() {
+        return feeList;
+    }
+
+    public void setFeeList(FeeComponentList feeList) {
+        this.feeList = feeList;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ImagingServicesFeeEvent imagingServicesFeeEvent = (ImagingServicesFeeEvent) o;
+        return Objects.equals(this.imagingRequestBillingItemID, imagingServicesFeeEvent.imagingRequestBillingItemID) &&
+                Objects.equals(this.ASIN, imagingServicesFeeEvent.ASIN) &&
+                Objects.equals(this.postedDate, imagingServicesFeeEvent.postedDate) &&
+                Objects.equals(this.feeList, imagingServicesFeeEvent.feeList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(imagingRequestBillingItemID, ASIN, postedDate, feeList);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ImagingServicesFeeEvent {\n");
+
+        sb.append("    imagingRequestBillingItemID: ").append(toIndentedString(imagingRequestBillingItemID)).append("\n");
+        sb.append("    ASIN: ").append(toIndentedString(ASIN)).append("\n");
+        sb.append("    postedDate: ").append(toIndentedString(postedDate)).append("\n");
+        sb.append("    feeList: ").append(toIndentedString(feeList)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 
