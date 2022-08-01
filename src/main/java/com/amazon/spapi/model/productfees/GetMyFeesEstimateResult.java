@@ -14,16 +14,11 @@
 package com.amazon.spapi.model.productfees;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.productfees.FeesEstimateResult;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * Response schema.
@@ -31,66 +26,66 @@ import java.io.IOException;
 @ApiModel(description = "Response schema.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:52:41.175+08:00")
 public class GetMyFeesEstimateResult {
-  @SerializedName("FeesEstimateResult")
-  private FeesEstimateResult feesEstimateResult = null;
+    @SerializedName("FeesEstimateResult")
+    private FeesEstimateResult feesEstimateResult = null;
 
-  public GetMyFeesEstimateResult feesEstimateResult(FeesEstimateResult feesEstimateResult) {
-    this.feesEstimateResult = feesEstimateResult;
-    return this;
-  }
-
-   /**
-   * The item&#39;s estimated fees.
-   * @return feesEstimateResult
-  **/
-  @ApiModelProperty(value = "The item's estimated fees.")
-  public FeesEstimateResult getFeesEstimateResult() {
-    return feesEstimateResult;
-  }
-
-  public void setFeesEstimateResult(FeesEstimateResult feesEstimateResult) {
-    this.feesEstimateResult = feesEstimateResult;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public GetMyFeesEstimateResult feesEstimateResult(FeesEstimateResult feesEstimateResult) {
+        this.feesEstimateResult = feesEstimateResult;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The item&#39;s estimated fees.
+     * @return feesEstimateResult
+     **/
+    @ApiModelProperty(value = "The item's estimated fees.")
+    public FeesEstimateResult getFeesEstimateResult() {
+        return feesEstimateResult;
     }
-    GetMyFeesEstimateResult getMyFeesEstimateResult = (GetMyFeesEstimateResult) o;
-    return Objects.equals(this.feesEstimateResult, getMyFeesEstimateResult.feesEstimateResult);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(feesEstimateResult);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GetMyFeesEstimateResult {\n");
-    
-    sb.append("    feesEstimateResult: ").append(toIndentedString(feesEstimateResult)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setFeesEstimateResult(FeesEstimateResult feesEstimateResult) {
+        this.feesEstimateResult = feesEstimateResult;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetMyFeesEstimateResult getMyFeesEstimateResult = (GetMyFeesEstimateResult) o;
+        return Objects.equals(this.feesEstimateResult, getMyFeesEstimateResult.feesEstimateResult);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(feesEstimateResult);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class GetMyFeesEstimateResult {\n");
+
+        sb.append("    feesEstimateResult: ").append(toIndentedString(feesEstimateResult)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

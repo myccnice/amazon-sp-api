@@ -14,15 +14,11 @@
 package com.amazon.spapi.model.orders;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * The tax classification for the order.
@@ -30,89 +26,89 @@ import java.io.IOException;
 @ApiModel(description = "The tax classification for the order.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:03:19.199+08:00")
 public class TaxClassification {
-  @SerializedName("Name")
-  private String name = null;
+    @SerializedName("Name")
+    private String name = null;
 
-  @SerializedName("Value")
-  private String value = null;
+    @SerializedName("Value")
+    private String value = null;
 
-  public TaxClassification name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The type of tax.
-   * @return name
-  **/
-  @ApiModelProperty(value = "The type of tax.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public TaxClassification value(String value) {
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * The buyer&#39;s tax identifier.
-   * @return value
-  **/
-  @ApiModelProperty(value = "The buyer's tax identifier.")
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
-    this.value = value;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public TaxClassification name(String name) {
+        this.name = name;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The type of tax.
+     * @return name
+     **/
+    @ApiModelProperty(value = "The type of tax.")
+    public String getName() {
+        return name;
     }
-    TaxClassification taxClassification = (TaxClassification) o;
-    return Objects.equals(this.name, taxClassification.name) &&
-        Objects.equals(this.value, taxClassification.value);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(name, value);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class TaxClassification {\n");
-    
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setName(String name) {
+        this.name = name;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public TaxClassification value(String value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * The buyer&#39;s tax identifier.
+     * @return value
+     **/
+    @ApiModelProperty(value = "The buyer's tax identifier.")
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TaxClassification taxClassification = (TaxClassification) o;
+        return Objects.equals(this.name, taxClassification.name) &&
+                Objects.equals(this.value, taxClassification.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, value);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class TaxClassification {\n");
+
+        sb.append("    name: ").append(toIndentedString(name)).append("\n");
+        sb.append("    value: ").append(toIndentedString(value)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 
