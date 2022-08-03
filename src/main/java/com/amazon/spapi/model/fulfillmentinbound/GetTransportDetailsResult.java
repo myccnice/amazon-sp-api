@@ -14,81 +14,76 @@
 package com.amazon.spapi.model.fulfillmentinbound;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * GetTransportDetailsResult
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:38:48.493+08:00")
 public class GetTransportDetailsResult {
-  @SerializedName("TransportContent")
-  private TransportContent transportContent = null;
+    @SerializedName("TransportContent")
+    private TransportContent transportContent = null;
 
-  public GetTransportDetailsResult transportContent(TransportContent transportContent) {
-    this.transportContent = transportContent;
-    return this;
-  }
-
-   /**
-   * Get transportContent
-   * @return transportContent
-  **/
-  @ApiModelProperty(value = "")
-  public TransportContent getTransportContent() {
-    return transportContent;
-  }
-
-  public void setTransportContent(TransportContent transportContent) {
-    this.transportContent = transportContent;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public GetTransportDetailsResult transportContent(TransportContent transportContent) {
+        this.transportContent = transportContent;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get transportContent
+     * @return transportContent
+     **/
+    @ApiModelProperty(value = "")
+    public TransportContent getTransportContent() {
+        return transportContent;
     }
-    GetTransportDetailsResult getTransportDetailsResult = (GetTransportDetailsResult) o;
-    return Objects.equals(this.transportContent, getTransportDetailsResult.transportContent);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(transportContent);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GetTransportDetailsResult {\n");
-    
-    sb.append("    transportContent: ").append(toIndentedString(transportContent)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setTransportContent(TransportContent transportContent) {
+        this.transportContent = transportContent;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetTransportDetailsResult getTransportDetailsResult = (GetTransportDetailsResult) o;
+        return Objects.equals(this.transportContent, getTransportDetailsResult.transportContent);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(transportContent);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class GetTransportDetailsResult {\n");
+
+        sb.append("    transportContent: ").append(toIndentedString(transportContent)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

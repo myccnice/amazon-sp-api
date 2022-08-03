@@ -13,12 +13,8 @@
 
 package com.amazon.spapi.model.fulfillmentinbound;
 
-import java.util.Objects;
-import java.util.Arrays;
-import io.swagger.annotations.ApiModel;
-import com.google.gson.annotations.SerializedName;
-
 import java.io.IOException;
+
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
@@ -29,48 +25,48 @@ import com.google.gson.stream.JsonWriter;
  */
 @JsonAdapter(IntendedBoxContentsSource.Adapter.class)
 public enum IntendedBoxContentsSource {
-  
-  NONE("NONE"),
-  
-  FEED("FEED"),
-  
-  _2D_BARCODE("2D_BARCODE");
 
-  private String value;
+    NONE("NONE"),
 
-  IntendedBoxContentsSource(String value) {
-    this.value = value;
-  }
+    FEED("FEED"),
 
-  public String getValue() {
-    return value;
-  }
+    _2D_BARCODE("2D_BARCODE");
 
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
+    private String value;
 
-  public static IntendedBoxContentsSource fromValue(String text) {
-    for (IntendedBoxContentsSource b : IntendedBoxContentsSource.values()) {
-      if (String.valueOf(b.value).equals(text)) {
-        return b;
-      }
+    IntendedBoxContentsSource(String value) {
+        this.value = value;
     }
-    return null;
-  }
 
-  public static class Adapter extends TypeAdapter<IntendedBoxContentsSource> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final IntendedBoxContentsSource enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
+    public String getValue() {
+        return value;
     }
 
     @Override
-    public IntendedBoxContentsSource read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return IntendedBoxContentsSource.fromValue(String.valueOf(value));
+    public String toString() {
+        return String.valueOf(value);
     }
-  }
+
+    public static IntendedBoxContentsSource fromValue(String text) {
+        for (IntendedBoxContentsSource b : IntendedBoxContentsSource.values()) {
+            if (String.valueOf(b.value).equals(text)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public static class Adapter extends TypeAdapter<IntendedBoxContentsSource> {
+        @Override
+        public void write(final JsonWriter jsonWriter, final IntendedBoxContentsSource enumeration) throws IOException {
+            jsonWriter.value(enumeration.getValue());
+        }
+
+        @Override
+        public IntendedBoxContentsSource read(final JsonReader jsonReader) throws IOException {
+            String value = jsonReader.nextString();
+            return IntendedBoxContentsSource.fromValue(String.valueOf(value));
+        }
+    }
 }
 

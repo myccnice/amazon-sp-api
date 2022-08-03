@@ -13,11 +13,10 @@
 
 package com.amazon.spapi.model.fulfillmentinbound;
 
-import java.util.Objects;
-import java.util.Arrays;
-import io.swagger.annotations.ApiModel;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
+
+import io.swagger.annotations.ApiModel;
 
 /**
  * A list of SKU inbound guidance information.
@@ -26,42 +25,44 @@ import java.util.List;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:38:48.493+08:00")
 public class SKUInboundGuidanceList extends ArrayList<SKUInboundGuidance> {
 
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    private static final long serialVersionUID = 5692081608309503248L;
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        return super.equals(o);
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode());
     }
-    return super.equals(o);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode());
-  }
 
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SKUInboundGuidanceList {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class SKUInboundGuidanceList {\n");
+        sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+        sb.append("}");
+        return sb.toString();
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

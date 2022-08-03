@@ -14,15 +14,11 @@
 package com.amazon.spapi.model.fulfillmentinbound;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * Contact information for the person in the seller&#39;s organization who is responsible for a Less Than Truckload/Full Truckload (LTL/FTL) shipment.
@@ -30,135 +26,135 @@ import java.io.IOException;
 @ApiModel(description = "Contact information for the person in the seller's organization who is responsible for a Less Than Truckload/Full Truckload (LTL/FTL) shipment.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:38:48.493+08:00")
 public class Contact {
-  @SerializedName("Name")
-  private String name = null;
+    @SerializedName("Name")
+    private String name = null;
 
-  @SerializedName("Phone")
-  private String phone = null;
+    @SerializedName("Phone")
+    private String phone = null;
 
-  @SerializedName("Email")
-  private String email = null;
+    @SerializedName("Email")
+    private String email = null;
 
-  @SerializedName("Fax")
-  private String fax = null;
+    @SerializedName("Fax")
+    private String fax = null;
 
-  public Contact name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the contact person.
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "The name of the contact person.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Contact phone(String phone) {
-    this.phone = phone;
-    return this;
-  }
-
-   /**
-   * The phone number of the contact person.
-   * @return phone
-  **/
-  @ApiModelProperty(required = true, value = "The phone number of the contact person.")
-  public String getPhone() {
-    return phone;
-  }
-
-  public void setPhone(String phone) {
-    this.phone = phone;
-  }
-
-  public Contact email(String email) {
-    this.email = email;
-    return this;
-  }
-
-   /**
-   * The email address of the contact person.
-   * @return email
-  **/
-  @ApiModelProperty(required = true, value = "The email address of the contact person.")
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public Contact fax(String fax) {
-    this.fax = fax;
-    return this;
-  }
-
-   /**
-   * The fax number of the contact person.
-   * @return fax
-  **/
-  @ApiModelProperty(value = "The fax number of the contact person.")
-  public String getFax() {
-    return fax;
-  }
-
-  public void setFax(String fax) {
-    this.fax = fax;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public Contact name(String name) {
+        this.name = name;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The name of the contact person.
+     * @return name
+     **/
+    @ApiModelProperty(required = true, value = "The name of the contact person.")
+    public String getName() {
+        return name;
     }
-    Contact contact = (Contact) o;
-    return Objects.equals(this.name, contact.name) &&
-        Objects.equals(this.phone, contact.phone) &&
-        Objects.equals(this.email, contact.email) &&
-        Objects.equals(this.fax, contact.fax);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(name, phone, email, fax);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Contact {\n");
-    
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
-    sb.append("    email: ").append(toIndentedString(email)).append("\n");
-    sb.append("    fax: ").append(toIndentedString(fax)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setName(String name) {
+        this.name = name;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public Contact phone(String phone) {
+        this.phone = phone;
+        return this;
+    }
+
+    /**
+     * The phone number of the contact person.
+     * @return phone
+     **/
+    @ApiModelProperty(required = true, value = "The phone number of the contact person.")
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Contact email(String email) {
+        this.email = email;
+        return this;
+    }
+
+    /**
+     * The email address of the contact person.
+     * @return email
+     **/
+    @ApiModelProperty(required = true, value = "The email address of the contact person.")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Contact fax(String fax) {
+        this.fax = fax;
+        return this;
+    }
+
+    /**
+     * The fax number of the contact person.
+     * @return fax
+     **/
+    @ApiModelProperty(value = "The fax number of the contact person.")
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Contact contact = (Contact) o;
+        return Objects.equals(this.name, contact.name) &&
+                Objects.equals(this.phone, contact.phone) &&
+                Objects.equals(this.email, contact.email) &&
+                Objects.equals(this.fax, contact.fax);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, phone, email, fax);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class Contact {\n");
+
+        sb.append("    name: ").append(toIndentedString(name)).append("\n");
+        sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
+        sb.append("    email: ").append(toIndentedString(email)).append("\n");
+        sb.append("    fax: ").append(toIndentedString(fax)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

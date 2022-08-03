@@ -14,15 +14,11 @@
 package com.amazon.spapi.model.fulfillmentinbound;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * The workflow status for a shipment with an Amazon-partnered carrier.
@@ -30,112 +26,112 @@ import java.io.IOException;
 @ApiModel(description = "The workflow status for a shipment with an Amazon-partnered carrier.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:38:48.493+08:00")
 public class TransportResult {
-  @SerializedName("TransportStatus")
-  private TransportStatus transportStatus = null;
+    @SerializedName("TransportStatus")
+    private TransportStatus transportStatus = null;
 
-  @SerializedName("ErrorCode")
-  private String errorCode = null;
+    @SerializedName("ErrorCode")
+    private String errorCode = null;
 
-  @SerializedName("ErrorDescription")
-  private String errorDescription = null;
+    @SerializedName("ErrorDescription")
+    private String errorDescription = null;
 
-  public TransportResult transportStatus(TransportStatus transportStatus) {
-    this.transportStatus = transportStatus;
-    return this;
-  }
-
-   /**
-   * Get transportStatus
-   * @return transportStatus
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public TransportStatus getTransportStatus() {
-    return transportStatus;
-  }
-
-  public void setTransportStatus(TransportStatus transportStatus) {
-    this.transportStatus = transportStatus;
-  }
-
-  public TransportResult errorCode(String errorCode) {
-    this.errorCode = errorCode;
-    return this;
-  }
-
-   /**
-   * An error code that identifies the type of error that occured.
-   * @return errorCode
-  **/
-  @ApiModelProperty(value = "An error code that identifies the type of error that occured.")
-  public String getErrorCode() {
-    return errorCode;
-  }
-
-  public void setErrorCode(String errorCode) {
-    this.errorCode = errorCode;
-  }
-
-  public TransportResult errorDescription(String errorDescription) {
-    this.errorDescription = errorDescription;
-    return this;
-  }
-
-   /**
-   * A message that describes the error condition.
-   * @return errorDescription
-  **/
-  @ApiModelProperty(value = "A message that describes the error condition.")
-  public String getErrorDescription() {
-    return errorDescription;
-  }
-
-  public void setErrorDescription(String errorDescription) {
-    this.errorDescription = errorDescription;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public TransportResult transportStatus(TransportStatus transportStatus) {
+        this.transportStatus = transportStatus;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get transportStatus
+     * @return transportStatus
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public TransportStatus getTransportStatus() {
+        return transportStatus;
     }
-    TransportResult transportResult = (TransportResult) o;
-    return Objects.equals(this.transportStatus, transportResult.transportStatus) &&
-        Objects.equals(this.errorCode, transportResult.errorCode) &&
-        Objects.equals(this.errorDescription, transportResult.errorDescription);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(transportStatus, errorCode, errorDescription);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class TransportResult {\n");
-    
-    sb.append("    transportStatus: ").append(toIndentedString(transportStatus)).append("\n");
-    sb.append("    errorCode: ").append(toIndentedString(errorCode)).append("\n");
-    sb.append("    errorDescription: ").append(toIndentedString(errorDescription)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setTransportStatus(TransportStatus transportStatus) {
+        this.transportStatus = transportStatus;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public TransportResult errorCode(String errorCode) {
+        this.errorCode = errorCode;
+        return this;
+    }
+
+    /**
+     * An error code that identifies the type of error that occured.
+     * @return errorCode
+     **/
+    @ApiModelProperty(value = "An error code that identifies the type of error that occured.")
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public TransportResult errorDescription(String errorDescription) {
+        this.errorDescription = errorDescription;
+        return this;
+    }
+
+    /**
+     * A message that describes the error condition.
+     * @return errorDescription
+     **/
+    @ApiModelProperty(value = "A message that describes the error condition.")
+    public String getErrorDescription() {
+        return errorDescription;
+    }
+
+    public void setErrorDescription(String errorDescription) {
+        this.errorDescription = errorDescription;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TransportResult transportResult = (TransportResult) o;
+        return Objects.equals(this.transportStatus, transportResult.transportStatus) &&
+                Objects.equals(this.errorCode, transportResult.errorCode) &&
+                Objects.equals(this.errorDescription, transportResult.errorDescription);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(transportStatus, errorCode, errorDescription);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class TransportResult {\n");
+
+        sb.append("    transportStatus: ").append(toIndentedString(transportStatus)).append("\n");
+        sb.append("    errorCode: ").append(toIndentedString(errorCode)).append("\n");
+        sb.append("    errorDescription: ").append(toIndentedString(errorDescription)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

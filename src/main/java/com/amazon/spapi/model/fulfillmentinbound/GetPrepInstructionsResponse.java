@@ -14,16 +14,12 @@
 package com.amazon.spapi.model.fulfillmentinbound;
 
 import java.util.Objects;
-import java.util.Arrays;
+
 import com.amazon.spapi.model.ErrorList;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * The response schema for the getPrepInstructions operation.
@@ -31,89 +27,89 @@ import java.io.IOException;
 @ApiModel(description = "The response schema for the getPrepInstructions operation.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:38:48.493+08:00")
 public class GetPrepInstructionsResponse {
-  @SerializedName("payload")
-  private GetPrepInstructionsResult payload = null;
+    @SerializedName("payload")
+    private GetPrepInstructionsResult payload = null;
 
-  @SerializedName("errors")
-  private ErrorList errors = null;
+    @SerializedName("errors")
+    private ErrorList errors = null;
 
-  public GetPrepInstructionsResponse payload(GetPrepInstructionsResult payload) {
-    this.payload = payload;
-    return this;
-  }
-
-   /**
-   * The payload for the getPrepInstructions operation.
-   * @return payload
-  **/
-  @ApiModelProperty(value = "The payload for the getPrepInstructions operation.")
-  public GetPrepInstructionsResult getPayload() {
-    return payload;
-  }
-
-  public void setPayload(GetPrepInstructionsResult payload) {
-    this.payload = payload;
-  }
-
-  public GetPrepInstructionsResponse errors(ErrorList errors) {
-    this.errors = errors;
-    return this;
-  }
-
-   /**
-   * Get errors
-   * @return errors
-  **/
-  @ApiModelProperty(value = "")
-  public ErrorList getErrors() {
-    return errors;
-  }
-
-  public void setErrors(ErrorList errors) {
-    this.errors = errors;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public GetPrepInstructionsResponse payload(GetPrepInstructionsResult payload) {
+        this.payload = payload;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The payload for the getPrepInstructions operation.
+     * @return payload
+     **/
+    @ApiModelProperty(value = "The payload for the getPrepInstructions operation.")
+    public GetPrepInstructionsResult getPayload() {
+        return payload;
     }
-    GetPrepInstructionsResponse getPrepInstructionsResponse = (GetPrepInstructionsResponse) o;
-    return Objects.equals(this.payload, getPrepInstructionsResponse.payload) &&
-        Objects.equals(this.errors, getPrepInstructionsResponse.errors);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(payload, errors);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GetPrepInstructionsResponse {\n");
-    
-    sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setPayload(GetPrepInstructionsResult payload) {
+        this.payload = payload;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public GetPrepInstructionsResponse errors(ErrorList errors) {
+        this.errors = errors;
+        return this;
+    }
+
+    /**
+     * Get errors
+     * @return errors
+     **/
+    @ApiModelProperty(value = "")
+    public ErrorList getErrors() {
+        return errors;
+    }
+
+    public void setErrors(ErrorList errors) {
+        this.errors = errors;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetPrepInstructionsResponse getPrepInstructionsResponse = (GetPrepInstructionsResponse) o;
+        return Objects.equals(this.payload, getPrepInstructionsResponse.payload) &&
+                Objects.equals(this.errors, getPrepInstructionsResponse.errors);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(payload, errors);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class GetPrepInstructionsResponse {\n");
+
+        sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
+        sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

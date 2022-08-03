@@ -14,15 +14,11 @@
 package com.amazon.spapi.model.fulfillmentinbound;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * Information that is required by an Amazon-partnered carrier to ship a Small Parcel inbound shipment.
@@ -30,89 +26,89 @@ import java.io.IOException;
 @ApiModel(description = "Information that is required by an Amazon-partnered carrier to ship a Small Parcel inbound shipment.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:38:48.493+08:00")
 public class PartneredSmallParcelDataInput {
-  @SerializedName("PackageList")
-  private PartneredSmallParcelPackageInputList packageList = null;
+    @SerializedName("PackageList")
+    private PartneredSmallParcelPackageInputList packageList = null;
 
-  @SerializedName("CarrierName")
-  private String carrierName = null;
+    @SerializedName("CarrierName")
+    private String carrierName = null;
 
-  public PartneredSmallParcelDataInput packageList(PartneredSmallParcelPackageInputList packageList) {
-    this.packageList = packageList;
-    return this;
-  }
-
-   /**
-   * Get packageList
-   * @return packageList
-  **/
-  @ApiModelProperty(value = "")
-  public PartneredSmallParcelPackageInputList getPackageList() {
-    return packageList;
-  }
-
-  public void setPackageList(PartneredSmallParcelPackageInputList packageList) {
-    this.packageList = packageList;
-  }
-
-  public PartneredSmallParcelDataInput carrierName(String carrierName) {
-    this.carrierName = carrierName;
-    return this;
-  }
-
-   /**
-   * The Amazon-partnered carrier to use for the inbound shipment.
-   * @return carrierName
-  **/
-  @ApiModelProperty(value = "The Amazon-partnered carrier to use for the inbound shipment.")
-  public String getCarrierName() {
-    return carrierName;
-  }
-
-  public void setCarrierName(String carrierName) {
-    this.carrierName = carrierName;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public PartneredSmallParcelDataInput packageList(PartneredSmallParcelPackageInputList packageList) {
+        this.packageList = packageList;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get packageList
+     * @return packageList
+     **/
+    @ApiModelProperty(value = "")
+    public PartneredSmallParcelPackageInputList getPackageList() {
+        return packageList;
     }
-    PartneredSmallParcelDataInput partneredSmallParcelDataInput = (PartneredSmallParcelDataInput) o;
-    return Objects.equals(this.packageList, partneredSmallParcelDataInput.packageList) &&
-        Objects.equals(this.carrierName, partneredSmallParcelDataInput.carrierName);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(packageList, carrierName);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PartneredSmallParcelDataInput {\n");
-    
-    sb.append("    packageList: ").append(toIndentedString(packageList)).append("\n");
-    sb.append("    carrierName: ").append(toIndentedString(carrierName)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setPackageList(PartneredSmallParcelPackageInputList packageList) {
+        this.packageList = packageList;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public PartneredSmallParcelDataInput carrierName(String carrierName) {
+        this.carrierName = carrierName;
+        return this;
+    }
+
+    /**
+     * The Amazon-partnered carrier to use for the inbound shipment.
+     * @return carrierName
+     **/
+    @ApiModelProperty(value = "The Amazon-partnered carrier to use for the inbound shipment.")
+    public String getCarrierName() {
+        return carrierName;
+    }
+
+    public void setCarrierName(String carrierName) {
+        this.carrierName = carrierName;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PartneredSmallParcelDataInput partneredSmallParcelDataInput = (PartneredSmallParcelDataInput) o;
+        return Objects.equals(this.packageList, partneredSmallParcelDataInput.packageList) &&
+                Objects.equals(this.carrierName, partneredSmallParcelDataInput.carrierName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(packageList, carrierName);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class PartneredSmallParcelDataInput {\n");
+
+        sb.append("    packageList: ").append(toIndentedString(packageList)).append("\n");
+        sb.append("    carrierName: ").append(toIndentedString(carrierName)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

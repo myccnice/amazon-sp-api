@@ -80,7 +80,7 @@ public class MerchantFulfillmentApi {
 
         // create path and map variables
         String localVarPath = "/mfn/v0/shipments/{shipmentId}"
-            .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()));
+                .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -90,13 +90,13 @@ public class MerchantFulfillmentApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -107,8 +107,8 @@ public class MerchantFulfillmentApi {
                 public Response intercept(Interceptor.Chain chain) throws IOException {
                     Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -198,7 +198,7 @@ public class MerchantFulfillmentApi {
 
         // create path and map variables
         String localVarPath = "/mfn/v0/shipments/{shipmentId}/cancel"
-            .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()));
+                .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -208,13 +208,13 @@ public class MerchantFulfillmentApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -225,8 +225,8 @@ public class MerchantFulfillmentApi {
                 public Response intercept(Interceptor.Chain chain) throws IOException {
                     Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -325,13 +325,13 @@ public class MerchantFulfillmentApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -342,8 +342,8 @@ public class MerchantFulfillmentApi {
                 public Response intercept(Interceptor.Chain chain) throws IOException {
                     Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -442,13 +442,13 @@ public class MerchantFulfillmentApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -459,8 +459,8 @@ public class MerchantFulfillmentApi {
                 public Response intercept(Interceptor.Chain chain) throws IOException {
                     Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -559,13 +559,13 @@ public class MerchantFulfillmentApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -576,8 +576,8 @@ public class MerchantFulfillmentApi {
                 public Response intercept(Interceptor.Chain chain) throws IOException {
                     Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -676,13 +676,13 @@ public class MerchantFulfillmentApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -693,8 +693,8 @@ public class MerchantFulfillmentApi {
                 public Response intercept(Interceptor.Chain chain) throws IOException {
                     Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -793,13 +793,13 @@ public class MerchantFulfillmentApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -810,8 +810,8 @@ public class MerchantFulfillmentApi {
                 public Response intercept(Interceptor.Chain chain) throws IOException {
                     Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -901,7 +901,7 @@ public class MerchantFulfillmentApi {
 
         // create path and map variables
         String localVarPath = "/mfn/v0/shipments/{shipmentId}"
-            .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()));
+                .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -911,13 +911,13 @@ public class MerchantFulfillmentApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -928,8 +928,8 @@ public class MerchantFulfillmentApi {
                 public Response intercept(Interceptor.Chain chain) throws IOException {
                     Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -1029,22 +1029,22 @@ public class MerchantFulfillmentApi {
             this.endpoint = endpoint;
             return this;
         }
-        
+
         public Builder lwaAccessTokenCache(LWAAccessTokenCache lwaAccessTokenCache) {
             this.lwaAccessTokenCache = lwaAccessTokenCache;
             return this;
         }
-		
-	   public Builder disableAccessTokenCache() {
+
+        public Builder disableAccessTokenCache() {
             this.disableAccessTokenCache = true;
             return this;
         }
-        
+
         public Builder awsAuthenticationCredentialsProvider(AWSAuthenticationCredentialsProvider awsAuthenticationCredentialsProvider) {
             this.awsAuthenticationCredentialsProvider = awsAuthenticationCredentialsProvider;
             return this;
         }
-        
+
 
         public MerchantFulfillmentApi build() {
             if (awsAuthenticationCredentials == null) {
@@ -1066,7 +1066,7 @@ public class MerchantFulfillmentApi {
             else {
                 awsSigV4Signer = new AWSSigV4Signer(awsAuthenticationCredentials,awsAuthenticationCredentialsProvider);
             }
-            
+
             LWAAuthorizationSigner lwaAuthorizationSigner = null;            
             if (disableAccessTokenCache) {
                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials);
@@ -1074,14 +1074,14 @@ public class MerchantFulfillmentApi {
             else {
                 if (lwaAccessTokenCache == null) {
                     lwaAccessTokenCache = new LWAAccessTokenCacheImpl();                  
-                 }
-                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
+                }
+                lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
             }
 
             return new MerchantFulfillmentApi(new ApiClient()
-                .setAWSSigV4Signer(awsSigV4Signer)
-                .setLWAAuthorizationSigner(lwaAuthorizationSigner)
-                .setBasePath(endpoint));
+                    .setAWSSigV4Signer(awsSigV4Signer)
+                    .setLWAAuthorizationSigner(lwaAuthorizationSigner)
+                    .setBasePath(endpoint));
         }
     }
 }

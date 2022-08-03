@@ -13,12 +13,8 @@
 
 package com.amazon.spapi.model.fulfillmentinbound;
 
-import java.util.Objects;
-import java.util.Arrays;
-import io.swagger.annotations.ApiModel;
-import com.google.gson.annotations.SerializedName;
-
 import java.io.IOException;
+
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
@@ -29,48 +25,48 @@ import com.google.gson.stream.JsonWriter;
  */
 @JsonAdapter(BarcodeInstruction.Adapter.class)
 public enum BarcodeInstruction {
-  
-  REQUIRESFNSKULABEL("RequiresFNSKULabel"),
-  
-  CANUSEORIGINALBARCODE("CanUseOriginalBarcode"),
-  
-  MUSTPROVIDESELLERSKU("MustProvideSellerSKU");
 
-  private String value;
+    REQUIRESFNSKULABEL("RequiresFNSKULabel"),
 
-  BarcodeInstruction(String value) {
-    this.value = value;
-  }
+    CANUSEORIGINALBARCODE("CanUseOriginalBarcode"),
 
-  public String getValue() {
-    return value;
-  }
+    MUSTPROVIDESELLERSKU("MustProvideSellerSKU");
 
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
+    private String value;
 
-  public static BarcodeInstruction fromValue(String text) {
-    for (BarcodeInstruction b : BarcodeInstruction.values()) {
-      if (String.valueOf(b.value).equals(text)) {
-        return b;
-      }
+    BarcodeInstruction(String value) {
+        this.value = value;
     }
-    return null;
-  }
 
-  public static class Adapter extends TypeAdapter<BarcodeInstruction> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final BarcodeInstruction enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
+    public String getValue() {
+        return value;
     }
 
     @Override
-    public BarcodeInstruction read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return BarcodeInstruction.fromValue(String.valueOf(value));
+    public String toString() {
+        return String.valueOf(value);
     }
-  }
+
+    public static BarcodeInstruction fromValue(String text) {
+        for (BarcodeInstruction b : BarcodeInstruction.values()) {
+            if (String.valueOf(b.value).equals(text)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public static class Adapter extends TypeAdapter<BarcodeInstruction> {
+        @Override
+        public void write(final JsonWriter jsonWriter, final BarcodeInstruction enumeration) throws IOException {
+            jsonWriter.value(enumeration.getValue());
+        }
+
+        @Override
+        public BarcodeInstruction read(final JsonReader jsonReader) throws IOException {
+            String value = jsonReader.nextString();
+            return BarcodeInstruction.fromValue(String.valueOf(value));
+        }
+    }
 }
 

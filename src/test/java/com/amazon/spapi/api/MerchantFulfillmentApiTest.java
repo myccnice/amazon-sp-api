@@ -13,6 +13,9 @@
 
 package com.amazon.spapi.api;
 
+import org.junit.Ignore;
+import org.junit.Test;
+
 import com.amazon.spapi.client.ApiException;
 import com.amazon.spapi.model.merchantfulfillment.CancelShipmentResponse;
 import com.amazon.spapi.model.merchantfulfillment.CreateShipmentRequest;
@@ -22,13 +25,6 @@ import com.amazon.spapi.model.merchantfulfillment.GetAdditionalSellerInputsRespo
 import com.amazon.spapi.model.merchantfulfillment.GetEligibleShipmentServicesRequest;
 import com.amazon.spapi.model.merchantfulfillment.GetEligibleShipmentServicesResponse;
 import com.amazon.spapi.model.merchantfulfillment.GetShipmentResponse;
-import org.junit.Test;
-import org.junit.Ignore;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for MerchantFulfillmentApi
