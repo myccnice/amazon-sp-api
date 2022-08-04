@@ -1,5 +1,7 @@
 package com.amazon.spapi.custom.constant;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
@@ -12,6 +14,7 @@ import lombok.Getter;
  * @date: 2022年5月20日 上午11:19:07
  */
 @Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum SpApiEndPoint {
 
     // 北美（加拿大、美国、墨西哥和巴西商城）
@@ -20,11 +23,6 @@ public enum SpApiEndPoint {
     EUROPE("eu-west-1", "https://sellingpartnerapi-eu.amazon.com"),
     // 远东（新加坡、澳大利亚和日本商城）
     FAR_EAST("us-west-2", "https://sellingpartnerapi-fe.amazon.com");
-
-    private SpApiEndPoint(String region, String endpoint) {
-        this.region = region;
-        this.endpoint = endpoint;
-    }
 
     /**
      * AWS 区域
