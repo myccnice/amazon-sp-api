@@ -1,11 +1,14 @@
 package com.amazon.spapi.custom.constant;
 
+import lombok.Getter;
+
 /**
  * marketplaceId 标识了请求的商城
  *
  * @author: wangpeng
  * @date: 2022年5月25日 下午4:43:20
  */
+@Getter
 public enum MarketplaceId {
 
     /**
@@ -59,18 +62,6 @@ public enum MarketplaceId {
         this.id = id;
         this.marketplaceId = marketplaceId;
         this.endPoint = endPoint;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getMarketplaceId() {
-        return marketplaceId;
-    }
-
-    public SpApiEndPoint getEndPoint() {
-        return endPoint;
     }
 
     public static MarketplaceId of(int country) {
