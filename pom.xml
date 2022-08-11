@@ -7,7 +7,7 @@
 
     <groupId>com.amazon</groupId>
     <artifactId>amazon-sp-api</artifactId>
-    <version>20220804</version>
+    <version>20220811</version>
     <packaging>jar</packaging>
 
     <properties>
