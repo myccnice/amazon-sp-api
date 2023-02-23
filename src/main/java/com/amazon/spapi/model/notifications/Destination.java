@@ -1,6 +1,6 @@
 /*
  * Selling Partner API for Notifications
- * The Selling Partner API for Notifications lets you subscribe to notifications that are relevant to a selling partner's business. Using this API you can create a destination to receive notifications, subscribe to notifications, delete notification subscriptions, and more.
+ * The Selling Partner API for Notifications lets you subscribe to notifications that are relevant to a selling partner's business. Using this API you can create a destination to receive notifications, subscribe to notifications, delete notification subscriptions, and more.  For more information, see the [Notifications Use Case Guide](doc:notifications-api-v1-use-case-guide).
  *
  * OpenAPI spec version: v1
  * 
@@ -14,129 +14,124 @@
 package com.amazon.spapi.model.notifications;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.amazon.spapi.model.notifications.DestinationResource;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * Represents a destination created when you call the createDestination operation.
  */
 @ApiModel(description = "Represents a destination created when you call the createDestination operation.")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-12-15T20:51:27.111+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-23T15:26:17.838+08:00")
 public class Destination {
-  @SerializedName("name")
-  private String name = null;
+    @SerializedName("name")
+    private String name = null;
 
-  @SerializedName("destinationId")
-  private String destinationId = null;
+    @SerializedName("destinationId")
+    private String destinationId = null;
 
-  @SerializedName("resource")
-  private DestinationResource resource = null;
+    @SerializedName("resource")
+    private DestinationResource resource = null;
 
-  public Destination name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The developer-defined name for this destination.
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "The developer-defined name for this destination.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Destination destinationId(String destinationId) {
-    this.destinationId = destinationId;
-    return this;
-  }
-
-   /**
-   * The destination identifier generated when you created the destination.
-   * @return destinationId
-  **/
-  @ApiModelProperty(required = true, value = "The destination identifier generated when you created the destination.")
-  public String getDestinationId() {
-    return destinationId;
-  }
-
-  public void setDestinationId(String destinationId) {
-    this.destinationId = destinationId;
-  }
-
-  public Destination resource(DestinationResource resource) {
-    this.resource = resource;
-    return this;
-  }
-
-   /**
-   * The resource that will receive notifications associated with this destination.
-   * @return resource
-  **/
-  @ApiModelProperty(required = true, value = "The resource that will receive notifications associated with this destination.")
-  public DestinationResource getResource() {
-    return resource;
-  }
-
-  public void setResource(DestinationResource resource) {
-    this.resource = resource;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public Destination name(String name) {
+        this.name = name;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The developer-defined name for this destination.
+     * @return name
+     **/
+    @ApiModelProperty(required = true, value = "The developer-defined name for this destination.")
+    public String getName() {
+        return name;
     }
-    Destination destination = (Destination) o;
-    return Objects.equals(this.name, destination.name) &&
-        Objects.equals(this.destinationId, destination.destinationId) &&
-        Objects.equals(this.resource, destination.resource);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(name, destinationId, resource);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Destination {\n");
-    
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    destinationId: ").append(toIndentedString(destinationId)).append("\n");
-    sb.append("    resource: ").append(toIndentedString(resource)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setName(String name) {
+        this.name = name;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public Destination destinationId(String destinationId) {
+        this.destinationId = destinationId;
+        return this;
+    }
+
+    /**
+     * The destination identifier generated when you created the destination.
+     * @return destinationId
+     **/
+    @ApiModelProperty(required = true, value = "The destination identifier generated when you created the destination.")
+    public String getDestinationId() {
+        return destinationId;
+    }
+
+    public void setDestinationId(String destinationId) {
+        this.destinationId = destinationId;
+    }
+
+    public Destination resource(DestinationResource resource) {
+        this.resource = resource;
+        return this;
+    }
+
+    /**
+     * The resource that will receive notifications associated with this destination.
+     * @return resource
+     **/
+    @ApiModelProperty(required = true, value = "The resource that will receive notifications associated with this destination.")
+    public DestinationResource getResource() {
+        return resource;
+    }
+
+    public void setResource(DestinationResource resource) {
+        this.resource = resource;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Destination destination = (Destination) o;
+        return Objects.equals(this.name, destination.name) &&
+                Objects.equals(this.destinationId, destination.destinationId) &&
+                Objects.equals(this.resource, destination.resource);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, destinationId, resource);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class Destination {\n");
+
+        sb.append("    name: ").append(toIndentedString(name)).append("\n");
+        sb.append("    destinationId: ").append(toIndentedString(destinationId)).append("\n");
+        sb.append("    resource: ").append(toIndentedString(resource)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

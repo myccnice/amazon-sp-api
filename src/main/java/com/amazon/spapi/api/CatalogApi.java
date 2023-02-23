@@ -13,40 +13,20 @@
 
 package com.amazon.spapi.api;
 
-
+import com.amazon.spapi.client.*;
+import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
+import com.amazon.spapi.model.catalogitems.Item;
+import com.amazon.spapi.model.catalogitems.ItemSearchResults;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentials;
-import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
-import com.amazon.spapi.SellingPartnerAPIAA.AWSSigV4Signer;
-import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCache;
-import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
-import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
-import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationSigner;
-import com.amazon.spapi.client.ApiCallback;
-import com.amazon.spapi.client.ApiClient;
-import com.amazon.spapi.client.ApiException;
-import com.amazon.spapi.client.ApiResponse;
-import com.amazon.spapi.client.Configuration;
-import com.amazon.spapi.client.Pair;
-import com.amazon.spapi.client.ProgressRequestBody;
-import com.amazon.spapi.client.ProgressResponseBody;
-import com.amazon.spapi.client.StringUtil;
-import com.amazon.spapi.model.catalogitems.GetCatalogItemResponse;
-import com.amazon.spapi.model.catalogitems.ListCatalogCategoriesResponse;
-import com.amazon.spapi.model.catalogitems.ListCatalogItemsResponse;
-import com.google.gson.reflect.TypeToken;
-import com.squareup.okhttp.Call;
-import com.squareup.okhttp.Interceptor;
-import com.squareup.okhttp.Response;
+import com.amazon.spapi.SellingPartnerAPIAA.*;
 
-
-public class CatalogApi {
+public class  CatalogApi {
     private ApiClient apiClient;
 
     CatalogApi() {
@@ -67,49 +47,55 @@ public class CatalogApi {
 
     /**
      * Build call for getCatalogItem
-     * @param marketplaceId A marketplace identifier. Specifies the marketplace for the item. (required)
      * @param asin The Amazon Standard Identification Number (ASIN) of the item. (required)
+     * @param marketplaceIds A comma-delimited list of Amazon marketplace identifiers. Data sets in the response contain data only for the specified marketplaces. (required)
+     * @param includedData A comma-delimited list of data sets to include in the response. Default: &#x60;summaries&#x60;. (optional, default to ["summaries"])
+     * @param locale Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace. (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public Call getCatalogItemCall(String marketplaceId, String asin, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getCatalogItemCall(String asin, List<String> marketplaceIds, List<String> includedData, String locale, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/catalog/v0/items/{asin}"
-            .replaceAll("\\{" + "asin" + "\\}", apiClient.escapeString(asin.toString()));
+        String localVarPath = "/catalog/2022-04-01/items/{asin}"
+                .replaceAll("\\{" + "asin" + "\\}", apiClient.escapeString(asin.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (marketplaceId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("MarketplaceId", marketplaceId));
+        if (marketplaceIds != null)
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "marketplaceIds", marketplaceIds));
+        if (includedData != null)
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "includedData", includedData));
+        if (locale != null)
+            localVarQueryParams.addAll(apiClient.parameterToPair("locale", locale));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public Response intercept(Interceptor.Chain chain) throws IOException {
-                    Response originalResponse = chain.proceed(chain.request());
+                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -118,61 +104,67 @@ public class CatalogApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    private Call getCatalogItemValidateBeforeCall(String marketplaceId, String asin, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'marketplaceId' is set
-        if (marketplaceId == null) {
-            throw new ApiException("Missing the required parameter 'marketplaceId' when calling getCatalogItem(Async)");
-        }
-        
+    private com.squareup.okhttp.Call getCatalogItemValidateBeforeCall(String asin, List<String> marketplaceIds, List<String> includedData, String locale, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
         // verify the required parameter 'asin' is set
         if (asin == null) {
             throw new ApiException("Missing the required parameter 'asin' when calling getCatalogItem(Async)");
         }
-        
 
-        Call call = getCatalogItemCall(marketplaceId, asin, progressListener, progressRequestListener);
+        // verify the required parameter 'marketplaceIds' is set
+        if (marketplaceIds == null) {
+            throw new ApiException("Missing the required parameter 'marketplaceIds' when calling getCatalogItem(Async)");
+        }
+
+
+        com.squareup.okhttp.Call call = getCatalogItemCall(asin, marketplaceIds, includedData, locale, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * 
-     * Returns a specified item and its attributes.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 |  For more information, see \&quot;Usage Plans and Rate Limits\&quot; in the Selling Partner API documentation.
-     * @param marketplaceId A marketplace identifier. Specifies the marketplace for the item. (required)
+     * Retrieves details for an item in the Amazon catalog.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 5 | 5 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may observe higher rate and burst values than those shown here. For more information, refer to the [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
      * @param asin The Amazon Standard Identification Number (ASIN) of the item. (required)
-     * @return GetCatalogItemResponse
+     * @param marketplaceIds A comma-delimited list of Amazon marketplace identifiers. Data sets in the response contain data only for the specified marketplaces. (required)
+     * @param includedData A comma-delimited list of data sets to include in the response. Default: &#x60;summaries&#x60;. (optional, default to ["summaries"])
+     * @param locale Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace. (optional)
+     * @return Item
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GetCatalogItemResponse getCatalogItem(String marketplaceId, String asin) throws ApiException {
-        ApiResponse<GetCatalogItemResponse> resp = getCatalogItemWithHttpInfo(marketplaceId, asin);
+    public Item getCatalogItem(String asin, List<String> marketplaceIds, List<String> includedData, String locale) throws ApiException {
+        ApiResponse<Item> resp = getCatalogItemWithHttpInfo(asin, marketplaceIds, includedData, locale);
         return resp.getData();
     }
 
     /**
      * 
-     * Returns a specified item and its attributes.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 |  For more information, see \&quot;Usage Plans and Rate Limits\&quot; in the Selling Partner API documentation.
-     * @param marketplaceId A marketplace identifier. Specifies the marketplace for the item. (required)
+     * Retrieves details for an item in the Amazon catalog.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 5 | 5 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may observe higher rate and burst values than those shown here. For more information, refer to the [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
      * @param asin The Amazon Standard Identification Number (ASIN) of the item. (required)
-     * @return ApiResponse&lt;GetCatalogItemResponse&gt;
+     * @param marketplaceIds A comma-delimited list of Amazon marketplace identifiers. Data sets in the response contain data only for the specified marketplaces. (required)
+     * @param includedData A comma-delimited list of data sets to include in the response. Default: &#x60;summaries&#x60;. (optional, default to ["summaries"])
+     * @param locale Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace. (optional)
+     * @return ApiResponse&lt;Item&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GetCatalogItemResponse> getCatalogItemWithHttpInfo(String marketplaceId, String asin) throws ApiException {
-        Call call = getCatalogItemValidateBeforeCall(marketplaceId, asin, null, null);
-        Type localVarReturnType = new TypeToken<GetCatalogItemResponse>(){}.getType();
+    public ApiResponse<Item> getCatalogItemWithHttpInfo(String asin, List<String> marketplaceIds, List<String> includedData, String locale) throws ApiException {
+        com.squareup.okhttp.Call call = getCatalogItemValidateBeforeCall(asin, marketplaceIds, includedData, locale, null, null);
+        Type localVarReturnType = new TypeToken<Item>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Returns a specified item and its attributes.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 |  For more information, see \&quot;Usage Plans and Rate Limits\&quot; in the Selling Partner API documentation.
-     * @param marketplaceId A marketplace identifier. Specifies the marketplace for the item. (required)
+     * Retrieves details for an item in the Amazon catalog.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 5 | 5 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may observe higher rate and burst values than those shown here. For more information, refer to the [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
      * @param asin The Amazon Standard Identification Number (ASIN) of the item. (required)
+     * @param marketplaceIds A comma-delimited list of Amazon marketplace identifiers. Data sets in the response contain data only for the specified marketplaces. (required)
+     * @param includedData A comma-delimited list of data sets to include in the response. Default: &#x60;summaries&#x60;. (optional, default to ["summaries"])
+     * @param locale Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call getCatalogItemAsync(String marketplaceId, String asin, final ApiCallback<GetCatalogItemResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getCatalogItemAsync(String asin, List<String> marketplaceIds, List<String> includedData, String locale, final ApiCallback<Item> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -193,60 +185,87 @@ public class CatalogApi {
             };
         }
 
-        Call call = getCatalogItemValidateBeforeCall(marketplaceId, asin, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<GetCatalogItemResponse>(){}.getType();
+        com.squareup.okhttp.Call call = getCatalogItemValidateBeforeCall(asin, marketplaceIds, includedData, locale, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Item>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for listCatalogCategories
-     * @param marketplaceId A marketplace identifier. Specifies the marketplace for the item. (required)
-     * @param ASIN The Amazon Standard Identification Number (ASIN) of the item. (optional)
-     * @param sellerSKU Used to identify items in the given marketplace. SellerSKU is qualified by the seller&#39;s SellerId, which is included with every operation that you submit. (optional)
+     * Build call for searchCatalogItems
+     * @param marketplaceIds A comma-delimited list of Amazon marketplace identifiers for the request. (required)
+     * @param identifiers A comma-delimited list of product identifiers to search the Amazon catalog for. **Note:** Cannot be used with &#x60;keywords&#x60;. (optional)
+     * @param identifiersType Type of product identifiers to search the Amazon catalog for. **Note:** Required when &#x60;identifiers&#x60; are provided. (optional)
+     * @param includedData A comma-delimited list of data sets to include in the response. Default: &#x60;summaries&#x60;. (optional, default to ["summaries"])
+     * @param locale Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace. (optional)
+     * @param sellerId A selling partner identifier, such as a seller account or vendor code. **Note:** Required when &#x60;identifiersType&#x60; is &#x60;SKU&#x60;. (optional)
+     * @param keywords A comma-delimited list of words to search the Amazon catalog for. **Note:** Cannot be used with &#x60;identifiers&#x60;. (optional)
+     * @param brandNames A comma-delimited list of brand names to limit the search for &#x60;keywords&#x60;-based queries. **Note:** Cannot be used with &#x60;identifiers&#x60;. (optional)
+     * @param classificationIds A comma-delimited list of classification identifiers to limit the search for &#x60;keywords&#x60;-based queries. **Note:** Cannot be used with &#x60;identifiers&#x60;. (optional)
+     * @param pageSize Number of results to be returned per page. (optional, default to 10)
+     * @param pageToken A token to fetch a certain page when there are multiple pages worth of results. (optional)
+     * @param keywordsLocale The language of the keywords provided for &#x60;keywords&#x60;-based queries. Defaults to the primary locale of the marketplace. **Note:** Cannot be used with &#x60;identifiers&#x60;. (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public Call listCatalogCategoriesCall(String marketplaceId, String ASIN, String sellerSKU, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call searchCatalogItemsCall(List<String> marketplaceIds, List<String> identifiers, String identifiersType, List<String> includedData, String locale, String sellerId, List<String> keywords, List<String> brandNames, List<String> classificationIds, Integer pageSize, String pageToken, String keywordsLocale, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/catalog/v0/categories";
+        String localVarPath = "/catalog/2022-04-01/items";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (marketplaceId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("MarketplaceId", marketplaceId));
-        if (ASIN != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("ASIN", ASIN));
-        if (sellerSKU != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("SellerSKU", sellerSKU));
+        if (identifiers != null)
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "identifiers", identifiers));
+        if (identifiersType != null)
+            localVarQueryParams.addAll(apiClient.parameterToPair("identifiersType", identifiersType));
+        if (marketplaceIds != null)
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "marketplaceIds", marketplaceIds));
+        if (includedData != null)
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "includedData", includedData));
+        if (locale != null)
+            localVarQueryParams.addAll(apiClient.parameterToPair("locale", locale));
+        if (sellerId != null)
+            localVarQueryParams.addAll(apiClient.parameterToPair("sellerId", sellerId));
+        if (keywords != null)
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "keywords", keywords));
+        if (brandNames != null)
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "brandNames", brandNames));
+        if (classificationIds != null)
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "classificationIds", classificationIds));
+        if (pageSize != null)
+            localVarQueryParams.addAll(apiClient.parameterToPair("pageSize", pageSize));
+        if (pageToken != null)
+            localVarQueryParams.addAll(apiClient.parameterToPair("pageToken", pageToken));
+        if (keywordsLocale != null)
+            localVarQueryParams.addAll(apiClient.parameterToPair("keywordsLocale", keywordsLocale));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public Response intercept(Interceptor.Chain chain) throws IOException {
-                    Response originalResponse = chain.proceed(chain.request());
+                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -255,59 +274,86 @@ public class CatalogApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    private Call listCatalogCategoriesValidateBeforeCall(String marketplaceId, String ASIN, String sellerSKU, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'marketplaceId' is set
-        if (marketplaceId == null) {
-            throw new ApiException("Missing the required parameter 'marketplaceId' when calling listCatalogCategories(Async)");
-        }
-        
+    private com.squareup.okhttp.Call searchCatalogItemsValidateBeforeCall(List<String> marketplaceIds, List<String> identifiers, String identifiersType, List<String> includedData, String locale, String sellerId, List<String> keywords, List<String> brandNames, List<String> classificationIds, Integer pageSize, String pageToken, String keywordsLocale, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
 
-        Call call = listCatalogCategoriesCall(marketplaceId, ASIN, sellerSKU, progressListener, progressRequestListener);
+        // verify the required parameter 'marketplaceIds' is set
+        if (marketplaceIds == null) {
+            throw new ApiException("Missing the required parameter 'marketplaceIds' when calling searchCatalogItems(Async)");
+        }
+
+
+        com.squareup.okhttp.Call call = searchCatalogItemsCall(marketplaceIds, identifiers, identifiersType, includedData, locale, sellerId, keywords, brandNames, classificationIds, pageSize, pageToken, keywordsLocale, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * 
-     * Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 |  For more information, see \&quot;Usage Plans and Rate Limits\&quot; in the Selling Partner API documentation.
-     * @param marketplaceId A marketplace identifier. Specifies the marketplace for the item. (required)
-     * @param ASIN The Amazon Standard Identification Number (ASIN) of the item. (optional)
-     * @param sellerSKU Used to identify items in the given marketplace. SellerSKU is qualified by the seller&#39;s SellerId, which is included with every operation that you submit. (optional)
-     * @return ListCatalogCategoriesResponse
+     * Search for and return a list of Amazon catalog items and associated information either by identifier or by keywords.  **Usage Plans:**  | Rate (requests per second) | Burst | | ---- | ---- | | 5 | 5 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may observe higher rate and burst values than those shown here. For more information, refer to the [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+     * @param marketplaceIds A comma-delimited list of Amazon marketplace identifiers for the request. (required)
+     * @param identifiers A comma-delimited list of product identifiers to search the Amazon catalog for. **Note:** Cannot be used with &#x60;keywords&#x60;. (optional)
+     * @param identifiersType Type of product identifiers to search the Amazon catalog for. **Note:** Required when &#x60;identifiers&#x60; are provided. (optional)
+     * @param includedData A comma-delimited list of data sets to include in the response. Default: &#x60;summaries&#x60;. (optional, default to ["summaries"])
+     * @param locale Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace. (optional)
+     * @param sellerId A selling partner identifier, such as a seller account or vendor code. **Note:** Required when &#x60;identifiersType&#x60; is &#x60;SKU&#x60;. (optional)
+     * @param keywords A comma-delimited list of words to search the Amazon catalog for. **Note:** Cannot be used with &#x60;identifiers&#x60;. (optional)
+     * @param brandNames A comma-delimited list of brand names to limit the search for &#x60;keywords&#x60;-based queries. **Note:** Cannot be used with &#x60;identifiers&#x60;. (optional)
+     * @param classificationIds A comma-delimited list of classification identifiers to limit the search for &#x60;keywords&#x60;-based queries. **Note:** Cannot be used with &#x60;identifiers&#x60;. (optional)
+     * @param pageSize Number of results to be returned per page. (optional, default to 10)
+     * @param pageToken A token to fetch a certain page when there are multiple pages worth of results. (optional)
+     * @param keywordsLocale The language of the keywords provided for &#x60;keywords&#x60;-based queries. Defaults to the primary locale of the marketplace. **Note:** Cannot be used with &#x60;identifiers&#x60;. (optional)
+     * @return ItemSearchResults
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ListCatalogCategoriesResponse listCatalogCategories(String marketplaceId, String ASIN, String sellerSKU) throws ApiException {
-        ApiResponse<ListCatalogCategoriesResponse> resp = listCatalogCategoriesWithHttpInfo(marketplaceId, ASIN, sellerSKU);
+    public ItemSearchResults searchCatalogItems(List<String> marketplaceIds, List<String> identifiers, String identifiersType, List<String> includedData, String locale, String sellerId, List<String> keywords, List<String> brandNames, List<String> classificationIds, Integer pageSize, String pageToken, String keywordsLocale) throws ApiException {
+        ApiResponse<ItemSearchResults> resp = searchCatalogItemsWithHttpInfo(marketplaceIds, identifiers, identifiersType, includedData, locale, sellerId, keywords, brandNames, classificationIds, pageSize, pageToken, keywordsLocale);
         return resp.getData();
     }
 
     /**
      * 
-     * Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 |  For more information, see \&quot;Usage Plans and Rate Limits\&quot; in the Selling Partner API documentation.
-     * @param marketplaceId A marketplace identifier. Specifies the marketplace for the item. (required)
-     * @param ASIN The Amazon Standard Identification Number (ASIN) of the item. (optional)
-     * @param sellerSKU Used to identify items in the given marketplace. SellerSKU is qualified by the seller&#39;s SellerId, which is included with every operation that you submit. (optional)
-     * @return ApiResponse&lt;ListCatalogCategoriesResponse&gt;
+     * Search for and return a list of Amazon catalog items and associated information either by identifier or by keywords.  **Usage Plans:**  | Rate (requests per second) | Burst | | ---- | ---- | | 5 | 5 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may observe higher rate and burst values than those shown here. For more information, refer to the [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+     * @param marketplaceIds A comma-delimited list of Amazon marketplace identifiers for the request. (required)
+     * @param identifiers A comma-delimited list of product identifiers to search the Amazon catalog for. **Note:** Cannot be used with &#x60;keywords&#x60;. (optional)
+     * @param identifiersType Type of product identifiers to search the Amazon catalog for. **Note:** Required when &#x60;identifiers&#x60; are provided. (optional)
+     * @param includedData A comma-delimited list of data sets to include in the response. Default: &#x60;summaries&#x60;. (optional, default to ["summaries"])
+     * @param locale Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace. (optional)
+     * @param sellerId A selling partner identifier, such as a seller account or vendor code. **Note:** Required when &#x60;identifiersType&#x60; is &#x60;SKU&#x60;. (optional)
+     * @param keywords A comma-delimited list of words to search the Amazon catalog for. **Note:** Cannot be used with &#x60;identifiers&#x60;. (optional)
+     * @param brandNames A comma-delimited list of brand names to limit the search for &#x60;keywords&#x60;-based queries. **Note:** Cannot be used with &#x60;identifiers&#x60;. (optional)
+     * @param classificationIds A comma-delimited list of classification identifiers to limit the search for &#x60;keywords&#x60;-based queries. **Note:** Cannot be used with &#x60;identifiers&#x60;. (optional)
+     * @param pageSize Number of results to be returned per page. (optional, default to 10)
+     * @param pageToken A token to fetch a certain page when there are multiple pages worth of results. (optional)
+     * @param keywordsLocale The language of the keywords provided for &#x60;keywords&#x60;-based queries. Defaults to the primary locale of the marketplace. **Note:** Cannot be used with &#x60;identifiers&#x60;. (optional)
+     * @return ApiResponse&lt;ItemSearchResults&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ListCatalogCategoriesResponse> listCatalogCategoriesWithHttpInfo(String marketplaceId, String ASIN, String sellerSKU) throws ApiException {
-        Call call = listCatalogCategoriesValidateBeforeCall(marketplaceId, ASIN, sellerSKU, null, null);
-        Type localVarReturnType = new TypeToken<ListCatalogCategoriesResponse>(){}.getType();
+    public ApiResponse<ItemSearchResults> searchCatalogItemsWithHttpInfo(List<String> marketplaceIds, List<String> identifiers, String identifiersType, List<String> includedData, String locale, String sellerId, List<String> keywords, List<String> brandNames, List<String> classificationIds, Integer pageSize, String pageToken, String keywordsLocale) throws ApiException {
+        com.squareup.okhttp.Call call = searchCatalogItemsValidateBeforeCall(marketplaceIds, identifiers, identifiersType, includedData, locale, sellerId, keywords, brandNames, classificationIds, pageSize, pageToken, keywordsLocale, null, null);
+        Type localVarReturnType = new TypeToken<ItemSearchResults>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 |  For more information, see \&quot;Usage Plans and Rate Limits\&quot; in the Selling Partner API documentation.
-     * @param marketplaceId A marketplace identifier. Specifies the marketplace for the item. (required)
-     * @param ASIN The Amazon Standard Identification Number (ASIN) of the item. (optional)
-     * @param sellerSKU Used to identify items in the given marketplace. SellerSKU is qualified by the seller&#39;s SellerId, which is included with every operation that you submit. (optional)
+     * Search for and return a list of Amazon catalog items and associated information either by identifier or by keywords.  **Usage Plans:**  | Rate (requests per second) | Burst | | ---- | ---- | | 5 | 5 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may observe higher rate and burst values than those shown here. For more information, refer to the [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+     * @param marketplaceIds A comma-delimited list of Amazon marketplace identifiers for the request. (required)
+     * @param identifiers A comma-delimited list of product identifiers to search the Amazon catalog for. **Note:** Cannot be used with &#x60;keywords&#x60;. (optional)
+     * @param identifiersType Type of product identifiers to search the Amazon catalog for. **Note:** Required when &#x60;identifiers&#x60; are provided. (optional)
+     * @param includedData A comma-delimited list of data sets to include in the response. Default: &#x60;summaries&#x60;. (optional, default to ["summaries"])
+     * @param locale Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace. (optional)
+     * @param sellerId A selling partner identifier, such as a seller account or vendor code. **Note:** Required when &#x60;identifiersType&#x60; is &#x60;SKU&#x60;. (optional)
+     * @param keywords A comma-delimited list of words to search the Amazon catalog for. **Note:** Cannot be used with &#x60;identifiers&#x60;. (optional)
+     * @param brandNames A comma-delimited list of brand names to limit the search for &#x60;keywords&#x60;-based queries. **Note:** Cannot be used with &#x60;identifiers&#x60;. (optional)
+     * @param classificationIds A comma-delimited list of classification identifiers to limit the search for &#x60;keywords&#x60;-based queries. **Note:** Cannot be used with &#x60;identifiers&#x60;. (optional)
+     * @param pageSize Number of results to be returned per page. (optional, default to 10)
+     * @param pageToken A token to fetch a certain page when there are multiple pages worth of results. (optional)
+     * @param keywordsLocale The language of the keywords provided for &#x60;keywords&#x60;-based queries. Defaults to the primary locale of the marketplace. **Note:** Cannot be used with &#x60;identifiers&#x60;. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call listCatalogCategoriesAsync(String marketplaceId, String ASIN, String sellerSKU, final ApiCallback<ListCatalogCategoriesResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call searchCatalogItemsAsync(List<String> marketplaceIds, List<String> identifiers, String identifiersType, List<String> includedData, String locale, String sellerId, List<String> keywords, List<String> brandNames, List<String> classificationIds, Integer pageSize, String pageToken, String keywordsLocale, final ApiCallback<ItemSearchResults> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -328,169 +374,8 @@ public class CatalogApi {
             };
         }
 
-        Call call = listCatalogCategoriesValidateBeforeCall(marketplaceId, ASIN, sellerSKU, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ListCatalogCategoriesResponse>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /**
-     * Build call for listCatalogItems
-     * @param marketplaceId A marketplace identifier. Specifies the marketplace for which items are returned. (required)
-     * @param query Keyword(s) to use to search for items in the catalog. Example: &#39;harry potter books&#39;. (optional)
-     * @param queryContextId An identifier for the context within which the given search will be performed. A marketplace might provide mechanisms for constraining a search to a subset of potential items. For example, the retail marketplace allows queries to be constrained to a specific category. The QueryContextId parameter specifies such a subset. If it is omitted, the search will be performed using the default context for the marketplace, which will typically contain the largest set of items. (optional)
-     * @param sellerSKU Used to identify an item in the given marketplace. SellerSKU is qualified by the seller&#39;s SellerId, which is included with every operation that you submit. (optional)
-     * @param UPC A 12-digit bar code used for retail packaging. (optional)
-     * @param EAN A European article number that uniquely identifies the catalog item, manufacturer, and its attributes. (optional)
-     * @param ISBN The unique commercial book identifier used to identify books internationally. (optional)
-     * @param JAN A Japanese article number that uniquely identifies the product, manufacturer, and its attributes. (optional)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public Call listCatalogItemsCall(String marketplaceId, String query, String queryContextId, String sellerSKU, String UPC, String EAN, String ISBN, String JAN, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/catalog/v0/items";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (marketplaceId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("MarketplaceId", marketplaceId));
-        if (query != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("Query", query));
-        if (queryContextId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("QueryContextId", queryContextId));
-        if (sellerSKU != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("SellerSKU", sellerSKU));
-        if (UPC != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("UPC", UPC));
-        if (EAN != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("EAN", EAN));
-        if (ISBN != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("ISBN", ISBN));
-        if (JAN != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("JAN", JAN));
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
-                @Override
-                public Response intercept(Interceptor.Chain chain) throws IOException {
-                    Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    private Call listCatalogItemsValidateBeforeCall(String marketplaceId, String query, String queryContextId, String sellerSKU, String UPC, String EAN, String ISBN, String JAN, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        // verify the required parameter 'marketplaceId' is set
-        if (marketplaceId == null) {
-            throw new ApiException("Missing the required parameter 'marketplaceId' when calling listCatalogItems(Async)");
-        }
-        Call call = listCatalogItemsCall(marketplaceId, query, queryContextId, sellerSKU, UPC, EAN, ISBN, JAN, progressListener, progressRequestListener);
-        return call;
-    }
-
-    /**
-     * 
-     * Returns a list of items and their attributes, based on a search query or item identifiers that you specify. When based on a search query, provide the Query parameter and optionally, the QueryContextId parameter. When based on item identifiers, provide a single appropriate parameter based on the identifier type, and specify the associated item value. MarketplaceId is always required.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 |  For more information, see \&quot;Usage Plans and Rate Limits\&quot; in the Selling Partner API documentation.
-     * @param marketplaceId A marketplace identifier. Specifies the marketplace for which items are returned. (required)
-     * @param query Keyword(s) to use to search for items in the catalog. Example: &#39;harry potter books&#39;. (optional)
-     * @param queryContextId An identifier for the context within which the given search will be performed. A marketplace might provide mechanisms for constraining a search to a subset of potential items. For example, the retail marketplace allows queries to be constrained to a specific category. The QueryContextId parameter specifies such a subset. If it is omitted, the search will be performed using the default context for the marketplace, which will typically contain the largest set of items. (optional)
-     * @param sellerSKU Used to identify an item in the given marketplace. SellerSKU is qualified by the seller&#39;s SellerId, which is included with every operation that you submit. (optional)
-     * @param UPC A 12-digit bar code used for retail packaging. (optional)
-     * @param EAN A European article number that uniquely identifies the catalog item, manufacturer, and its attributes. (optional)
-     * @param ISBN The unique commercial book identifier used to identify books internationally. (optional)
-     * @param JAN A Japanese article number that uniquely identifies the product, manufacturer, and its attributes. (optional)
-     * @return ListCatalogItemsResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ListCatalogItemsResponse listCatalogItems(String marketplaceId, String query, String queryContextId, String sellerSKU, String UPC, String EAN, String ISBN, String JAN) throws ApiException {
-        ApiResponse<ListCatalogItemsResponse> resp = listCatalogItemsWithHttpInfo(marketplaceId, query, queryContextId, sellerSKU, UPC, EAN, ISBN, JAN);
-        return resp.getData();
-    }
-
-    /**
-     * 
-     * Returns a list of items and their attributes, based on a search query or item identifiers that you specify. When based on a search query, provide the Query parameter and optionally, the QueryContextId parameter. When based on item identifiers, provide a single appropriate parameter based on the identifier type, and specify the associated item value. MarketplaceId is always required.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 |  For more information, see \&quot;Usage Plans and Rate Limits\&quot; in the Selling Partner API documentation.
-     * @param marketplaceId A marketplace identifier. Specifies the marketplace for which items are returned. (required)
-     * @param query Keyword(s) to use to search for items in the catalog. Example: &#39;harry potter books&#39;. (optional)
-     * @param queryContextId An identifier for the context within which the given search will be performed. A marketplace might provide mechanisms for constraining a search to a subset of potential items. For example, the retail marketplace allows queries to be constrained to a specific category. The QueryContextId parameter specifies such a subset. If it is omitted, the search will be performed using the default context for the marketplace, which will typically contain the largest set of items. (optional)
-     * @param sellerSKU Used to identify an item in the given marketplace. SellerSKU is qualified by the seller&#39;s SellerId, which is included with every operation that you submit. (optional)
-     * @param UPC A 12-digit bar code used for retail packaging. (optional)
-     * @param EAN A European article number that uniquely identifies the catalog item, manufacturer, and its attributes. (optional)
-     * @param ISBN The unique commercial book identifier used to identify books internationally. (optional)
-     * @param JAN A Japanese article number that uniquely identifies the product, manufacturer, and its attributes. (optional)
-     * @return ApiResponse&lt;ListCatalogItemsResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<ListCatalogItemsResponse> listCatalogItemsWithHttpInfo(String marketplaceId, String query, String queryContextId, String sellerSKU, String UPC, String EAN, String ISBN, String JAN) throws ApiException {
-        Call call = listCatalogItemsValidateBeforeCall(marketplaceId, query, queryContextId, sellerSKU, UPC, EAN, ISBN, JAN, null, null);
-        Type localVarReturnType = new TypeToken<ListCatalogItemsResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     *  (asynchronously)
-     * Returns a list of items and their attributes, based on a search query or item identifiers that you specify. When based on a search query, provide the Query parameter and optionally, the QueryContextId parameter. When based on item identifiers, provide a single appropriate parameter based on the identifier type, and specify the associated item value. MarketplaceId is always required.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 |  For more information, see \&quot;Usage Plans and Rate Limits\&quot; in the Selling Partner API documentation.
-     * @param marketplaceId A marketplace identifier. Specifies the marketplace for which items are returned. (required)
-     * @param query Keyword(s) to use to search for items in the catalog. Example: &#39;harry potter books&#39;. (optional)
-     * @param queryContextId An identifier for the context within which the given search will be performed. A marketplace might provide mechanisms for constraining a search to a subset of potential items. For example, the retail marketplace allows queries to be constrained to a specific category. The QueryContextId parameter specifies such a subset. If it is omitted, the search will be performed using the default context for the marketplace, which will typically contain the largest set of items. (optional)
-     * @param sellerSKU Used to identify an item in the given marketplace. SellerSKU is qualified by the seller&#39;s SellerId, which is included with every operation that you submit. (optional)
-     * @param UPC A 12-digit bar code used for retail packaging. (optional)
-     * @param EAN A European article number that uniquely identifies the catalog item, manufacturer, and its attributes. (optional)
-     * @param ISBN The unique commercial book identifier used to identify books internationally. (optional)
-     * @param JAN A Japanese article number that uniquely identifies the product, manufacturer, and its attributes. (optional)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public Call listCatalogItemsAsync(String marketplaceId, String query, String queryContextId, String sellerSKU, String UPC, String EAN, String ISBN, String JAN, final ApiCallback<ListCatalogItemsResponse> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        Call call = listCatalogItemsValidateBeforeCall(marketplaceId, query, queryContextId, sellerSKU, UPC, EAN, ISBN, JAN, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ListCatalogItemsResponse>(){}.getType();
+        com.squareup.okhttp.Call call = searchCatalogItemsValidateBeforeCall(marketplaceIds, identifiers, identifiersType, includedData, locale, sellerId, keywords, brandNames, classificationIds, pageSize, pageToken, keywordsLocale, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<ItemSearchResults>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -502,6 +387,7 @@ public class CatalogApi {
         private LWAAccessTokenCache lwaAccessTokenCache;
         private Boolean disableAccessTokenCache = false;
         private AWSAuthenticationCredentialsProvider awsAuthenticationCredentialsProvider;
+        private RateLimitConfiguration rateLimitConfiguration;
 
         public Builder awsAuthenticationCredentials(AWSAuthenticationCredentials awsAuthenticationCredentials) {
             this.awsAuthenticationCredentials = awsAuthenticationCredentials;
@@ -517,22 +403,32 @@ public class CatalogApi {
             this.endpoint = endpoint;
             return this;
         }
-        
+
         public Builder lwaAccessTokenCache(LWAAccessTokenCache lwaAccessTokenCache) {
             this.lwaAccessTokenCache = lwaAccessTokenCache;
             return this;
         }
-		
-	   public Builder disableAccessTokenCache() {
+
+        public Builder disableAccessTokenCache() {
             this.disableAccessTokenCache = true;
             return this;
         }
-        
+
         public Builder awsAuthenticationCredentialsProvider(AWSAuthenticationCredentialsProvider awsAuthenticationCredentialsProvider) {
             this.awsAuthenticationCredentialsProvider = awsAuthenticationCredentialsProvider;
             return this;
         }
-        
+
+        public Builder rateLimitConfigurationOnRequests(RateLimitConfiguration rateLimitConfiguration){
+            this.rateLimitConfiguration = rateLimitConfiguration;
+            return this;
+        }
+
+        public Builder disableRateLimitOnRequests() {
+            this.rateLimitConfiguration = null;
+            return this;
+        }
+
 
         public CatalogApi build() {
             if (awsAuthenticationCredentials == null) {
@@ -554,7 +450,7 @@ public class CatalogApi {
             else {
                 awsSigV4Signer = new AWSSigV4Signer(awsAuthenticationCredentials,awsAuthenticationCredentialsProvider);
             }
-            
+
             LWAAuthorizationSigner lwaAuthorizationSigner = null;            
             if (disableAccessTokenCache) {
                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials);
@@ -562,14 +458,16 @@ public class CatalogApi {
             else {
                 if (lwaAccessTokenCache == null) {
                     lwaAccessTokenCache = new LWAAccessTokenCacheImpl();                  
-                 }
-                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
+                }
+                lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
             }
 
             return new CatalogApi(new ApiClient()
-                .setAWSSigV4Signer(awsSigV4Signer)
-                .setLWAAuthorizationSigner(lwaAuthorizationSigner)
-                .setBasePath(endpoint));
+                    .setAWSSigV4Signer(awsSigV4Signer)
+                    .setLWAAuthorizationSigner(lwaAuthorizationSigner)
+                    .setBasePath(endpoint)
+                    .setRateLimiter(rateLimitConfiguration));
         }
     }
 }
+
