@@ -47,7 +47,7 @@ public class Item {
   private List<FulfillmentAvailability> fulfillmentAvailability = null;
 
   @SerializedName("procurement")
-  private ItemProcurement procurement = null;
+  private List<ItemProcurement> procurement = null;
 
   public Item sku(String sku) {
     this.sku = sku;
@@ -165,7 +165,7 @@ public class Item {
     this.fulfillmentAvailability = fulfillmentAvailability;
   }
 
-  public Item procurement(ItemProcurement procurement) {
+  public Item procurement(List<ItemProcurement> procurement) {
     this.procurement = procurement;
     return this;
   }
@@ -175,11 +175,11 @@ public class Item {
    * @return procurement
   **/
   @ApiModelProperty(value = "")
-  public ItemProcurement getProcurement() {
+  public List<ItemProcurement> getProcurement() {
     return procurement;
   }
 
-  public void setProcurement(ItemProcurement procurement) {
+  public void setProcurement(List<ItemProcurement> procurement) {
     this.procurement = procurement;
   }
 
