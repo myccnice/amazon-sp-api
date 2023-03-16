@@ -1,12 +1,17 @@
-package com.amazon.spapi.SellingPartnerAPIAA;
+package com.amazon.SellingPartnerAPIAA;
 
 import com.amazonaws.SignableRequest;
-import com.amazonaws.auth.*;
-import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClientBuilder;
+import com.amazonaws.auth.AWS4Signer;
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.squareup.okhttp.Request;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import com.amazonaws.auth.STSAssumeRoleSessionCredentialsProvider;
+import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClientBuilder;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
 
 /**
  * AWS Signature Version 4 Signer
@@ -41,7 +46,7 @@ public class AWSSigV4Signer {
     * @param awsAuthenticationCredentials and awsAuthenticationCredentialsProvider AWS Developer Account Credentials
     */
    public AWSSigV4Signer(AWSAuthenticationCredentials awsAuthenticationCredentials,
-           AWSAuthenticationCredentialsProvider awsAuthenticationCredentialsProvider) {
+            AWSAuthenticationCredentialsProvider awsAuthenticationCredentialsProvider) {
        aws4Signer = new AWS4Signer();
        aws4Signer.setServiceName(SERVICE_NAME);
        aws4Signer.setRegionName(awsAuthenticationCredentials.getRegion());

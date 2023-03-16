@@ -1,9 +1,13 @@
-package com.amazon.spapi.SellingPartnerAPIAA;
+package com.amazon.SellingPartnerAPIAA;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.squareup.okhttp.*;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;

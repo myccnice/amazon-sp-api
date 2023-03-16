@@ -13,18 +13,33 @@
 
 package com.amazon.spapi.api;
 
-import com.amazon.spapi.client.*;
-import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
-import com.amazon.spapi.model.catalogitems.Item;
-import com.amazon.spapi.model.catalogitems.ItemSearchResults;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.amazon.spapi.SellingPartnerAPIAA.*;
+import com.amazon.SellingPartnerAPIAA.AWSAuthenticationCredentials;
+import com.amazon.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
+import com.amazon.SellingPartnerAPIAA.AWSSigV4Signer;
+import com.amazon.SellingPartnerAPIAA.LWAAccessTokenCache;
+import com.amazon.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
+import com.amazon.SellingPartnerAPIAA.LWAAuthorizationCredentials;
+import com.amazon.SellingPartnerAPIAA.LWAAuthorizationSigner;
+import com.amazon.SellingPartnerAPIAA.RateLimitConfiguration;
+import com.amazon.spapi.client.ApiCallback;
+import com.amazon.spapi.client.ApiClient;
+import com.amazon.spapi.client.ApiException;
+import com.amazon.spapi.client.ApiResponse;
+import com.amazon.spapi.client.Configuration;
+import com.amazon.spapi.client.Pair;
+import com.amazon.spapi.client.ProgressRequestBody;
+import com.amazon.spapi.client.ProgressResponseBody;
+import com.amazon.spapi.client.StringUtil;
+import com.amazon.spapi.model.catalogitems.Item;
+import com.amazon.spapi.model.catalogitems.ItemSearchResults;
+import com.google.gson.reflect.TypeToken;
 
 public class  CatalogApi {
     private ApiClient apiClient;

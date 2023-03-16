@@ -1,4 +1,4 @@
-package com.amazon.spapi.SellingPartnerAPIAA;
+package com.amazon.SellingPartnerAPIAA;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;

@@ -2,9 +2,9 @@ package com.amazon.spapi.custom.model;
 
 import java.util.UUID;
 
-import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentials;
-import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
-import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
+import com.amazon.SellingPartnerAPIAA.AWSAuthenticationCredentials;
+import com.amazon.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
+import com.amazon.SellingPartnerAPIAA.LWAAuthorizationCredentials;
 import com.amazon.spapi.custom.constant.MarketplaceId;
 
 import lombok.AllArgsConstructor;

@@ -20,13 +20,13 @@ import java.util.Map;
 
 import org.threeten.bp.OffsetDateTime;
 
-import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentials;
-import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
-import com.amazon.spapi.SellingPartnerAPIAA.AWSSigV4Signer;
-import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCache;
-import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
-import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
-import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationSigner;
+import com.amazon.SellingPartnerAPIAA.AWSAuthenticationCredentials;
+import com.amazon.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider;
+import com.amazon.SellingPartnerAPIAA.AWSSigV4Signer;
+import com.amazon.SellingPartnerAPIAA.LWAAccessTokenCache;
+import com.amazon.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
+import com.amazon.SellingPartnerAPIAA.LWAAuthorizationCredentials;
+import com.amazon.SellingPartnerAPIAA.LWAAuthorizationSigner;
 import com.amazon.spapi.client.ApiCallback;
 import com.amazon.spapi.client.ApiClient;
 import com.amazon.spapi.client.ApiException;

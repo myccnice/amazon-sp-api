@@ -1,4 +1,4 @@
-package com.amazon.spapi.SellingPartnerAPIAA;
+package com.amazon.SellingPartnerAPIAA;
 
 public final class ScopeConstants {
 

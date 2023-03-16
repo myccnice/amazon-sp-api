@@ -1,4 +1,4 @@
-package com.amazon.spapi.SellingPartnerAPIAA;
+package com.amazon.SellingPartnerAPIAA;
 
 import com.squareup.okhttp.Request;
 import lombok.AccessLevel;
@@ -51,7 +51,7 @@ public class LWAAuthorizationSigner {
     * and LWAAccessTokenCache
     */
     public LWAAuthorizationSigner(LWAAuthorizationCredentials lwaAuthorizationCredentials,
-                                  LWAAccessTokenCache lwaAccessTokenCache) {
+           LWAAccessTokenCache lwaAccessTokenCache) {
 
        lwaClient = new LWAClient(lwaAuthorizationCredentials.getEndpoint());
        lwaClient.setLWAAccessTokenCache(lwaAccessTokenCache);
